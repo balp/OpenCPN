@@ -51,6 +51,12 @@
 #include "wx/socket.h"
 ///////////TH100126////////////////
 #include "wx/sound.h"
+#ifdef __WXOSX__
+#include "wx/osx/sound.h"
+#endif
+#if 1
+#include "wx/osx/sound.h"
+#endif
 
 #include "dychart.h"
 #include "chart1.h"

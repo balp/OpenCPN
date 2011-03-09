@@ -1658,7 +1658,7 @@ bool s57chart::RenderRegionViewOnDC(wxMemoryDC& dc, const ViewPort& VPoint, cons
 {
       bool force_new_view = false;
 
-      if(Region != m_last_Region)
+      if(&Region != &m_last_Region)
             force_new_view = true;
 
       ps52plib->PrepareForRender();

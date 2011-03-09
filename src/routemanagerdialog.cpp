@@ -29,11 +29,7 @@
 
 #include <wx/filename.h>
 #include <wx/stdpaths.h>
-#if 1
 #include <wx/progdlg.h>
-#else
-#include <wx/generic/progdlgg.h>
-#endif
 
 #include <iostream>
 

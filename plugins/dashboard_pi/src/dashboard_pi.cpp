@@ -32,6 +32,9 @@
 #ifndef  WX_PRECOMP
   #include "wx/wx.h"
 #endif //precompiled headers
+#ifdef __WXOSX_COCOA__
+#include "wx/wrapsizer.h"
+#endif
 
 #include <typeinfo>
 #include "dashboard_pi.h"
@@ -1106,7 +1109,11 @@ DashboardWindow::DashboardWindow(wxWindow *pparent, wxWindowID id, wxAuiManager 
       SetBackgroundColour(cl);
 
 //wx2.9      itemBoxSizer = new wxWrapSizer(wxVERTICAL);
+#ifdef __WXOSX_COCOA__
+      itemBoxSizer = new wxWrapSizer(wxVERTICAL);
+#else
       itemBoxSizer = new wxBoxSizer(wxVERTICAL);
+#endif
       SetSizer(itemBoxSizer);
 
       Connect(this->GetId(), wxEVT_SIZE, wxSizeEventHandler(DashboardWindow::OnSize));
@@ -1188,12 +1195,14 @@ void DashboardWindow::SetInstrumentList(wxArrayInt list)
       ID_DBP_I_DPT: config unit (meter, feet, fathoms)
       ID_DBP_D_DPT: show temp optional
 */
+std::cout << "IMPDEBUGdb: " << "SetInstrumentList" << std::endl;
       m_ArrayOfInstrument.Clear();
       itemBoxSizer->Clear(true);
       for (size_t i = 0; i < list.GetCount(); i++)
       {
             int id = list.Item(i);
             DashboardInstrument *instrument;
+std::cout << "IMPDEBUGdb: " << "Instrument " << i << ", id: " << id << std::endl;
             switch (id)
             {
             case ID_DBP_I_POS:

@@ -1,3 +1,4 @@
+#include <iostream>
 /******************************************************************************
  * $Id:
  *
@@ -108,11 +109,7 @@
 #include <time.h>
 
 #include <wx/listimpl.cpp>
-#if 1
 #include <wx/progdlg.h>
-#else
-#include <wx/generic/progdlgg.h>
-#endif
 
 #include "chart1.h"
 #include "navutil.h"

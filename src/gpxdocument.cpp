@@ -355,11 +355,11 @@ GpxExtensionsElement::GpxExtensionsElement() : TiXmlElement("extensions")
 GpxLinkElement::GpxLinkElement(const wxString &uri, const wxString &description, const wxString &mime_type) : TiXmlElement("link")
 {
       SetAttribute("href", uri.ToUTF8()); //TODO: some checks?
-      if(description.Length() > 0) {
+      if(description.Len() > 0) {
             GpxSimpleElement * g = new GpxSimpleElement(wxString(_T("text")), description);
             LinkEndChild(g);
       }
-      if(mime_type.Length() > 0)
+      if(mime_type.Len() > 0)
             LinkEndChild(new GpxSimpleElement(wxString(_T("type")), mime_type));
 }
 
@@ -382,13 +382,13 @@ GpxWptElement::GpxWptElement(char *waypoint_type, double lat, double lon, double
             SetProperty(wxString(_T("magvar")), wxString::Format(_T("%f"), magvar));
       if (geoidheight != -1)
             SetProperty(wxString(_T("geoidheight")), wxString::Format(_T("%f"), geoidheight));
-      if (name.Length() > 0)
+      if (name.Len() > 0)
             SetProperty(wxString(_T("name")), name);
-      if (cmt.Length() > 0)
+      if (cmt.Len() > 0)
             SetProperty(wxString(_T("cmt")), cmt);
-      if (desc.Length() > 0)
+      if (desc.Len() > 0)
             SetProperty(wxString(_T("desc")), desc);
-      if (src.Length() > 0)
+      if (src.Len() > 0)
             SetProperty(wxString(_T("src")), src);
       if (links) {
             wxListOfGpxLinksNode *link = links->GetFirst();
@@ -398,9 +398,9 @@ GpxWptElement::GpxWptElement(char *waypoint_type, double lat, double lon, double
                   link = link->GetNext();
             }
       }
-      if (sym.Length() > 0)
+      if (sym.Len() > 0)
             SetProperty(wxString(_T("sym")), sym);
-      if (type.Length() > 0)
+      if (type.Len() > 0)
             SetProperty(wxString(_T("type")), type);
       if (fixtype != fix_undefined)
             SetProperty(wxString(_T("fix")), FixTypeToStr(fixtype));
@@ -505,13 +505,13 @@ GpxRteElement::GpxRteElement(const wxString &name, const wxString &cmt, const wx
               const wxString &src, ListOfGpxLinks *links, int number,
               const wxString &type, GpxExtensionsElement *extensions, ListOfGpxWpts *waypoints) : TiXmlElement("rte")
 {
-      if (name.Length() > 0)
+      if (name.Len() > 0)
             SetProperty(wxString(_T("name")), name);
-      if (cmt.Length() > 0)
+      if (cmt.Len() > 0)
             SetProperty(wxString(_T("cmt")), cmt);
-      if (desc.Length() > 0)
+      if (desc.Len() > 0)
             SetProperty(wxString(_T("desc")), desc);
-      if (src.Length() > 0)
+      if (src.Len() > 0)
             SetProperty(wxString(_T("src")), src);
       if (links)
       {
@@ -524,7 +524,7 @@ GpxRteElement::GpxRteElement(const wxString &name, const wxString &cmt, const wx
       }
       if (number != -1)
             SetProperty(wxString(_T("number")), wxString::Format(_T("%u"), number));
-      if (type.Length() > 0)
+      if (type.Len() > 0)
             SetProperty(wxString(_T("type")), type);
       if (extensions)
             LinkEndChild(extensions);
@@ -580,13 +580,13 @@ GpxTrkElement::GpxTrkElement(const wxString &name, const wxString &cmt, const wx
               const wxString &src, ListOfGpxLinks *links, int number,
               const wxString &type, GpxExtensionsElement *extensions, ListOfGpxTrksegs *segments) : TiXmlElement("trk")
 {
-      if (name.Length() > 0)
+      if (name.Len() > 0)
             SetProperty(wxString(_T("name")), name);
-      if (cmt.Length() > 0)
+      if (cmt.Len() > 0)
             SetProperty(wxString(_T("cmt")), cmt);
-      if (desc.Length() > 0)
+      if (desc.Len() > 0)
             SetProperty(wxString(_T("desc")), desc);
-      if (src.Length() > 0)
+      if (src.Len() > 0)
             SetProperty(wxString(_T("src")), src);
       if (links)
       {
@@ -599,7 +599,7 @@ GpxTrkElement::GpxTrkElement(const wxString &name, const wxString &cmt, const wx
       }
       if (number != -1)
             SetProperty(wxString(_T("number")), wxString::Format(_T("%u"), number));
-      if (type.Length() > 0)
+      if (type.Len() > 0)
             SetProperty(wxString(_T("type")), type);
       if (extensions)
             LinkEndChild(extensions);

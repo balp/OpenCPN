@@ -3281,7 +3281,11 @@ bool ChartBaseBSB::RenderViewOnDC(wxMemoryDC& dc, const ViewPort& VPoint, ScaleT
 {
       wxRegion rgn(0,0,VPoint.pix_width, VPoint.pix_height);
 
+#ifdef __WXOSX__ // no longer works on wxW > 2.8 for osx :(
+      bool bsame_region = false;
+#else
       bool bsame_region = (rgn == m_last_region);          // only want to do this once
+#endif
 
 
       if(!bsame_region)

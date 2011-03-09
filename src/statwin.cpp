@@ -149,6 +149,7 @@ void StatWin::OnSize(wxSizeEvent& event)
 #ifdef USE_WIFI_CLIENT
       if(width) pWiFi->SetSize(width * 6/10, 0, width *4/10, height*1/m_rows);
 #endif
+      event.Skip(); // patg
 
 }
 

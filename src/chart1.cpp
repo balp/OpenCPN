@@ -1,3 +1,4 @@
+#include <iostream>
 /******************************************************************************
  * $Id: chart1.cpp,v 1.102 2010/06/25 02:02:04 bdbcat Exp $
  *
@@ -666,6 +667,18 @@ Please click \"OK\" to agree and proceed, \"Cancel\" to quit.\n"));
 }
 
 
+#ifdef __WXOSX_COCOA__
+void ocpnwxAssert(const wxString &file, int line, const wxString &func, const wxString &cond, const wxString &msg)
+{
+	wxString emsg;
+	emsg.Printf(_T("File %s: %d, function %s, condition: %s : %s"),
+		file, line, func, cond, msg);
+	wxMessageDialog mdlg(gFrame, emsg, wxString("WX Assertion Failure"), wxICON_INFORMATION | wxOK );
+	int dlg_ret;
+	dlg_ret = mdlg.ShowModal();
+}
+
+#endif
 
 // `Main program' equivalent, creating windows and returning main app frame
 //------------------------------------------------------------------------------
@@ -856,6 +869,10 @@ bool MyApp::OnInit()
         log.Append(_T("Logs/"));
 //#elif defined __WXMSW__
 //        log.Append(_T("opencpn\\"));
+#endif
+#ifdef __WXOSX_COCOA__
+// set a debugging assertion handler for 2.9.2-trunk wxwidgets - patg
+	wxSetAssertHandler(ocpnwxAssert);
 #endif
 
         // create the opencpn "log" directory if we need to
@@ -1456,7 +1473,8 @@ bool MyApp::OnInit()
 // Create the main frame window
         wxString myframe_window_title = wxT("OpenCPN ") + str_version_major + wxT(".") + str_version_minor + wxT(".") + str_version_patch; //Gunther
 
-          gFrame = new MyFrame(NULL, myframe_window_title, wxPoint(0, 0), new_frame_size, app_style ); //Gunther
+          //gFrame = new MyFrame(NULL, myframe_window_title, wxPoint(0, 0), new_frame_size, app_style ); //Gunther
+          gFrame = new MyFrame(NULL, myframe_window_title, wxPoint(cx, cy), new_frame_size, app_style ); //patg
 
         g_pauimgr = new wxAuiManager;
 //        g_pauidockart= new wxAuiDefaultDockArt;
@@ -1963,6 +1981,9 @@ int MyApp::FilterEvent(wxEvent& event)
 BEGIN_EVENT_TABLE(MyFrame, wxFrame)
   EVT_CLOSE(MyFrame::OnCloseWindow)
   EVT_MENU(wxID_EXIT, MyFrame::OnExit)
+#ifdef __WXOSX__
+  EVT_MENU(wxID_ABOUT, MyFrame::OnAbout)
+#endif // __WXOSX__
   EVT_SIZE(MyFrame::OnSize)
   EVT_MENU(-1, MyFrame::OnToolLeftClick)
   EVT_TIMER(FRAME_TIMER_1, MyFrame::OnFrameTimer1)
@@ -1990,6 +2011,13 @@ MyFrame::MyFrame(wxFrame *frame, const wxString& title, const wxPoint& pos, cons
 
         PrepareToolbarBitmaps();
 
+#ifdef __WXOSX__ //	Menu for OSX
+	wxMenuBar *menuBar = new wxMenuBar;
+	wxMenu *menuHelp = new wxMenu;
+	menuHelp->Append(wxID_ABOUT, wxT("&About"),_T("About opencpn"));
+	menuBar->Append(menuHelp, wxT("&Help"));
+	SetMenuBar(menuBar);
+#endif // __WXOSX__
 
         //      Redirect the global heartbeat timer to this frame
         FrameTimer1.SetOwner(this, FRAME_TIMER_1);
@@ -2113,6 +2141,7 @@ void MyFrame::OnEraseBackground(wxEraseEvent& event)
 void MyFrame::OnMaximize(wxMaximizeEvent& event)
 {
       g_click_stop = 0;
+      event.Skip();
 }
 
 void MyFrame::OnActivate(wxActivateEvent& event)
@@ -2128,9 +2157,11 @@ void MyFrame::OnActivate(wxActivateEvent& event)
 //            g_click_stop = 2;
       }
 
+#ifndef __WXOSX__ // set focus brings back the window after minimizing on mac, should probably use #ifdef __WXMSW__ here
       if(cc1)
         cc1->SetFocus();            // This seems to be needed for MSW, to get key and wheel events
                                     // after minimize/maximize.
+#endif
       event.Skip();
 }
 
@@ -2291,22 +2322,38 @@ void MyFrame::DestroyMyToolbar()
     if(m_toolBar)
     {
           m_toolBar->ClearTools();
+#ifndef __WXOSX_COCOA__
           m_toolBar->Destroy();
           m_toolBar = NULL;
+#endif
     }
 
 }
 
 
+#ifdef __WXOSX_COCOA__
+wxToolBar *MyFrame::CreateAToolbar()
+{
+    wxToolBar *tb;
+#else
 ocpnToolBarSimple *MyFrame::CreateAToolbar()
 {
     ocpnToolBarSimple *tb;
+#endif
 
     long style = 0;
     style |= wxTB_HORIZONTAL ;
     m_ptool_ct_dummyStaticBmp = NULL;
 
+#ifdef __WXOSX_COCOA__
+    if(!GetToolBar()) {
+	tb = CreateToolBar(wxTB_HORIZONTAL | wxTB_FLAT);
+    } else {
+	tb = GetToolBar(); tb->ClearTools();
+    }
+#else
     tb = new ocpnToolBarSimple(this, -1, wxPoint(-1, -1), wxSize(-1, -1), wxTB_HORIZONTAL | wxNO_BORDER | wxTB_FLAT);
+#endif
 
     tb->SetToolBitmapSize(wxSize(32,32));
     tb->SetRows(1);
@@ -2545,7 +2592,12 @@ ocpnToolBarSimple *MyFrame::CreateAToolbar()
                                         wxSize(m_tool_dummy_size_x,DUMMY_HEIGHT),
                                         wxSIMPLE_BORDER, _T("staticBitmap"));
 
+#ifdef __WXOSX_COCOA__
+    m_pStatDummyTool = NULL; // use AddStretchableSpace instead
+    tb->AddStretchableSpace(); // this is the wxWidgets way to do it...
+#else
     m_pStatDummyTool = tb->AddControl(m_ptool_ct_dummyStaticBmp);
+#endif
 
 
     //      Add the StatBox tool
@@ -2593,7 +2645,11 @@ ocpnToolBarSimple *MyFrame::CreateAToolbar()
     return tb;
 }
 
+#ifdef __WXOSX_COCOA__
+bool MyFrame::CheckAndAddPlugInTool(wxToolBar *tb)
+#else
 bool MyFrame::CheckAndAddPlugInTool(ocpnToolBarSimple *tb)
+#endif
 {
       if(!g_pi_manager)
             return false;
@@ -2642,7 +2698,11 @@ bool MyFrame::CheckAndAddPlugInTool(ocpnToolBarSimple *tb)
       return bret;
 }
 
+#ifdef __WXOSX_COCOA__
+bool MyFrame::AddDefaultPositionPlugInTools(wxToolBar *tb)
+#else
 bool MyFrame::AddDefaultPositionPlugInTools(ocpnToolBarSimple *tb)
+#endif
 {
       if(!g_pi_manager)
             return false;
@@ -2689,9 +2749,9 @@ void MyFrame::RequestNewToolbar()
 {
       UpdateToolbar(global_color_scheme);
 
-//      DestroyMyToolbar();
-//      m_toolBar = CreateAToolbar();
-//      SetToolBar((wxToolBar *)m_toolBar);
+      //DestroyMyToolbar();
+      //m_toolBar = CreateAToolbar();
+      //SetToolBar((wxToolBar *)m_toolBar);
 }
 
 
@@ -3020,21 +3080,9 @@ void MyFrame::UpdateToolbar(ColorScheme cs)
             break;
     }
 
-/*    Romoved at 2.2 build 710 for testing
-#ifdef __WXOSX__
-    // RMS Problems with 2.8.3 on the mac and Destroy toolbar
-    //DestroyMyToolbar();
-    if (0 == m_toolBar)
-    {
-      m_toolBar = CreateAToolbar();
-      SetToolBar((wxToolBar *)m_toolBar);
-    }
-#else
-*/
     DestroyMyToolbar();
     m_toolBar = CreateAToolbar();
     SetToolBar((wxToolBar *)m_toolBar);
-//#endif
 
     wxColour back_color = GetGlobalColor(_T("GREY2"));            // Was GREY1, switched on v 1.3.4 transparent icons
 
@@ -3042,7 +3090,7 @@ void MyFrame::UpdateToolbar(ColorScheme cs)
     m_toolBar->SetBackgroundColour(back_color);
     m_toolBar->ClearBackground();
 
-#ifdef ocpnUSE_OPNCTOOLBAR
+#ifndef __WXOSX_COCOA__
     m_toolBar->SetToggledBackgroundColour(GetGlobalColor(_T("GREY1")));
 
     m_toolBar->SetColorScheme(cs);
@@ -3175,6 +3223,14 @@ void MyFrame::OnExit(wxCommandEvent& event)
         quitflag++;                             // signal to the timer loop
 
 }
+
+#ifdef __WXOSX__
+void MyFrame::OnAbout(wxCommandEvent& event)
+{
+	if(!g_pAboutDlg) g_pAboutDlg = new about(this, &g_SData_Locn);
+	g_pAboutDlg->Show();
+}
+#endif
 
 static bool b_inCloseWindow;
 
@@ -3405,6 +3461,7 @@ void MyFrame::OnCloseWindow(wxCloseEvent& event)
 void MyFrame::OnSize(wxSizeEvent& event)
 {
       DoSetSize();
+      event.Skip(); // patg -- needed for status-bar in cocoa
 }
 
 void MyFrame::DoSetSize(void)
@@ -3419,7 +3476,11 @@ void MyFrame::DoSetSize(void)
               //  Maybe resize the font
               wxRect stat_box;
               m_pStatusBar->GetFieldRect(0, stat_box);
+#ifdef __WXOSX_COCOA__
+              int font_size = stat_box.width / 22;                // 30 for linux
+#else
               int font_size = stat_box.width / 28;                // 30 for linux
+#endif
               wxFont *pstat_font = wxTheFontList->FindOrCreateFont(font_size,
                                     wxFONTFAMILY_DEFAULT,
                                     wxFONTSTYLE_NORMAL,
@@ -3467,9 +3528,12 @@ void MyFrame::DoSetSize(void)
                 stats->Size_Y = stat_height;
                 stats->Pos_X = 0;
                 stats->Pos_Y = ccch;
-                if(g_pauimgr->GetPane(stats).IsOk())
+#ifndef __WXOSX_COCOA__ // didn't resize to full width on osx cocoa
+                if(g_pauimgr->GetPane(stats).IsOk()) {
                       g_pauimgr->GetPane(stats).BestSize(stats->Size_X, stats->Size_Y);
+		}
                 else
+#endif
                       stats->SetSize(stats->Pos_X,stats->Pos_Y,stats->Size_X, stats->Size_Y);
 
                 if(stats->IsShown())

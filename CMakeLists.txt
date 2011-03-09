@@ -16,8 +16,7 @@
 # set /MT for Release build, and /MTd for debug.
 
 # define minimum cmake version
-CMAKE_MINIMUM_REQUIRED(VERSION 2.6.2)
-# This should be 2.8.0 to have FindGTK2 module
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8.0)
 IF (COMMAND cmake_policy)
   CMAKE_POLICY(SET CMP0003 OLD)
   CMAKE_POLICY(SET CMP0005 OLD)
@@ -26,7 +25,8 @@ ENDIF (COMMAND cmake_policy)
 
 PROJECT(OpenCPN)
 
-#SET(CMAKE_VERBOSE_MAKEFILE ON)
+SET(CMAKE_VERBOSE_MAKEFILE OFF)
+# make VERBOSE=1 makes this onb build time
 
 SET(PACKAGE_NAME opencpn)
 INCLUDE( ${CMAKE_SOURCE_DIR}/VERSION.cmake )
@@ -36,10 +36,14 @@ SET(PACKAGE_VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}" )
 MESSAGE (STATUS "*** Building ${PACKAGE_NAME} ${PACKAGE_VERSION} ***")
 
 SET(wxWidgets_USE_LIBS base core net xml html adv aui)
+IF(APPLE)
+	SET(wxWidgets_CONFIG_EXECUTABLE /usr/local/bin/wx-config)
+	SET(wxWidgets_wxrc_EXECUTABLE /usr/local/bin/wxrc)
+ENDIF(APPLE)
 
 # Find wxWidgets here, and the setting get inherited by all plugins.
 # These options can be used to set the linux widgets build type
-SET( wxWidgets_USE_DEBUG OFF)
+SET( wxWidgets_USE_DEBUG ON)
 SET( wxWidgets_USE_UNICODE ON)
 SET( wxWidgets_USE_UNIVERSAL OFF)
 SET( wxWidgets_USE_STATIC OFF)
@@ -447,14 +451,16 @@ IF(WIN32)
 ENDIF(WIN32)
 IF(APPLE)
   INCLUDE_DIRECTORIES(/usr/X11/include /usr/X11/include/GL)
-  SET(CMAKE_C_FLAGS_DEBUG "-O2 -arch i386")
-  SET(CMAKE_C_FLAGS_MINSIZEREL "-O2 -arch i386")
-  SET(CMAKE_C_FLAGS_RELEASE "-O2 -arch i386")
-  SET(CMAKE_C_FLAGS_RELWITHDEBINFO "-O2 -arch i386")
-  SET(CMAKE_CXX_FLAGS_DEBUG "-O2 -arch i386")
-  SET(CMAKE_CXX_FLAGS_MINSIZEREL "-O2 -arch i386")
-  SET(CMAKE_CXX_FLAGS_RELEASE "-O2 -arch i386")
-  SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -arch i386")
+  #SET(CMAKE_C_FLAGS_DEBUG "-O2 -arch i386")
+  SET(CMAKE_C_FLAGS_DEBUG "-g" -m64)
+  #SET(CMAKE_C_FLAGS_MINSIZEREL "-O2 -arch i386")
+  #SET(CMAKE_C_FLAGS_RELEASE "-O2 -arch i386")
+  #SET(CMAKE_C_FLAGS_RELWITHDEBINFO "-O2 -arch i386")
+  #SET(CMAKE_CXX_FLAGS_DEBUG "-O2 -arch i386")
+  SET(CMAKE_CXX_FLAGS_DEBUG "-g -m64")
+  #SET(CMAKE_CXX_FLAGS_MINSIZEREL "-O2 -arch i386")
+  #SET(CMAKE_CXX_FLAGS_RELEASE "-O2 -arch i386")
+  #SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -arch i386")
 
   SET(SRCS ${SRCS}
     include/macsercomm.h
@@ -506,10 +512,12 @@ ENDIF(UNIX)
 #   Certain older Cmake FindGTK2 modules ( e.g. cmake-2.8.0-2) do not yield all of the required link libraries
 #   So, add them manually.
 IF(UNIX)
-TARGET_LINK_LIBRARIES(${PACKAGE_NAME}
+  IF(NOT APPLE)
+    TARGET_LINK_LIBRARIES(${PACKAGE_NAME}
       dl
       gobject-2.0
-)
+    )
+  ENDIF(NOT APPLE)
 ENDIF(UNIX)
 
 
@@ -792,4 +800,3 @@ INCLUDE(CPack)
 
 MESSAGE(STATUS "Writing spec file...")
 
- 	  	 

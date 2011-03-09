@@ -37,6 +37,10 @@
 #include "wx/msw/private.h"
 #endif
 
+#ifdef __WXOSX_COCOA__
+#include "wx/toolbar.h"
+#endif
+
 #include "ocpn_types.h"
 
 #include "cpl_error.h"
@@ -206,7 +210,9 @@ class MyFrame: public wxFrame
     void OnEvtTHREADMSG(wxCommandEvent& event);
     void OnEvtOCPN_NMEA(OCPN_NMEAEvent & event);
     void OnMemFootTimer(wxTimerEvent& event);
-
+#ifdef __WXOSX__
+    void OnAbout(wxCommandEvent& event);
+#endif
     void UpdateAllFonts(void);
     void PositionConsole(void);
     void OnToolLeftClick(wxCommandEvent& event);
@@ -297,7 +303,11 @@ class MyFrame: public wxFrame
     void DoCOGSet(void);
 
         //      Toolbar support
+#ifdef __WXOSX_COCOA__
+    wxToolBar *CreateAToolbar();
+#else
     ocpnToolBarSimple *CreateAToolbar();
+#endif
     void DestroyMyToolbar();
     void UpdateToolbar(ColorScheme cs);
     void ReSizeToolbar(void);
@@ -313,8 +323,13 @@ class MyFrame: public wxFrame
     void UpdateToolbarDynamics(void);
     void UpdateToolbarStatusBox(bool bupdate_toolbar = true);
 
+#ifdef __WXOSX_COCOA__
+    bool CheckAndAddPlugInTool(wxToolBar *tb);
+    bool AddDefaultPositionPlugInTools(wxToolBar *tb);
+#else
     bool CheckAndAddPlugInTool(ocpnToolBarSimple *tb);
     bool AddDefaultPositionPlugInTools(ocpnToolBarSimple *tb);
+#endif
     void FilterCogSog(void);
 
 
@@ -347,7 +362,11 @@ class MyFrame: public wxFrame
     wxString         m_last_reported_chart_name;
     wxString         m_last_reported_chart_pubdate;
 
+#ifdef __WXOSX_COCOA__
+    wxToolBar        *m_toolBar;
+#else
     ocpnToolBarSimple  *m_toolBar;
+#endif
 
     double           COGTable[MAX_COG_AVERAGE_SECONDS];
 

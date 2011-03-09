@@ -71,11 +71,7 @@
 #include <wx/arrimpl.cpp>
 #include <wx/encconv.h>
 #include <wx/regex.h>
-#if 1
 #include <wx/progdlg.h>
-#else
-#include <wx/generic/progdlgg.h>
-#endif
 
 #include "chartdbs.h"
 #include "chartbase.h"

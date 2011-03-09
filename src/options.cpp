@@ -36,11 +36,7 @@
 #include <wx/wx.h>
 #endif
 
-#if 1
 #include "wx/progdlg.h"
-#else
-#include "wx/generic/progdlgg.h"
-#endif
 #include "wx/sound.h"
 #include <wx/radiobox.h>
 #include <wx/listbox.h>
