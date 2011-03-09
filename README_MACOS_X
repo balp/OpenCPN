@@ -1,0 +1,36 @@
+Building with wxWidgets 2.9 and Snow Leopard
+
+Needed programs,
+   XCode - http://developer.apple.com/technologies/xcode.html
+   CMake - http://www.cmake.org/cmake/resources/software.html
+   git - http://code.google.com/p/git-osx-installer/
+
+Recomended:
+
+   GITX, http://gitx.frim.nl/
+
+in a terminal:
+
+cd Documents
+mkdir code
+cd code
+svn checkout http://svn.wxwidgets.org/svn/wx/wxWidgets/trunk wxWidgets
+cd wxWidgets
+set arch_flags="-arch x86_64 "
+./configure --prefix="/Users/balp/Documents/code/wx-2.9-build"  --with-osx_cocoa --disable-shared --disable-compat24 --enable-unicode CFLAGS="$arch_flags" CXXFLAGS="$arch_flags" CPPFLAGS="$arch_flags" LDFLAGS="$arch_flags" OBJCFLAGS="$arch_flags" OBJCXXFLAGS="$arch_flags"
+make
+make install
+cd /usr/local/bin
+sudo ln -s /Users/balp/Documents/code/wx-2.9-build/bin/wx-config
+
+cd 
+cd Documents/code
+
+git clone git://github.com/balp/OpenCPN.git
+cd OpenCPN
+git checkout cmake_2_9
+
+mkdir build_dir
+cd build_dir
+cmake -DSKIP_PLUGINS=TRUE ..
+make
