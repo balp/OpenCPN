@@ -59,7 +59,11 @@
 #define __S57CHART_H__
 
 #include <wx/wx.h>
+#if 1
+#include "wx/progdlg.h"
+#else
 #include "wx/generic/progdlgg.h"
+#endif
 #include "bbox.h"
 #include "chartbase.h"
 #include "wx/dir.h"
