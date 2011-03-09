@@ -170,7 +170,11 @@
 #include <stdio.h>
 #include <math.h>
 
+#if 1
+#include "wx//progdlg.h"
+#else
 #include "wx/generic/progdlgg.h"
+#endif
 
 #ifdef USE_S57
 #include "s57chart.h"
