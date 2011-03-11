@@ -147,6 +147,7 @@ public:
 
       bool RenderAllCanvasOverlayPlugIns( wxMemoryDC *pmdc, ViewPort *vp);
       void SendCursorLatLonToAllPlugIns( double lat, double lon);
+      void SendViewPortToRequestingPlugIns( ViewPort &vp );
 
       void AddAllPlugInToolboxPanels( wxNotebook *pnotebook);
       void CloseAllPlugInPanels( int );
@@ -158,7 +159,6 @@ public:
       void RemoveToolbarTool(int tool_id);
       void SetToolbarToolViz(int tool_id, bool viz);
       void SetToolbarItemState(int tool_id, bool toggle);
-
 
       ArrayOfPlugInMenuItems &GetPluginContextMenuItemArray(){ return m_PlugInMenuItems; }
       int AddCanvasContextMenuItem(wxMenuItem *pitem, opencpn_plugin *pplugin );
@@ -173,6 +173,7 @@ public:
       void SetColorSchemeForAllPlugIns(ColorScheme cs);
       void NotifyAuiPlugIns(void);
 
+      wxArrayString GetPlugInChartClassNameArray(void);
 
       wxString GetLastError();
       MyFrame *GetParentFrame(){ return pParent; }
@@ -234,8 +235,8 @@ private:
       wxStaticText    *m_pName;
       wxStaticText    *m_pVersion;
       wxStaticText    *m_pDescription;
-//      wxBoxSizer      *m_pButtons; 
-      wxFlexGridSizer      *m_pButtons; 
+//      wxBoxSizer      *m_pButtons;
+      wxFlexGridSizer      *m_pButtons;
       wxButton        *m_pButtonEnable;
       wxButton        *m_pButtonPreferences;
 };

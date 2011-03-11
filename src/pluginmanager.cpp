@@ -35,6 +35,9 @@
 #include "pluginmanager.h"
 #include "navutil.h"
 #include "ais.h"
+#include "chartbase.h"        // for ChartPlugInWrapper
+#include "chartdb.h"
+
 #include "bitmaps/default_pi.xpm"
 
 extern MyConfig        *pConfig;
@@ -43,6 +46,37 @@ extern wxString        g_SData_Locn;
 extern AIS_Decoder     *g_pAIS;
 extern wxAuiManager    *g_pauimgr;
 extern wxLocale         locale_def_lang;
+extern ChartDB         *ChartData;
+
+
+//    Some static helper funtions
+//    Scope is local to this module
+
+PlugIn_ViewPort CreatePlugInViewport( ViewPort *vp)
+{
+      //    Create a PlugIn Viewport
+      PlugIn_ViewPort pivp;
+      pivp.clat =                   vp->clat;                   // center point
+      pivp.clon =                   vp->clon;
+      pivp.view_scale_ppm =         vp->view_scale_ppm;
+      pivp.skew =                   vp->skew;
+      pivp.rotation =               vp->rotation;
+      pivp.chart_scale =            vp->chart_scale;
+      pivp.pix_width =              vp->pix_width;
+      pivp.pix_height =             vp->pix_height;
+      pivp.rv_rect =                vp->rv_rect;
+      pivp.b_quilt =                vp->b_quilt;
+      pivp.m_projection_type =      vp->m_projection_type;
+
+      pivp.lat_min =                vp->GetBBox().GetMinY();
+      pivp.lat_max =                vp->GetBBox().GetMaxY();
+      pivp.lon_min =                vp->GetBBox().GetMinX();
+      pivp.lon_max =                vp->GetBBox().GetMaxX();
+
+      pivp.bValid =                 vp->IsValid();                 // This VP is valid
+
+      return pivp;
+}
 
 //-----------------------------------------------------------------------------------------------------
 //
@@ -108,8 +142,9 @@ bool PlugInManager::LoadAllPlugIns(wxString &shared_data_prefix)
                         bool bver_ok = false;
                         switch(ver)
                         {
-//                              case 101:
                               case 102:                                 // TODO add more valid API versions to this case as necessary
+                              case 103:
+                              case 104:
                                     bver_ok = true;
                                     break;
                               default:
@@ -142,6 +177,7 @@ bool PlugInManager::LoadAllPlugIns(wxString &shared_data_prefix)
                               pic->m_version_major = pic->m_pplugin->GetPlugInVersionMajor();
                               pic->m_version_minor = pic->m_pplugin->GetPlugInVersionMinor();
                               pic->m_bitmap = pic->m_pplugin->GetPlugInBitmap();
+
                         }
                         else
                         {
@@ -345,39 +381,40 @@ PlugInContainer *PlugInManager::LoadPlugIn(wxString plugin_file)
 
 }
 
-
 bool PlugInManager::RenderAllCanvasOverlayPlugIns( wxMemoryDC *pmdc, ViewPort *vp)
 {
-      //    Create a PlugIn Viewport
-      PlugIn_ViewPort pivp;
-      pivp.clat =                   vp->clat;                   // center point
-      pivp.clon =                   vp->clon;
-      pivp.view_scale_ppm =         vp->view_scale_ppm;
-      pivp.skew =                   vp->skew;
-      pivp.rotation =               vp->rotation;
-      pivp.chart_scale =            vp->chart_scale;
-      pivp.pix_width =              vp->pix_width;
-      pivp.pix_height =             vp->pix_height;
-      pivp.rv_rect =                vp->rv_rect;
-      pivp.b_quilt =                vp->b_quilt;
-      pivp.m_projection_type =      vp->m_projection_type;
-
-      pivp.lat_min =                vp->vpBBox.GetMinY();
-      pivp.lat_max =                vp->vpBBox.GetMaxY();
-      pivp.lon_min =                vp->vpBBox.GetMinX();
-      pivp.lon_max =                vp->vpBBox.GetMaxX();
-
-      pivp.bValid =                 vp->bValid;                 // This VP is valid
-
       for(unsigned int i = 0 ; i < plugin_array.GetCount() ; i++)
       {
             PlugInContainer *pic = plugin_array.Item(i);
             if(pic->m_bEnabled && pic->m_bInitState)
-                  pic->m_pplugin->RenderOverlay(pmdc, &pivp);
+            {
+                  if(pic->m_cap_flag & WANTS_OVERLAY_CALLBACK)
+                  {
+                        PlugIn_ViewPort pivp = CreatePlugInViewport( vp );
+                        pic->m_pplugin->RenderOverlay(pmdc, &pivp);
+                  }
+            }
       }
 
       return true;
 }
+
+void PlugInManager::SendViewPortToRequestingPlugIns( ViewPort &vp )
+{
+      for(unsigned int i = 0 ; i < plugin_array.GetCount() ; i++)
+      {
+            PlugInContainer *pic = plugin_array.Item(i);
+            if(pic->m_bEnabled && pic->m_bInitState)
+            {
+                  if(pic->m_cap_flag & WANTS_ONPAINT_VIEWPORT)
+                  {
+                        PlugIn_ViewPort pivp = CreatePlugInViewport( &vp );
+                        pic->m_pplugin->SetCurrentViewPort(pivp);
+                  }
+            }
+      }
+}
+
 
 void PlugInManager::SendCursorLatLonToAllPlugIns( double lat, double lon)
 {
@@ -690,6 +727,24 @@ wxBitmap *PlugInManager::BuildDimmedToolBitmap(wxBitmap *pbmp_normal, unsigned c
 }
 
 
+wxArrayString PlugInManager::GetPlugInChartClassNameArray(void)
+{
+      wxArrayString array;
+      for(unsigned int i = 0 ; i < plugin_array.GetCount() ; i++)
+      {
+            PlugInContainer *pic = plugin_array.Item(i);
+            if(pic->m_bEnabled && pic->m_bInitState && (pic->m_cap_flag & INSTALLS_PLUGIN_CHART))
+            {
+                  wxArrayString carray = pic->m_pplugin->GetDynamicChartClassNameArray();
+                  for(unsigned int j = 0 ; j < carray.GetCount() ; j++)
+                        array.Add(carray.Item(j));
+
+            }
+      }
+
+      return array;
+}
+
 //----------------------------------------------------------------------------------------------------------
 //    The PlugIn CallBack API Implementation
 //    The definitions of this API are found in ocpn_plugin.h
@@ -797,7 +852,7 @@ void GetCanvasPixLL(PlugIn_ViewPort *vp, wxPoint *pp, double lat, double lon)
       ocpn_vp.pix_width = vp->pix_width;
       ocpn_vp.pix_height = vp->pix_height;
 
-      wxPoint ret = ocpn_vp.GetMercatorPixFromLL(lat, lon);
+      wxPoint ret = ocpn_vp.GetPixFromLL(lat, lon);
       pp->x = ret.x;
       pp->y = ret.y;
 }
@@ -815,7 +870,7 @@ void GetCanvasLLPix( PlugIn_ViewPort *vp, wxPoint p, double *plat, double *plon)
       ocpn_vp.pix_width = vp->pix_width;
       ocpn_vp.pix_height = vp->pix_height;
 
-      return ocpn_vp.GetMercatorLLFromPix( p, plat, plon);
+      return ocpn_vp.GetLLFromPix( p, plat, plon);
 }
 
 bool GetGlobalColor(wxString colorName, wxColour *pcolour)
@@ -893,10 +948,10 @@ bool opencpn_plugin::DeInit(void)
 {  return true; }
 
 int opencpn_plugin::GetAPIVersionMajor()
-{  return API_VERSION_MAJOR; }
+{  return 1; }
 
 int opencpn_plugin::GetAPIVersionMinor()
-{  return API_VERSION_MINOR; }
+{  return 2; }
 
 int opencpn_plugin::GetPlugInVersionMajor()
 {  return 1; }
@@ -958,6 +1013,9 @@ bool opencpn_plugin::RenderOverlay(wxMemoryDC *pmdc, PlugIn_ViewPort *vp)
 void opencpn_plugin::SetCursorLatLon(double lat, double lon)
 {}
 
+void opencpn_plugin::SetCurrentViewPort(PlugIn_ViewPort &vp)
+{}
+
 void opencpn_plugin::SetDefaults(void)
 {}
 
@@ -969,6 +1027,14 @@ void opencpn_plugin::SetColorScheme(PI_ColorScheme cs)
 
 void opencpn_plugin::UpdateAuiStatus(void)
 {}
+
+
+wxArrayString opencpn_plugin::GetDynamicChartClassNameArray()
+{
+      wxArrayString array;
+      return array;
+}
+
 
 //          Helper and interface classes
 
@@ -1168,5 +1234,317 @@ void PluginPanel::SetEnabled( bool enabled )
                   m_pButtonEnable->SetLabel(_("Enable"));
       }
       m_pButtonPreferences->Enable( enabled && (m_pPlugin->m_cap_flag & WANTS_PREFERENCES) );
+}
+
+
+
+// ----------------------------------------------------------------------------
+// PlugInChartBase Implmentation
+//  This class is the base class for Plug-able chart types
+// ----------------------------------------------------------------------------
+
+PlugInChartBase::PlugInChartBase()
+{}
+
+PlugInChartBase::~PlugInChartBase()
+{}
+
+wxString PlugInChartBase::GetFileSearchMask(void)
+{
+      return _T("");
+}
+
+int PlugInChartBase::Init( const wxString& name, int init_flags )
+{ return 0;}
+
+//    Accessors
+
+double PlugInChartBase::GetNormalScaleMin(double canvas_scale_factor, bool b_allow_overzoom)
+{return 1.0;}
+
+double PlugInChartBase::GetNormalScaleMax(double canvas_scale_factor, int canvas_width)
+{ return 2.0e7;}
+
+bool PlugInChartBase::GetChartExtent(ExtentPI *pext)
+{ return false; }
+
+
+wxBitmap& PlugInChartBase::RenderRegionView(const PlugIn_ViewPort& VPoint,
+                                              const wxRegion &Region)
+{ return wxNullBitmap;}
+
+
+bool PlugInChartBase::AdjustVP(PlugIn_ViewPort &vp_last, PlugIn_ViewPort &vp_proposed)
+{ return false;}
+
+void PlugInChartBase::GetValidCanvasRegion(const PlugIn_ViewPort& VPoint, wxRegion *pValidRegion)
+{}
+
+void PlugInChartBase::SetColorScheme(int cs, bool bApplyImmediate)
+{}
+
+double PlugInChartBase::GetNearestPreferredScalePPM(double target_scale_ppm)
+{ return 1.0; }
+
+wxBitmap *PlugInChartBase::GetThumbnail(int tnx, int tny, int cs)
+{ return NULL; }
+
+
+// ----------------------------------------------------------------------------
+// ChartPlugInWrapper Implementation
+//    This class is a wrapper/interface to PlugIn charts(PlugInChartBase)
+// ----------------------------------------------------------------------------
+
+
+ChartPlugInWrapper::ChartPlugInWrapper()
+{}
+
+ChartPlugInWrapper::ChartPlugInWrapper(wxString &chart_class)
+{
+      m_ppo = ::wxCreateDynamicObject(chart_class);
+      m_ppicb = wxDynamicCast(m_ppo, PlugInChartBase);
+}
+
+ChartPlugInWrapper::~ChartPlugInWrapper()
+{
+      if(m_ppicb)
+        delete m_ppicb;
+}
+
+wxString ChartPlugInWrapper::GetFileSearchMask(void)
+{
+      if(m_ppicb)
+            return m_ppicb->GetFileSearchMask();
+      else
+            return _T("");
+}
+
+InitReturn ChartPlugInWrapper::Init( const wxString& name, ChartInitFlag init_flags )
+{
+      if(m_ppicb)
+      {
+            InitReturn ret_val = (InitReturn)m_ppicb->Init(name, (int)init_flags);
+
+			//    Here we transcribe all the required wrapped member elements up into the chartbase object which is the parent of this class
+            if(ret_val == INIT_OK)
+            {
+                  m_FullPath = m_ppicb->GetFullPath();
+                  m_ChartType = (ChartTypeEnum)m_ppicb->GetChartType();
+                  m_ChartFamily = (ChartFamilyEnum)m_ppicb->GetChartFamily();
+                  m_projection = (OcpnProjType)m_ppicb->GetChartProjection();
+                  m_EdDate = m_ppicb->GetEditionDate();
+                  m_Name = m_ppicb->GetName();
+                  m_ID = m_ppicb->GetID();
+                  m_DepthUnits = m_ppicb->GetDepthUnits();
+                  m_SoundingsDatum = m_ppicb->GetSoundingsDatum();
+                  m_datum_str = m_ppicb->GetDatumString();
+                  m_SE = m_ppicb->GetSE();
+                  m_EdDate = m_ppicb->GetEditionDate();
+                  m_ExtraInfo = m_ppicb->GetExtraInfo();
+                  Chart_Error_Factor = m_ppicb->GetChartErrorFactor();
+                  m_depth_unit_id = (ChartDepthUnitType)m_ppicb->GetDepthUnitId();
+                  m_Chart_Skew = m_ppicb->GetChartSkew();
+                  m_Chart_Scale = m_ppicb->GetNativeScale();
+
+                  bReadyToRender = m_ppicb->IsReadyToRender();
+
+            }
+
+            return ret_val;
+      }
+      else
+            return INIT_FAIL_REMOVE;
+}
+
+
+//    Accessors
+int ChartPlugInWrapper::GetCOVREntries()
+{
+      if(m_ppicb)
+      {
+            return m_ppicb->GetCOVREntries();
+      }
+      else
+            return 0;
+}
+
+int ChartPlugInWrapper::GetCOVRTablePoints(int iTable)
+{
+      if(m_ppicb)
+      {
+            return m_ppicb->GetCOVRTablePoints(iTable);
+      }
+      else
+            return 0;
+}
+
+int  ChartPlugInWrapper::GetCOVRTablenPoints(int iTable)
+{
+      if(m_ppicb)
+      {
+            return m_ppicb->GetCOVRTablenPoints(iTable);
+      }
+      else
+            return 0;
+}
+
+float *ChartPlugInWrapper::GetCOVRTableHead(int iTable)
+{
+      if(m_ppicb)
+      {
+            return m_ppicb->GetCOVRTableHead(iTable);
+      }
+      else
+            return 0;
+}
+
+bool ChartPlugInWrapper::GetChartExtent(Extent *pext)
+{
+      if(m_ppicb)
+      {
+            ExtentPI xpi;
+            if(m_ppicb->GetChartExtent(&xpi))
+            {
+                  pext->NLAT = xpi.NLAT;
+                  pext->SLAT = xpi.SLAT;
+                  pext->ELON = xpi.ELON;
+                  pext->WLON = xpi.WLON;
+
+                  return true;
+            }
+            else
+                  return false;
+      }
+      else
+            return false;
+}
+
+ThumbData *ChartPlugInWrapper::GetThumbData(int tnx, int tny, float lat, float lon)
+{
+      if(m_ppicb)
+      {
+
+//    Create the bitmap if needed, doing a deep copy from the Bitmap owned by the PlugIn Chart
+            if(!pThumbData->pDIBThumb)
+            {
+                 wxBitmap *pBMPOwnedByChart = m_ppicb->GetThumbnail(tnx, tny, m_global_color_scheme);
+                 wxImage img = pBMPOwnedByChart->ConvertToImage();
+                 pThumbData->pDIBThumb = new wxBitmap(img);
+            }
+
+            pThumbData->Thumb_Size_X = tnx;
+            pThumbData->Thumb_Size_Y = tny;
+
+/*
+//    Plot the supplied Lat/Lon on the thumbnail
+            int divx = m_ppicb->Size_X / tnx;
+            int divy = m_ppicb->Size_Y / tny;
+
+            int div_factor = __min(divx, divy);
+
+            int pixx, pixy;
+
+
+      //    Using a temporary synthetic ViewPort and source rectangle,
+      //    calculate the ships position on the thumbnail
+            ViewPort tvp;
+            tvp.pix_width = tnx;
+            tvp.pix_height = tny;
+            tvp.view_scale_ppm = GetPPM() / div_factor;
+            wxRect trex = Rsrc;
+            Rsrc.x = 0;
+            Rsrc.y = 0;
+            latlong_to_pix_vp(lat, lon, pixx, pixy, tvp);
+            Rsrc = trex;
+
+            pThumbData->ShipX = pixx;// / div_factor;
+            pThumbData->ShipY = pixy;// / div_factor;
+*/
+            pThumbData->ShipX = 0;
+            pThumbData->ShipY = 0;
+
+            return pThumbData;
+      }
+      else
+            return NULL;
+}
+
+ThumbData *ChartPlugInWrapper::GetThumbData()
+{
+      return pThumbData;
+}
+
+bool ChartPlugInWrapper::UpdateThumbData(double lat, double lon)
+{
+      return true;
+}
+
+double ChartPlugInWrapper::GetNormalScaleMin(double canvas_scale_factor, bool b_allow_overzoom)
+{
+      if(m_ppicb)
+            return m_ppicb->GetNormalScaleMin(canvas_scale_factor, b_allow_overzoom);
+      else
+            return 1.0;
+}
+
+double ChartPlugInWrapper::GetNormalScaleMax(double canvas_scale_factor, int canvas_width)
+{
+      if(m_ppicb)
+            return m_ppicb->GetNormalScaleMax(canvas_scale_factor, canvas_width);
+      else
+            return 2.0e7;
+}
+
+bool ChartPlugInWrapper::RenderRegionViewOnDC(wxMemoryDC& dc, const ViewPort& VPoint,
+                                              const wxRegion &Region)
+{
+      if(m_ppicb)
+      {
+            PlugIn_ViewPort pivp = CreatePlugInViewport( (ViewPort *)&VPoint);
+            dc.SelectObject(m_ppicb->RenderRegionView( pivp, Region));
+            return true;
+//            return m_ppicb->RenderRegionViewOnDC(dc, pivp, Region);
+      }
+      else
+            return false;
+}
+
+bool ChartPlugInWrapper::AdjustVP(ViewPort &vp_last, ViewPort &vp_proposed)
+{
+      if(m_ppicb)
+      {
+            PlugIn_ViewPort pivp_last = CreatePlugInViewport( &vp_last);
+            PlugIn_ViewPort pivp_proposed = CreatePlugInViewport( &vp_proposed);
+            return m_ppicb->AdjustVP(pivp_last, pivp_proposed);
+      }
+      else
+            return false;
+}
+
+void ChartPlugInWrapper::GetValidCanvasRegion(const ViewPort& VPoint, wxRegion *pValidRegion)
+{
+      if(m_ppicb)
+      {
+            PlugIn_ViewPort pivp = CreatePlugInViewport( (ViewPort *)&VPoint);
+            m_ppicb->GetValidCanvasRegion(pivp, pValidRegion);
+      }
+
+      return;
+}
+
+
+void ChartPlugInWrapper::SetColorScheme(ColorScheme cs, bool bApplyImmediate)
+{
+      if(m_ppicb)
+            m_ppicb->SetColorScheme(cs, bApplyImmediate);
+}
+
+
+double ChartPlugInWrapper::GetNearestPreferredScalePPM(double target_scale_ppm)
+{
+      if(m_ppicb)
+            return m_ppicb->GetNearestPreferredScalePPM(target_scale_ppm);
+      else
+            return 1.0;
 }
 

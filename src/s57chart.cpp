@@ -1096,6 +1096,7 @@ s57chart::s57chart()
                     razRules[i][j] = NULL;
 
     m_Chart_Scale = 1;                              // Will be fetched during Init()
+    m_Chart_Skew = 0.0;
 
     pDIB = NULL;
     m_pCloneBM = NULL;
@@ -1509,6 +1510,7 @@ bool s57chart::AdjustVP(ViewPort &vp_last, ViewPort &vp_proposed)
       return false;
 }
 
+/*
 bool s57chart::IsRenderDelta(ViewPort &vp_last, ViewPort &vp_proposed)
 {
       double last_center_easting, last_center_northing, this_center_easting, this_center_northing;
@@ -1520,6 +1522,7 @@ bool s57chart::IsRenderDelta(ViewPort &vp_last, ViewPort &vp_proposed)
 
       return((dx !=  0) || (dy != 0) || !(IsCacheValid()) || (vp_proposed.view_scale_ppm != vp_last.view_scale_ppm));
 }
+*/
 
 ThumbData *s57chart::GetThumbData(int tnx, int tny, float lat, float lon)
 {
@@ -1552,22 +1555,22 @@ ThumbData *s57chart::GetThumbData(int tnx, int tny, float lat, float lon)
         return pThumbData;
 }
 
-bool s57chart::UpdateThumbData(float lat, float lon)
+bool s57chart::UpdateThumbData(double lat, double lon)
 {
     //  Plot the passed lat/lon at the thumbnail bitmap scale
     //  Using simple linear algorithm.
     int test_x, test_y;
     if( pThumbData->pDIBThumb)
     {
-          float lat_top =   m_FullExtent.NLAT;
-          float lat_bot =   m_FullExtent.SLAT;
-          float lon_left =  m_FullExtent.WLON;
-          float lon_right = m_FullExtent.ELON;
+          double lat_top =   m_FullExtent.NLAT;
+          double lat_bot =   m_FullExtent.SLAT;
+          double lon_left =  m_FullExtent.WLON;
+          double lon_right = m_FullExtent.ELON;
 
                 // Build the scale factors just as the thumbnail was built
-        float ext_max = fmax((lat_top - lat_bot), (lon_right - lon_left));
+          double ext_max = fmax((lat_top - lat_bot), (lon_right - lon_left));
 
-        float thumb_view_scale_ppm = (S57_THUMB_SIZE/ ext_max) / (1852 * 60);
+          double thumb_view_scale_ppm = (S57_THUMB_SIZE/ ext_max) / (1852 * 60);
         double east, north;
         toSM(lat, lon, (lat_top + lat_bot) / 2., (lon_left + lon_right) / 2., &east, &north);
 
@@ -1654,8 +1657,10 @@ void s57chart::SetLinePriorities(void)
 }
 
 
-bool s57chart::RenderRegionViewOnDC(wxMemoryDC& dc, const ViewPort& VPoint, const wxRegion &Region, ScaleTypeEnum scale_type)
+bool s57chart::RenderRegionViewOnDC(wxMemoryDC& dc, const ViewPort& VPoint, const wxRegion &Region)
 {
+      SetVPParms(VPoint);
+
       bool force_new_view = false;
 
       if(&Region != &m_last_Region)
@@ -1728,9 +1733,11 @@ bool s57chart::RenderRegionViewOnDC(wxMemoryDC& dc, const ViewPort& VPoint, cons
 }
 
 
-bool s57chart::RenderViewOnDC(wxMemoryDC& dc, const ViewPort& VPoint, ScaleTypeEnum scale_type)
+bool s57chart::RenderViewOnDC(wxMemoryDC& dc, const ViewPort& VPoint)
 {
 //    CALLGRIND_START_INSTRUMENTATION
+
+    SetVPParms(VPoint);
 
     ps52plib->PrepareForRender();
 
@@ -1917,13 +1924,13 @@ bool s57chart::DoRenderViewOnDC(wxMemoryDC& dc, const ViewPort& VPoint, RenderTy
             double temp_easting_lr = temp_easting_ul + (rect.width / m_view_scale_ppm);
             fromSM(temp_easting_lr, temp_northing_lr, ref_lat, ref_lon, &temp_lat_bot, &temp_lon_right);
 
-            temp_vp.vpBBox.SetMin(temp_lon_left, temp_lat_bot);
-            temp_vp.vpBBox.SetMax(temp_lon_right, temp_lat_top);
+            temp_vp.GetBBox().SetMin(temp_lon_left, temp_lat_bot);
+            temp_vp.GetBBox().SetMax(temp_lon_right, temp_lat_top);
 
             //      Allow some slop in the viewport
             //    TODO Investigate why this fails if greater than 5 percent
-            double margin = wxMin(temp_vp.vpBBox.GetWidth(), temp_vp.vpBBox.GetHeight()) * 0.05;
-            temp_vp.vpBBox.EnLarge(margin);
+            double margin = wxMin(temp_vp.GetBBox().GetWidth(), temp_vp.GetBBox().GetHeight()) * 0.05;
+            temp_vp.GetBBox().EnLarge(margin);
 
 //      And Render it new piece on the target dc
 //     printf("New Render, rendering %d %d %d %d \n", rect.x, rect.y, rect.width, rect.height);
@@ -2641,11 +2648,11 @@ bool s57chart::BuildThumbnail(const wxString &bmpname)
       vp.pix_height = S57_THUMB_SIZE;
       vp.pix_width  = S57_THUMB_SIZE;
 
-      vp.vpBBox.SetMin(m_FullExtent.WLON, m_FullExtent.SLAT);
-      vp.vpBBox.SetMax(m_FullExtent.ELON, m_FullExtent.NLAT);
+      vp.GetBBox().SetMin(m_FullExtent.WLON, m_FullExtent.SLAT);
+      vp.GetBBox().SetMax(m_FullExtent.ELON, m_FullExtent.NLAT);
 
       vp.chart_scale = 10000000 - 1;
-      vp.bValid = true;
+      vp.Validate();
 
        // cause a clean new render
       delete pDIB;
@@ -6110,15 +6117,18 @@ bool s57chart::IsPointInObjArea(float lat, float lon, float select_radius, S57Ob
 
           MyPoint pvert_list[4];
 
+          double y_rate = obj->y_rate;
+          double y_origin = obj->y_origin;
+
           for(int i=0 ; i < ntraps ; i++ , ptraps++)
           {
                 //      Y test
 
-                double hiy = (ptraps->hiy * obj->y_rate) + obj->y_origin;
+                double hiy = (ptraps->hiy * y_rate) + y_origin;
                 if(northing > hiy)
                       continue;
 
-                double loy = (ptraps->loy * obj->y_rate) + obj->y_origin;
+                double loy = (ptraps->loy * y_rate) + y_origin;
                 if(northing < loy)
                       continue;
 

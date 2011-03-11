@@ -81,11 +81,7 @@ extern PlugInManager    *g_pi_manager;
 
 extern wxString         g_SData_Locn;
 
-// Flav add for CM93 offset manual setup
-extern double           g_CM93Maps_Offset_x;
-extern double           g_CM93Maps_Offset_y;
-extern bool             g_CM93Maps_Offset_on;
-extern bool             g_CM93Maps_Offset_Enable;
+extern bool             g_bDisplayGrid;
 
 //    AIS Global configuration
 extern bool             g_bCPAMax;
@@ -152,6 +148,7 @@ extern bool             g_bAISRolloverShowCPA;
 extern bool             g_bAIS_ACK_Timeout;
 extern double           g_AckTimeout_Mins;
 
+extern bool             g_bFullScreenQuilt;
 
 extern wxLocale         locale_def_lang;
 
@@ -447,6 +444,10 @@ void options::CreateControls()
     pCDOQuilting = new wxCheckBox( itemPanel5, ID_QUILTCHECKBOX1, _("Enable Chart Quilting"));
     itemStaticBoxSizerCDO->Add(pCDOQuilting, 1, wxALIGN_LEFT|wxALL, 2);
 
+    //  Full Screen Quilting Disable checkbox
+    pFullScreenQuilt = new wxCheckBox( itemPanel5, ID_FULLSCREENQUILT, _("Disable Full Screen Quilting"));
+    itemStaticBoxSizerCDO->Add(pFullScreenQuilt, 1, wxALIGN_LEFT|wxALL, 2);
+
     //  "Course Up" checkbox
     pCBCourseUp = new wxCheckBox( itemPanel5, ID_COURSEUPCHECKBOX, _("Course UP Mode"));
     itemStaticBoxSizerCDO->Add(pCBCourseUp, 1, wxALIGN_LEFT|wxALL, 2);
@@ -458,6 +459,10 @@ void options::CreateControls()
     //  Chart Outlines checkbox
     pCDOOutlines = new wxCheckBox( itemPanel5, ID_OUTLINECHECKBOX1, _("Show Chart Outlines"));
     itemStaticBoxSizerCDO->Add(pCDOOutlines, 1, wxALIGN_LEFT|wxALL, 2);
+
+    //  Grid display  checkbox
+    pSDisplayGrid = new wxCheckBox( itemPanel5, ID_CHECK_DISPLAYGRID, _("Show Grid"));
+    itemStaticBoxSizerCDO->Add(pSDisplayGrid, 1, wxALIGN_LEFT|wxALL, 2);
 
     //  Depth Unit checkbox
     pSDepthUnits = new wxCheckBox( itemPanel5, ID_SHOWDEPTHUNITSBOX1, _("Show DepthUnits"));
@@ -509,6 +514,7 @@ void options::CreateControls()
 
     // Flav: for CM93Offset
     //      CM93Offset Display options
+#ifdef FLAV
     {
       wxStaticBox* itemStaticBoxCM93OffsetDisplay = new wxStaticBox(itemPanel5, wxID_ANY, _("CM93 Offset Display"));
       wxStaticBoxSizer *itemStaticBoxSizerCM93OffsetDisplay= new wxStaticBoxSizer(itemStaticBoxCM93OffsetDisplay, wxVERTICAL);
@@ -536,6 +542,7 @@ void options::CreateControls()
 
       itemStaticBoxSizerCM93OffsetDisplay->Show(g_CM93Maps_Offset_Enable);
     }
+#endif
 
 #ifdef USE_WIFI_CLIENT
 //    Add WiFi Options Box
@@ -937,6 +944,7 @@ void options::CreateControls()
                                3, pDepthUnitStrings, 1, wxRA_SPECIFY_COLS );
     pdepth_sizer->Add(pDepthUnitSelect, 0, wxALIGN_TOP | wxALL, group_item_spacing);
 
+#ifdef FLAV
        //      CM93Offset Enable
     wxStaticBox* itemStaticBoxCM93OffsetEnable = new wxStaticBox(ps57Ctl, wxID_ANY, _("CM93 Offsets"));
     wxStaticBoxSizer* itemStaticBoxSizerCM93OffsetEnable= new wxStaticBoxSizer(itemStaticBoxCM93OffsetEnable, wxVERTICAL);
@@ -945,7 +953,7 @@ void options::CreateControls()
     //  Activate CM93Offset checkbox
     pSEnableCM93Offset = new wxCheckBox( ps57Ctl, ID_ENABLECM93OFFSET, _("Enable Manual CM93 Offsets"));
     itemStaticBoxSizerCM93OffsetEnable->Add(pSEnableCM93Offset, 1, wxALIGN_LEFT|wxALL, 2);
-
+#endif
 
 
         //  Create "AIS" panel
@@ -1354,29 +1362,19 @@ void options::SetInitialSettings()
       pPrintShowIcon->SetValue(g_bShowPrintIcon);
       pCDOOutlines->SetValue(g_bShowOutlines);
       pCDOQuilting->SetValue(pParent->GetQuiltMode());
+      pFullScreenQuilt->SetValue(!g_bFullScreenQuilt);
       pSDepthUnits->SetValue(g_bShowDepthUnits);
       pSkewComp->SetValue(g_bskew_comp);
+      pSDisplayGrid->SetValue(g_bDisplayGrid);
 
       pCBCourseUp->SetValue(g_bCourseUp);
       pCBLookAhead->SetValue(g_bLookAhead);
-
 
       if(fabs(wxRound(g_ownship_predictor_minutes) - g_ownship_predictor_minutes) > 1e-4)
             s.Printf(_T("%6.2f"), g_ownship_predictor_minutes);
       else
             s.Printf(_T("%4.0f"), g_ownship_predictor_minutes);
       m_pText_OSCOG_Predictor->SetValue(s);
-
-// Flav for CM93Offset (convert meters to NM for diplay)
-      if(g_CM93Maps_Offset_Enable)
-      {
-            pSActivateCM93Offset->SetValue(g_CM93Maps_Offset_on);
-            s.Printf(_T("%1.4f"), g_CM93Maps_Offset_x/1852);
-            m_pText_CM93OffsetX->SetValue(s);
-            s.Printf(_T("%1.4f"), g_CM93Maps_Offset_y/1852);
-            m_pText_CM93OffsetY->SetValue(s);
-      }
-      pSEnableCM93Offset->SetValue(g_CM93Maps_Offset_Enable);
 
       pNavAidShowRadarRings->SetValue(g_bNavAidShowRadarRings);   // toh, 2009.02.24
       wxString buf;
@@ -1734,12 +1732,16 @@ void options::OnXidOkClick( wxCommandEvent& event )
       if(m_pConfig)
            m_pConfig->m_bShowDebugWindows = pSettingsCB1->GetValue();
 
-
     g_bGarminHost = pGarminHost->GetValue();
 
     g_bShowPrintIcon = pPrintShowIcon->GetValue();
     g_bShowOutlines = pCDOOutlines->GetValue();
+    g_bDisplayGrid = pSDisplayGrid->GetValue();
+
+
     pParent->SetQuiltMode(pCDOQuilting->GetValue());
+    g_bFullScreenQuilt = !pFullScreenQuilt->GetValue();
+
     g_bShowDepthUnits = pSDepthUnits->GetValue();
     g_bskew_comp = pSkewComp->GetValue();
 
@@ -1758,35 +1760,6 @@ void options::OnXidOkClick( wxCommandEvent& event )
 
     m_pText_OSCOG_Predictor->GetValue().ToDouble(&g_ownship_predictor_minutes);
 
-	// Flav for CM93Offset: prints in NM (values in m)
-	bool old_CM93Maps_Offset_on = g_CM93Maps_Offset_on;
-	double old_CM93Maps_Offset_x = g_CM93Maps_Offset_x;
-	double old_CM93Maps_Offset_y = g_CM93Maps_Offset_y;
-
-      bool old_CM93Maps_Offset_Enable = g_CM93Maps_Offset_Enable;
-      g_CM93Maps_Offset_Enable = pSEnableCM93Offset->GetValue();
-
-      if(g_CM93Maps_Offset_Enable)
-      {
-            g_CM93Maps_Offset_on = pSActivateCM93Offset->GetValue();
-            m_pText_CM93OffsetX->GetValue().ToDouble(&g_CM93Maps_Offset_x);
-            m_pText_CM93OffsetY->GetValue().ToDouble(&g_CM93Maps_Offset_y);
-
-            g_CM93Maps_Offset_x *= 1852;
-	      g_CM93Maps_Offset_y *= 1852;
-      }
-      else
-      {
-            g_CM93Maps_Offset_on = false;
-      }
-
-	if(old_CM93Maps_Offset_on != g_CM93Maps_Offset_on ||
-              old_CM93Maps_Offset_Enable != g_CM93Maps_Offset_Enable ||
-              old_CM93Maps_Offset_x != g_CM93Maps_Offset_x ||
-	        old_CM93Maps_Offset_y != g_CM93Maps_Offset_y)
-	{
-         iret |= CM93OFFSET_CHANGED;
-	}
 
     g_bNavAidShowRadarRings = pNavAidShowRadarRings->GetValue();
     wxString buf = pNavAidRadarRingsNumberVisible->GetValue();

@@ -1,6 +1,5 @@
 #include <iostream>
 /******************************************************************************
- * $Id:
  *
  * Project:  OpenCPN
  * Purpose:  Navigation Utility Functions
@@ -25,67 +24,6 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************
- *
- * $Log: navutil.cpp,v $
- * Revision 1.77  2010/06/25 02:04:23  bdbcat
- * 624
- *
- * Revision 1.76  2010/06/21 01:58:14  bdbcat
- * 620
- *
- * Revision 1.75  2010/06/16 03:53:26  bdbcat
- * 615a
- *
- * Revision 1.74  2010/06/13 21:05:23  bdbcat
- * 613a
- *
- * Revision 1.73  2010/06/11 16:27:53  bdbcat
- * 611a
- *
- * Revision 1.72  2010/06/06 20:53:09  bdbcat
- * 606a
- *
- * Revision 1.71  2010/06/04 22:35:30  bdbcat
- * 604
- *
- * Revision 1.70  2010/05/26 21:57:10  bdbcat
- * 526a
- *
- * Revision 1.69  2010/05/25 01:55:16  bdbcat
- * Build 524b
- *
- * Revision 1.68  2010/05/23 23:17:42  bdbcat
- * Build 523a
- *
- * Revision 1.67  2010/05/20 19:04:33  bdbcat
- * Build 520
- *
- * Revision 1.66  2010/05/15 04:01:08  bdbcat
- * Build 514
- *
- * Revision 1.65  2010/04/27 01:41:36  bdbcat
- * Build 426
- *
- * Revision 1.64  2010/04/15 15:51:27  bdbcat
- * Build 415.
- *
- * Revision 1.63  2010/04/01 20:17:38  bdbcat
- * 2.1.0 Build 331
- *
- * Revision 1.62  2010/03/29 03:28:25  bdbcat
- * 2.1.0 Beta Initial
- *
- * 2010.02.26-28, 03.02 pjotrc
- * - allow multi segment tracks import & export
- * - don't draw links between disjoint GPX track segments
- *
- * 2010.02.26 pjotrc
- * - draw running track in different color
- * - draw tracks in track marks color
- *
- * 2010.02.11 pjotrc
- * - show creation date for trackpoints
- *
  *
  */
 
@@ -169,6 +107,8 @@ extern Routeman         *g_pRouteMan;
 extern ComPortManager   *g_pCommMan;
 
 extern bool             s_bSetSystemTime;
+extern bool             g_bDisplayGrid;         //Flig indicating if grid is to be displayed
+
 extern bool             g_bShowDepthUnits;
 extern bool             g_bAutoAnchorMark;
 extern bool             g_bskew_comp;
@@ -186,10 +126,12 @@ extern wxRect           g_blink_rect;
 extern wxArrayString    *pMessageOnceArray;
 
 // Flav add for CM93 offset manual setup
+#ifdef FLAV
 extern double           g_CM93Maps_Offset_x;
 extern double           g_CM93Maps_Offset_y;
 extern bool             g_CM93Maps_Offset_on;
 extern bool             g_CM93Maps_Offset_Enable;
+#endif
 
 //    AIS Global configuration
 extern bool             g_bCPAMax;
@@ -298,7 +240,6 @@ extern int              g_BSBImgDebug;
 extern int             n_NavMessageShown;
 extern wxString        g_config_version_string;
 
-
 extern bool             g_bAISRolloverShowClass;
 extern bool             g_bAISRolloverShowCOG;
 extern bool             g_bAISRolloverShowCPA;
@@ -309,6 +250,8 @@ extern bool             g_bDebugGPSD;
 extern bool             g_bfilter_cogsog;
 extern int              g_COGFilterSec;
 extern int              g_SOGFilterSec;
+
+extern bool             g_bFullScreenQuilt;
 
 //------------------------------------------------------------------------------
 // Some wxWidgets macros for useful classes
@@ -1233,6 +1176,10 @@ Route::~Route ( void )
 
 void Route::AddPoint ( RoutePoint *pNewPoint, bool b_rename_in_sequence )
 {
+      if(pNewPoint->m_bIsolatedMark)
+      {
+            pNewPoint->m_bKeepXRoute = true;
+      }
       pNewPoint->m_bIsolatedMark = false;       // definitely no longer isolated
       pNewPoint->m_bIsInRoute = true;
 
@@ -1250,7 +1197,7 @@ void Route::AddPoint ( RoutePoint *pNewPoint, bool b_rename_in_sequence )
 
       m_pLastAddedPoint = pNewPoint;
 
-      if ( b_rename_in_sequence && pNewPoint->m_MarkName.IsEmpty() )
+      if ( b_rename_in_sequence && pNewPoint->m_MarkName.IsEmpty() && !pNewPoint->m_bKeepXRoute)
       {
             pNewPoint->m_MarkName.Printf ( _T ( "%03d" ), m_nPoints );
             pNewPoint->m_bDynamicName = true;
@@ -1365,8 +1312,8 @@ void Route::Draw ( wxDC& dc, ViewPort &VP )
             prp2->Draw ( dc, &rpt2 );
 
             //    Handle offscreen points
-            bool b_2_on = VP.vpBBox.PointInBox ( prp2->m_lon, prp2->m_lat, 0 );
-            bool b_1_on = VP.vpBBox.PointInBox ( prp1->m_lon, prp1->m_lat, 0 );
+            bool b_2_on = VP.GetBBox().PointInBox ( prp2->m_lon, prp2->m_lat, 0 );
+            bool b_1_on = VP.GetBBox().PointInBox ( prp1->m_lon, prp1->m_lat, 0 );
 
             //TODO This logic could be simpliifed
             //Simple case
@@ -2322,6 +2269,7 @@ int MyConfig::LoadMyConfig ( int iteration )
 
       Read ( _T ( "SetSystemTime" ), &s_bSetSystemTime, 0 );
       Read ( _T ( "ShowDebugWindows" ), &m_bShowDebugWindows, 1 );
+      Read ( _T ( "ShowGrid" ), &g_bDisplayGrid, 0 );
       Read ( _T ( "ShowPrintIcon" ), &g_bShowPrintIcon, 0 );
       Read ( _T ( "ShowDepthUnits" ), &g_bShowDepthUnits, 1 );
       Read ( _T ( "AutoAnchorDrop" ),  &g_bAutoAnchorMark, 0 );
@@ -2330,11 +2278,7 @@ int MyConfig::LoadMyConfig ( int iteration )
 
       Read ( _T ( "OwnshipCOGPredictorMinutes" ),  &g_ownship_predictor_minutes, 5 );
 
-      // Flav CM93Offset reads values from ini file
-      Read ( _T ( "CM93DisplayOffsetX" ),  &g_CM93Maps_Offset_x, 0 );
-      Read ( _T ( "CM93DisplayOffsetY" ),  &g_CM93Maps_Offset_y, 0 );
-      Read ( _T ( "CM93DisplayOffsetOn" ),  &g_CM93Maps_Offset_on, 0 );
-      Read ( _T ( "CM93DisplayOffsetEnable" ),  &g_CM93Maps_Offset_Enable, 0 );
+      Read ( _T ( "FullScreenQuilt" ),  &g_bFullScreenQuilt, 1 );
 
       Read ( _T ( "StartWithTrackActive" ),  &g_bTrackCarryOver, 0 );
 
@@ -3456,6 +3400,7 @@ void MyConfig::UpdateSettings()
       Write ( _T ( "ShowDebugWindows" ), m_bShowDebugWindows );
       Write ( _T ( "ShowPrintIcon" ), g_bShowPrintIcon );
       Write ( _T ( "SetSystemTime" ), s_bSetSystemTime );
+      Write ( _T ( "ShowGrid" ), g_bDisplayGrid );
       Write ( _T ( "ShowDepthUnits" ), g_bShowDepthUnits );
       Write ( _T ( "AutoAnchorDrop" ),  g_bAutoAnchorMark );
       Write ( _T ( "ShowChartOutlines" ),  g_bShowOutlines );
@@ -3484,11 +3429,8 @@ void MyConfig::UpdateSettings()
       Write ( _T ( "LookAheadMode" ), g_bLookAhead );
       Write ( _T ( "COGUPAvgSeconds" ), g_COGAvgSec );
       Write ( _T ( "OwnshipCOGPredictorMinutes" ), g_ownship_predictor_minutes );
-      // Flav CM93Offset: writes values to ini file
-      Write ( _T ( "CM93DisplayOffsetX" ),  g_CM93Maps_Offset_x);
-      Write ( _T ( "CM93DisplayOffsetY" ),  g_CM93Maps_Offset_y);
-      Write ( _T ( "CM93DisplayOffsetOn" ),  g_CM93Maps_Offset_on);
-      Write ( _T ( "CM93DisplayOffsetEnable" ),  g_CM93Maps_Offset_Enable);
+
+      Write ( _T ( "FullScreenQuilt" ), g_bFullScreenQuilt );
 
       Write ( _T ( "NMEALogWindowSizeX" ),  g_NMEALogWindow_sx );
       Write ( _T ( "NMEALogWindowSizeY" ),  g_NMEALogWindow_sy );
@@ -3535,7 +3477,7 @@ void MyConfig::UpdateSettings()
 
       wxString st1;
 
-      if ( cc1 && cc1->VPoint.bValid )
+      if ( cc1 && cc1->VPoint.IsValid() )
       {
             st1.Printf ( _T ( "%10.4f,%10.4f" ), cc1->VPoint.clat, cc1->VPoint.clon );
             Write ( _T ( "VPLatLon" ), st1 );
@@ -3869,7 +3811,7 @@ void MyConfig::ExportGPX ( wxWindow* parent )
             while ( node )
             {
                   pr = node->GetData();
-                  if ( !WptIsInRouteList ( pr ) )
+                  if ( pr->m_bKeepXRoute || !WptIsInRouteList ( pr ) )
                   {
                         gpxroot->AddWaypoint(CreateGPXWpt(pr, GPX_WPT_WAYPOINT));
                   }
@@ -4060,6 +4002,9 @@ void MyConfig::ImportGPX ( wxWindow* parent )
                                                 RoutePoint *pExisting = WaypointExists( pWp->m_MarkName, pWp->m_lat, pWp->m_lon);
                                                 if(!pExisting)
                                                 {
+                                                      if (WaypointExists(pWp->m_GUID)) //We try to import a waypoint with the same guid but different properties, so we assign it a new guid to keep them both
+                                                            pWp->m_GUID = pWayPointMan->CreateGUID ( pWp );
+
                                                       if ( NULL != pWayPointMan )
                                                             pWayPointMan->m_pWayPointList->Append ( pWp );
 
@@ -5012,6 +4957,17 @@ void GPXLoadTrack ( GpxTrkElement* trknode, bool b_fullviz )
 //    TODO  All this trouble for a tentative route.......Should make some Route methods????
             if ( bAddtrack )
             {
+                  if (::RouteExists(pTentTrack->m_GUID)) { //We are importing a different route with the same guid, so let's generate it a new guid
+                        pTentTrack->m_GUID = pWayPointMan->CreateGUID ( NULL );
+                        //Now also change guids for the routepoints
+                        wxRoutePointListNode *pthisnode = ( pTentTrack->pRoutePointList )->GetFirst();
+                        while ( pthisnode )
+                        {
+                              pthisnode->GetData()->m_GUID = pWayPointMan->CreateGUID ( NULL );
+                              pthisnode = pthisnode->GetNext();
+                              //FIXME: !!!!!! the shared waypoint gets part of both the routes -> not  goood at all
+                        }
+                  }
                   pRouteList->Append ( pTentTrack );
 
                   if(b_propviz)
@@ -5176,7 +5132,7 @@ Route *LoadGPXRoute(GpxRteElement *rtenode, int routenum, bool b_fullviz)
 
                   RoutePoint *pExisting = WaypointExists( pWp->m_MarkName, pWp->m_lat, pWp->m_lon);
 
-                  if(!pExisting)
+                  if(!pExisting || !pExisting->m_bKeepXRoute)
                   {
                         if ( NULL != pWayPointMan )
                               pWayPointMan->m_pWayPointList->Append ( pWp );
@@ -5321,10 +5277,20 @@ void GPXLoadRoute ( GpxRteElement* rtenode, int routenum, bool b_fullviz )
             Route *pTentRoute = ::LoadGPXRoute(rtenode, routenum, b_fullviz);
 
 //    TODO  All this trouble for a tentative route.......Should make some Route methods????
-            if ( !::RouteExists(pTentRoute->m_GUID) && !::RouteExists(pTentRoute))
+            if ( !::RouteExists(pTentRoute))
             {
+                  if (::RouteExists(pTentRoute->m_GUID)) { //We are importing a different route with the same guid, so let's generate it a new guid
+                        pTentRoute->m_GUID = pWayPointMan->CreateGUID ( NULL );
+                        //Now also change guids for the routepoints
+                        wxRoutePointListNode *pthisnode = ( pTentRoute->pRoutePointList )->GetFirst();
+                        while ( pthisnode )
+                        {
+                              pthisnode->GetData()->m_GUID = pWayPointMan->CreateGUID ( NULL );
+                              pthisnode = pthisnode->GetNext();
+                              //FIXME: !!!!!! the shared routepoint gets part of both the routes -> not  goood at all
+                        }
+                  }
                   ::InsertRoute(pTentRoute, routenum);
-
             }
             else
             {
@@ -5337,7 +5303,7 @@ void GPXLoadRoute ( GpxRteElement* rtenode, int routenum, bool b_fullviz )
                         // check all other routes to see if this point appears in any other route
                         Route *pcontainer_route = g_pRouteMan->FindRouteContainingWaypoint ( prp );
 
-                        if ( pcontainer_route == NULL )
+                        if ( pcontainer_route == NULL && prp->m_bIsInRoute )
                         {
                               prp->m_bIsInRoute = false;          // Take this point out of this (and only) route
                               if ( !prp->m_bKeepXRoute )

@@ -134,7 +134,6 @@ public:
       //    Methods
       void OnChar(wxKeyEvent &event);
       void OnPaint(wxPaintEvent& event);
- //     void NowPaint();
       void Scroll(int dx, int dy);
       void CanvasPopupMenu(int x, int y, int seltype);
       void DoCanvasPopupMenu ( int x, int y, wxMenu *pMenu );
@@ -147,7 +146,7 @@ public:
 
       bool Do_Hotkeys(wxKeyEvent &event);
 
-      bool SetViewPoint(double lat, double lon, double scale_ppm, double skew, double rotation, int sample_mode);
+      bool SetViewPoint(double lat, double lon, double scale_ppm, double skew, double rotation);
       void SetVPScale(double sc);
       bool SetViewPoint ( double lat, double lon);
       void ReloadVP ( void );
@@ -162,7 +161,6 @@ public:
       void UpdateShips();
       void UpdateAIS();
       void UpdateAlerts();                          // pjotrc 2010.02.22
-      void FlushBackgroundRender(void);
 
       void SetQuiltMode(bool b_quilt);
       bool GetQuiltMode(void);
@@ -213,7 +211,7 @@ public:
       int GetQuiltRefChartdbIndex(void);
       void InvalidateQuilt(void);
       double GetQuiltMaxErrorFactor();
-      bool IsChartQuiltable(int db_index);
+      bool IsChartQuiltableRef(int db_index);
 
       void ShowChartInfoWindow(int x, int y, int dbIndex);
       void HideChartInfoWindow(void);
@@ -295,23 +293,20 @@ private:
       void MouseEvent(wxMouseEvent& event);
       void ShipDraw(wxDC& dc);
       void DrawArrow(wxDC& dc, int x, int y, float rot_angle, float scale);
-      void OnEvtRescale(wxCommandEvent& event);
-      void OnIdleEvent(wxIdleEvent& event);
       void OnRouteLegPopupTimerEvent ( wxTimerEvent& event );
 
       void RotateTimerEvent(wxTimerEvent& event);
-      void RescaleTimerEvent(wxTimerEvent& event);
       void PanTimerEvent(wxTimerEvent& event);
       bool CheckEdgePan(int x, int y);
       void OnCursorTrackTimerEvent(wxTimerEvent& event);
 
-      void DrawAllRoutesInBBox(wxDC& dc, wxBoundingBox& BltBBox, const wxRegion& clipregion);
-      void DrawAllWaypointsInBBox(wxDC& dc, wxBoundingBox& BltBBox, const wxRegion& clipregion, bool bDrawMarksOnly);
+      void DrawAllRoutesInBBox(wxDC& dc, LLBBox& BltBBox, const wxRegion& clipregion);
+      void DrawAllWaypointsInBBox(wxDC& dc, LLBBox& BltBBox, const wxRegion& clipregion, bool bDrawMarksOnly);
       double GetAnchorWatchRadiusPixels(RoutePoint *pAnchorWatchPoint);
 
-      void DrawAllTidesInBBox(wxDC& dc, wxBoundingBox& BBox, bool bRebuildSelList,
+      void DrawAllTidesInBBox(wxDC& dc, LLBBox& BBox, bool bRebuildSelList,
                         bool bdraw_mono = false);
-      void DrawAllCurrentsInBBox(wxDC& dc, wxBoundingBox& BBox, double skew_angle,
+      void DrawAllCurrentsInBBox(wxDC& dc, LLBBox& BBox, double skew_angle,
                            bool bRebuildSelList, bool bforce_redraw_currents, bool bdraw_mono = false);
       void DrawTCWindow(int x, int y, void *pIDX);
       void RenderChartOutline(wxDC *pdc, int dbIndex, ViewPort& vp, bool bdraw_mono = false);
@@ -327,6 +322,7 @@ private:
       void AtoN_Diamond(wxDC &dc, wxPen pen, int x, int y, int radius);  // pjotrc 2010.02.01
       void Base_Square(wxDC &dc, wxPen pen, int x, int y, int radius);
 
+      void GridDraw(wxDC& dc); // Display lat/lon Grid in chart display
       void ScaleBarDraw( wxDC& dc, int x_origin, int y_origin );
 
       void EmbossDepthScale(wxMemoryDC *psource_dc, wxMemoryDC *pdest_dc, int emboss_ident);
@@ -337,8 +333,7 @@ private:
       void CreateOZEmbossMapData(ColorScheme cs);
       void EmbossOverzoomIndicator ( wxMemoryDC *temp_dc, wxMemoryDC *scratch_dc);
 
-// Flav: for CM93Offset
-	  void CreateCM93OffsetEmbossMapData(ColorScheme cs);
+      void CreateCM93OffsetEmbossMapData(ColorScheme cs);
       void EmbossCM93Offset ( wxMemoryDC *temp_dc, wxMemoryDC *scratch_dc);
 
       void EmbossCanvas ( wxMemoryDC *psource_dc, wxMemoryDC *pdest_dc, emboss_data *pemboss, int x, int y);
@@ -363,16 +358,10 @@ private:
       int         warp_x, warp_y;
       bool        warp_flag;
 
-      ScaleTypeEnum  current_scale_method;
-
-      bool        m_bSubsamp;
-
-      wxBitmap    *pBM;
 
       float       current_draw_scaler;
 
 
-      wxTimer     *pRescaleTimer;   // This timer used for bi-linear rescale
       wxTimer     *pPanTimer;       // This timer used for auto panning on route creation and edit
       wxTimer     *pCurTrackTimer;  // This timer used to update the status window on mouse idle
       wxTimer     *pRotDefTimer;    // This timer used to control rotaion rendering on mouse moves
@@ -383,7 +372,6 @@ private:
       int         m_mouse_wheel_oneshot;
       int         m_last_wheel_dir;
 
-      int         m_rescale_timer_msec;
       int         m_curtrack_timer_msec;
       int         m_routeleg_popup_timer_msec;
 
@@ -397,11 +385,6 @@ private:
       wxRect      ais_draw_rect;
       wxRect      alert_draw_rect;          // pjotrc 2010.02.22
 
-      bool              m_bBackRender;
-      bool              m_bbr_paused;
-      ChartBase         *br_Ch;
-      ChartBase         *m_RescaleCandidate;
-
       wxBitmap    *proute_bm;          // a bitmap and dc used to calculate route bounding box
       wxMemoryDC  m_dc_route;         // seen in mouse->edit->route
 
@@ -411,7 +394,7 @@ private:
       emboss_data *m_pEM_Fathoms;
 
       emboss_data *m_pEM_OverZoom;
-	  emboss_data *m_pEM_CM93Offset;	// Flav
+//      emboss_data *m_pEM_CM93Offset;	// Flav
 
 
       double      m_pix_per_mm;     // pixels per millimeter on the screen
@@ -424,11 +407,6 @@ private:
       bool        m_bMeasure_Active;
       int         m_nMeasureState;
       Route       *m_pMeasureRoute;
-
-// Flav CM93Offset Tool
-      bool        m_bCM93MeasureOffset_Active;
-      int         m_nCM93MeasureOffsetState;
-      Route       *m_pCM93MeasureOffsetRoute;
 
       wxBitmap    m_bmTideDay;
       wxBitmap    m_bmTideDusk;
@@ -462,7 +440,6 @@ private:
 
       Quilt       *m_pQuilt;
 
-      PixelCache  *m_pPix;                      // the cached pixels
       ViewPort    m_cache_vp;
       wxBitmap    *m_prot_bm;
       wxPoint     m_roffset;
@@ -473,6 +450,10 @@ private:
 
       double      m_wheel_lat, m_wheel_lon;
       int         m_wheel_x,m_wheel_y;
+
+      ViewPort    m_bm_cache_vp;
+      wxBitmap    m_working_bm;           // Used to build quilt in OnPaint()
+      wxBitmap    m_cached_chart_bm;      // A cached copy of the fully drawn quilt
 
 
 
@@ -874,7 +855,7 @@ class ChInfoWin: public wxWindow
 class GoToPositionDialog: public wxDialog
 {
       DECLARE_DYNAMIC_CLASS( GoToPositionDialog )
-                  DECLARE_EVENT_TABLE()
+      DECLARE_EVENT_TABLE()
 
       public:
     /// Constructors

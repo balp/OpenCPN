@@ -47,6 +47,7 @@ typedef enum ChartTypeEnum
       CHART_TYPE_S57,
       CHART_TYPE_CM93,
       CHART_TYPE_CM93COMP,
+      CHART_TYPE_PLUGIN
 }_ChartTypeEnum;
 
 //    ChartFamily constants
@@ -67,11 +68,6 @@ typedef enum ColorScheme
       N_COLOR_SCHEMES
 }_ColorScheme;
 
-typedef enum ScaleTypeEnum
-{
-      RENDER_LODEF = 0,
-      RENDER_HIDEF,
-}_ScaleTypeEnum;
 
 //----------------------------------------------------------------------------
 // ViewPort
@@ -81,18 +77,24 @@ class ViewPort
 {
       public:
 //  ctor
-            ViewPort()  { bValid = false; skew = 0.; view_scale_ppm = 1; rotation = 0.; b_quilt = false;}
+            ViewPort();
 
-            wxPoint GetMercatorPixFromLL(double lat, double lon) const;
-            void GetMercatorLLFromPix(const wxPoint &p, double *lat, double *lon);
+            wxPoint GetPixFromLL(double lat, double lon) const;
+            void GetLLFromPix(const wxPoint &p, double *lat, double *lon);
 
             wxRegion GetVPRegion( size_t n, float *llpoints, int chart_native_scale, wxPoint *ppoints = NULL );
 
+            void SetBoxes(void);
+
 //  Accessors
             void Invalidate() { bValid = false; }
-            bool IsValid() { return bValid; }
+            void Validate() { bValid = true; }
+            bool IsValid() const { return bValid; }
+
             void SetRotationAngle(double angle_rad) { rotation = angle_rad;}
             void SetProjectionType(int type){ m_projection_type = type; }
+
+            LLBBox &GetBBox() { return vpBBox; }
 //  Generic
             double   clat;                   // center point
             double   clon;
@@ -101,16 +103,24 @@ class ViewPort
             double   rotation;
 
 
-            LLBBox   vpBBox;                // An un-skewed rectangular lat/lon bounding box
-                                    // which contains the entire vieport
 
-            float    chart_scale;            // conventional chart displayed scale
+            double    chart_scale;            // conventional chart displayed scale
 
             int      pix_width;
             int      pix_height;
-            wxRect   rv_rect;
             bool     b_quilt;
             int      m_projection_type;
+
+            wxRect   rv_rect;
+
+            wxPoint  m_pan_delta;
+      private:
+            //    Methods
+
+            //    Data
+            LLBBox   vpBBox;                // An un-skewed rectangular lat/lon bounding box
+                                            // which contains the entire vieport
+
 
             bool     bValid;                 // This VP is valid
 

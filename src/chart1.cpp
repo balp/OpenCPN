@@ -242,6 +242,7 @@ wxPageSetupData* g_pageSetupData = (wxPageSetupData*) NULL;
 bool              g_bShowPrintIcon;
 bool              g_bShowOutlines;
 bool              g_bShowDepthUnits;
+bool              g_bDisplayGrid;  // Flag indicating weather the lat/lon grid should be displayed
 bool              g_bGarminPersistance;
 int               g_nNMEADebug;
 bool              g_bPlayShipsBells;   // pjotrc 2010.02.09
@@ -280,10 +281,12 @@ bool            g_bDebugS57;
 bool            g_bGarminHost;
 
 // Flav add for CM9Offset manual setup
+#ifdef FLAV
 double          g_CM93Maps_Offset_x;
 double          g_CM93Maps_Offset_y;
 bool            g_CM93Maps_Offset_on;
 bool            g_CM93Maps_Offset_Enable;
+#endif
 
 bool            g_bfilter_cogsog;
 int             g_COGFilterSec;
@@ -377,6 +380,8 @@ bool             g_bAISRolloverShowCOG;
 bool             g_bAISRolloverShowCPA;
 
 bool             g_bDebugGPSD;
+
+bool             g_bFullScreenQuilt;
 
 //-----------------------------------------------------------------------------------------------------
 //      OCP_NMEA_Thread Static data store
@@ -515,6 +520,8 @@ int               g_AisTargetList_sortColumn;
 bool              g_bAisTargetList_sortReverse;
 wxString          g_AisTargetList_column_spec;
 int               g_AisTargetList_count;
+
+CM93OffsetDialog *g_pCM93OffsetDialog;
 
 wxAuiManager      *g_pauimgr;
 wxAuiDefaultDockArt  *g_pauidockart;
@@ -768,7 +775,7 @@ bool MyApp::OnInit()
 #endif
 
 #ifdef __WXMSW__
-//     _CrtSetBreakAlloc(338998);
+//     _CrtSetBreakAlloc(137591);
 #endif
 
 
@@ -1493,7 +1500,7 @@ bool MyApp::OnInit()
 
         cc1->SetQuiltMode(pConfig->m_bQuilt);                     // set initial quilt mode
         cc1->m_bFollow = pConfig->st_bFollow;               // set initial state
-        cc1->SetViewPoint ( vLat, vLon, initial_scale_ppm, 0., 0., CURRENT_RENDER );
+        cc1->SetViewPoint ( vLat, vLon, initial_scale_ppm, 0., 0.);
 
         cc1->SetFocus();
 
@@ -1655,6 +1662,11 @@ bool MyApp::OnInit()
                         ChartData = new ChartDB(gFrame);
 
                         wxString line(_("Rebuilding chart database from configuration file entries..."));
+                        /* The following 3 strings are embeded in wxProgressDialog but must be included by xgettext
+                         * to be localized properly. See {wxWidgets}src/generic/progdlgg.cpp:190 */
+                        wxString dummy1 = _("Elapsed time : ");
+                        wxString dummy2 = _("Estimated time : ");
+                        wxString dummy3 = _("Remaining time : ");
                         wxProgressDialog *pprog = new wxProgressDialog (  _("OpenCPN Chart Update"), line, 100, NULL,
                                     wxPD_SMOOTH | wxPD_ELAPSED_TIME | wxPD_ESTIMATED_TIME | wxPD_REMAINING_TIME);
 
@@ -3156,7 +3168,7 @@ void MyFrame::DeleteToolbarBitmaps()
             delete px1;
       }
 
-      //    Delete everything no in the hash
+      //    Delete everything not in the hash
 
     delete _img_left;
     delete _img_right;
@@ -3183,6 +3195,9 @@ void MyFrame::DeleteToolbarBitmaps()
 
     delete _img_gpx_import;
     delete _img_gpx_export;
+
+    delete _img_sort_asc;
+    delete _img_sort_desc;
 
 
 
@@ -3373,6 +3388,11 @@ void MyFrame::OnCloseWindow(wxCloseEvent& event)
 
     cc1->Destroy();
     cc1 = NULL;
+
+    //      Delete all open charts in the cache
+    if(ChartData)
+          ChartData->PurgeCache();
+
 
     //    Unload the PlugIns
     //      Note that we are waiting until after the canvas is destroyed,
@@ -4073,7 +4093,7 @@ void MyFrame::JumpToPosition(double lat, double lon, double scale)
       cc1->m_bFollow = false;
       DoChartUpdate();
 
-      cc1->SetViewPoint(lat, lon, scale, 0, cc1->GetVPRotation(), CURRENT_RENDER);
+      cc1->SetViewPoint(lat, lon, scale, 0, cc1->GetVPRotation());
       cc1->ReloadVP();
 
       SetToolbarItemState(ID_FOLLOW, false);
@@ -4138,8 +4158,6 @@ int MyFrame::DoOptionsDialog()
             if(rr & VISIT_CHARTS)
             {
                   FrameTimer1.Stop();                  // stop other asynchronous activity
-
-                  cc1->FlushBackgroundRender();
 
                   cc1->InvalidateQuilt();
                   cc1->SetQuiltRefChart(-1);
@@ -4232,11 +4250,12 @@ int MyFrame::DoOptionsDialog()
 #endif
 
 // Flav: for CM93Offset refreshes all maps
+#ifdef FLAV
             if(rr & CM93OFFSET_CHANGED)
             {
                   ChartsRefresh();
             }
-
+#endif
             if(rr & LOCALE_CHANGED)
             {
                   if(prev_locale != g_locale)
@@ -4332,8 +4351,6 @@ void MyFrame::ChartsRefresh(void)
 
       FrameTimer1.Stop();                  // stop other asynchronous activity
 
-      cc1->FlushBackgroundRender();
-
       cc1->InvalidateQuilt();
       cc1->SetQuiltRefChart(-1);
 
@@ -4415,11 +4432,13 @@ void MyFrame::SetupQuiltMode(void)
             {
                   target_new_dbindex = pCurrentStack->GetCurrentEntrydbIndex();
 
+#ifdef QUILT_ONLY_MERC
                   if(-1 != target_new_dbindex)
                   {
                   //    Check to see if the target new chart is Merc
                         int proj = ChartData->GetDBChartProj(target_new_dbindex);
                         int type = ChartData->GetDBChartType(target_new_dbindex);
+
 
                         if(PROJECTION_MERCATOR != proj)
                         {
@@ -4440,10 +4459,13 @@ void MyFrame::SetupQuiltMode(void)
                                     stack_index++;
                               }
                         }
+
                   }
+#endif
             }
 
             cc1->SetQuiltRefChart(target_new_dbindex);
+            cc1->ReloadVP();
 
             Current_Ch = NULL;                  // Bye....
       }
@@ -4563,7 +4585,7 @@ void MyFrame::DoStackDown(void)
       {
             int new_dbIndex = pCurrentStack->GetDBIndex(current_stack_index - 1);
 
-            if(!cc1->IsChartQuiltable(new_dbIndex))
+            if(!cc1->IsChartQuiltableRef(new_dbIndex))
             {
                   ToggleQuiltMode();
                   SelectChartFromStack(current_stack_index - 1);
@@ -4594,7 +4616,7 @@ void MyFrame::DoStackUp(void)
       {
             int new_dbIndex = pCurrentStack->GetDBIndex(current_stack_index + 1);
 
-            if(!cc1->IsChartQuiltable(new_dbIndex))
+            if(!cc1->IsChartQuiltableRef(new_dbIndex))
             {
                   ToggleQuiltMode();
                   SelectChartFromStack(current_stack_index + 1);
@@ -4667,7 +4689,6 @@ void MyFrame::OnMemFootTimer(wxTimerEvent& event)
                         while((memsize > (g_MemFootMB * 1000)) && (pCache->GetCount() > minimum_cache) && (idelete < idelete_max))
                         {
                               int memsizeb = memsize;
-                              cc1->FlushBackgroundRender();
 
                               ChartData->DeleteCacheChart((ChartBase *)pcea[idelete].pChart);
                               idelete++;
@@ -4913,7 +4934,7 @@ void MyFrame::OnFrameTimer1(wxTimerEvent& event)
       {
         if(Current_Ch)
         {
-           if(Current_Ch->Chart_Error_Factor > 0.02)
+           if(Current_Ch->GetChart_Error_Factor() > 0.02)
                cc1->SetOwnShipState(SHIP_LOWACCURACY);
         }
       }
@@ -5239,7 +5260,7 @@ void MyFrame::UpdateToolbarStatusWindow(ChartBase *pchart, bool bUpdate)
 
       if(pchart)
       {
-            if(pchart->Chart_Error_Factor > .02)                                       // X percent error
+            if(pchart->GetChart_Error_Factor() > .02)                                       // X percent error
             {
                   brush = wxBrush(GetGlobalColor(_T("CHYLW")), wxSOLID);   // loud yellow
 
@@ -5426,7 +5447,7 @@ void MyFrame::HandlePianoClick(int selected_index, int selected_dbIndex)
             SelectChartFromStack(selected_index);
       else
       {
-            if(cc1->IsChartQuiltable(selected_dbIndex))
+            if(cc1->IsChartQuiltableRef(selected_dbIndex))
                   SelectQuiltRefChart(selected_index);
             else
             {
@@ -5599,18 +5620,10 @@ void MyFrame::SelectChartFromStack(int index, bool bDir, ChartTypeEnum New_Type,
             else
                 { zLat = vLat; zLon = vLon;}
 
-
-//  If the cache is invalid, as in new chart load, force a fast LODEF render
-            int new_sample_mode;
-            if(Current_Ch->IsCacheValid())
-                new_sample_mode = CURRENT_RENDER;
-            else
-                new_sample_mode = FORCE_SUBSAMPLE;
-
             double best_scale = GetBestVPScale(Current_Ch);
 
             cc1->SetViewPoint(zLat, zLon, best_scale, Current_Ch->GetChartSkew() * PI / 180.,
-                              cc1->GetVPRotation(), new_sample_mode);
+                              cc1->GetVPRotation());
 
             UpdateToolbarStatusBox();           // Pick up the rotation
 
@@ -5652,7 +5665,8 @@ void MyFrame::SetChartThumbnail(int index)
         else if(index < pCurrentStack->nEntry)
         {
                 if((ChartData->GetCSChartType(pCurrentStack, index) == CHART_TYPE_KAP) ||
-                                  (ChartData->GetCSChartType(pCurrentStack, index) == CHART_TYPE_GEO))
+                                  (ChartData->GetCSChartType(pCurrentStack, index) == CHART_TYPE_GEO) ||
+                                  (ChartData->GetCSChartType(pCurrentStack, index) == CHART_TYPE_PLUGIN))
                 {
                         ChartBase *new_pThumbChart = ChartData->OpenChartFromStack(pCurrentStack, index);
                         if(new_pThumbChart)         // chart opened ok
@@ -5672,6 +5686,7 @@ void MyFrame::SetChartThumbnail(int index)
 
                                 else
                                 {
+/*
                                         wxString fp = ChartData->GetFullPath(pCurrentStack, index);
                                         wxString msg(_("Chart file corrupt.. disabling this chart \n"));
                                         msg.Append(fp);
@@ -5679,8 +5694,8 @@ void MyFrame::SetChartThumbnail(int index)
                                         wxMessageDialog dlg(gFrame, msg, _("OpenCPN Message"), wxOK);
                                         dlg.ShowModal();
                                         ChartData->DisableChart(fp);
-
-                                        wxLogMessage(_T("chart1.cpp:SetChartThumbnail...Could not create thumbnail"));
+*/
+                                        wxLogMessage(_T("    chart1.cpp:SetChartThumbnail...Could not create thumbnail"));
                                         pthumbwin->pThumbChart = NULL;
                                         pthumbwin->Show(false);
                                         cc1->Refresh(FALSE);
@@ -5690,7 +5705,7 @@ void MyFrame::SetChartThumbnail(int index)
                         else                            // some problem opening chart
                         {
                                 wxString fp = ChartData->GetFullPath(pCurrentStack, index);
-                                fp.Prepend(_T("chart1.cpp:SetChartThumbnail...Could not open chart "));
+                                fp.Prepend(_T("    chart1.cpp:SetChartThumbnail...Could not open chart "));
                                 wxLogMessage(fp);
                                 pthumbwin->pThumbChart = NULL;
                                 pthumbwin->Show(false);
@@ -5917,9 +5932,9 @@ bool MyFrame::DoChartUpdate(void)
 
                         int initial_type = ChartData->GetDBChartType(initial_db_index);
 
-                  //    Check to see if the target new chart is quiltable
+                  //    Check to see if the target new chart is quiltable as a reference chart
 
-                        if(!cc1->IsChartQuiltable(initial_db_index))
+                        if(!cc1->IsChartQuiltableRef(initial_db_index))
                         {
                   // If it is not quiltable, then walk the stack up looking for a satisfactory chart
                   // i.e. one that is quiltable and of the same type
@@ -5928,7 +5943,7 @@ bool MyFrame::DoChartUpdate(void)
                               while((stack_index < pCurrentStack->nEntry-1) && (stack_index >= 0))
                               {
                                     int test_db_index = pCurrentStack->GetDBIndex(stack_index);
-                                    if(cc1->IsChartQuiltable(test_db_index) &&
+                                    if(cc1->IsChartQuiltableRef(test_db_index) &&
                                        ( initial_type == ChartData->GetDBChartType(initial_db_index)))
                                     {
                                           initial_db_index = test_db_index;
@@ -5954,13 +5969,13 @@ bool MyFrame::DoChartUpdate(void)
 
                   }
 
-                  cc1->SetViewPoint(vpLat, vpLon, cc1->GetCanvasScaleFactor() / proposed_scale_onscreen, 0, cc1->GetVPRotation(), CURRENT_RENDER);
+                  cc1->SetViewPoint(vpLat, vpLon, cc1->GetCanvasScaleFactor() / proposed_scale_onscreen, 0, cc1->GetVPRotation());
 
                   bFirstAuto = false;                           // Auto open on program start
             }
 
 
-            if(cc1->SetViewPoint(vpLat, vpLon, cc1->GetVPScale(), 0, cc1->GetVPRotation(), CURRENT_RENDER))
+            if(cc1->SetViewPoint(vpLat, vpLon, cc1->GetVPScale(), 0, cc1->GetVPRotation()))
                   bNewChart = true;
 
             goto update_finish;
@@ -5973,8 +5988,8 @@ bool MyFrame::DoChartUpdate(void)
         ChartFamilyEnum new_open_family;
         if(pLast_Ch)
         {
-              new_open_type = pLast_Ch->m_ChartType;
-              new_open_family = pLast_Ch->m_ChartFamily;
+              new_open_type = pLast_Ch->GetChartType();
+              new_open_family = pLast_Ch->GetChartFamily();
         }
         else
         {
@@ -6002,17 +6017,17 @@ bool MyFrame::DoChartUpdate(void)
                 }
 
                 if(Current_Ch)
-                    if(Current_Ch->m_ChartType != CHART_TYPE_DUMMY)
+                    if(Current_Ch->GetChartType() != CHART_TYPE_DUMMY)
                         bNewChart = true;
 
                 Current_Ch = pDummyChart;
 
 //    If the current viewpoint is invalid, set the default scale to something reasonable.
                 double set_scale = cc1->GetVPScale();
-                if(!cc1->VPoint.bValid)
+                if(!cc1->VPoint.IsValid())
                     set_scale = 1./200000.;
 
-                cc1->SetViewPoint(tLat, tLon, set_scale, 0, cc1->GetVPRotation(), CURRENT_RENDER);
+                cc1->SetViewPoint(tLat, tLon, set_scale, 0, cc1->GetVPRotation());
 
         //      If the chart stack has just changed, there is new status
                 if(!ChartData->EqualStacks(&WorkStack, pCurrentStack))
@@ -6111,7 +6126,7 @@ bool MyFrame::DoChartUpdate(void)
                       }
 
                       if(pLast_Ch)
-                         if(pLast_Ch->m_ChartType != CHART_TYPE_DUMMY)
+                         if(pLast_Ch->GetChartType() != CHART_TYPE_DUMMY)
                                bNewChart = true;
 
                       pProposed = pDummyChart;
@@ -6138,7 +6153,7 @@ bool MyFrame::DoChartUpdate(void)
                     double set_scale = cc1->GetVPScale();
 
 //    If the current viewpoint is invalid, set the default scale to something reasonable.
-                    if(!cc1->VPoint.bValid)
+                    if(!cc1->VPoint.IsValid())
                         set_scale = 1./200000.;
                     else                                    // otherwise, match scale if elected.
                     {
@@ -6163,12 +6178,7 @@ bool MyFrame::DoChartUpdate(void)
                         set_scale = cc1->GetCanvasScaleFactor() / proposed_scale_onscreen;
                     }
 
-//  If the chart cache is invalid, as in new chart load, force a fast sub-sample render
-                    int new_sample_mode = CURRENT_RENDER;
-                    if(!Current_Ch->IsCacheValid())
-                           new_sample_mode = FORCE_SUBSAMPLE;
-
-                    cc1->SetViewPoint(vpLat, vpLon, set_scale, Current_Ch->GetChartSkew() * PI / 180., cc1->GetVPRotation(), new_sample_mode);
+                    cc1->SetViewPoint(vpLat, vpLon, set_scale, Current_Ch->GetChartSkew() * PI / 180., cc1->GetVPRotation());
 
                 }
         }         // new stack
@@ -6176,7 +6186,7 @@ bool MyFrame::DoChartUpdate(void)
         else                                                                    // No change in Chart Stack
         {
               if((cc1->m_bFollow) && Current_Ch)
-                      cc1->SetViewPoint(vpLat, vpLon, cc1->GetVPScale(), Current_Ch->GetChartSkew() * PI / 180., cc1->GetVPRotation(),CURRENT_RENDER);
+                      cc1->SetViewPoint(vpLat, vpLon, cc1->GetVPScale(), Current_Ch->GetChartSkew() * PI / 180., cc1->GetVPRotation());
         }
 
 
@@ -6305,20 +6315,6 @@ void MyFrame::OnPianoMenuEnableChart(wxCommandEvent& event)
 
 void MyFrame::OnPianoMenuDisableChart(wxCommandEvent& event)
 {
-/*
-       //    Remove the item from the list to avoid multiple addition
-      for(unsigned int i=0 ; i < g_quilt_noshow_index_array.GetCount() ; i++)
-      {
-            if(g_quilt_noshow_index_array.Item(i) == menu_selected_dbIndex)        // chart is in the noshow list
-            {
-                  g_quilt_noshow_index_array.RemoveAt(i);
-                  break;
-            }
-      }
-
-      g_quilt_noshow_index_array.Add(menu_selected_dbIndex);
-*/
-
       RemoveChartFromQuilt(menu_selected_dbIndex);
 
 //      It could happen that the chart being disabled is the reference chart....
@@ -6327,15 +6323,34 @@ void MyFrame::OnPianoMenuDisableChart(wxCommandEvent& event)
             int type = ChartData->GetDBChartType(menu_selected_dbIndex);
 
             int i = menu_selected_index + 1;          // select next smaller scale chart
+            bool b_success = false;
             while(i < pCurrentStack->nEntry - 1)
             {
                   int dbIndex = pCurrentStack->GetDBIndex(i);
                   if(type == ChartData->GetDBChartType(dbIndex))
                   {
                         SelectQuiltRefChart(i);
+                        b_success = true;
                         break;
                   }
                   i++;
+            }
+
+            //    If that did not work, try to select the next larger scale compatible chart
+            if(!b_success)
+            {
+                  i = menu_selected_index - 1;
+                  while(i > 0)
+                  {
+                        int dbIndex = pCurrentStack->GetDBIndex(i);
+                        if(type == ChartData->GetDBChartType(dbIndex))
+                        {
+                              SelectQuiltRefChart(i);
+                              b_success = true;
+                              break;
+                        }
+                        i--;
+                  }
             }
       }
 }
