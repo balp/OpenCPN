@@ -6905,6 +6905,9 @@ void DrawWuLine ( wxDC *pDC, int X0, int Y0, int X1, int Y1, wxColour clrLine, i
       wxBitmap bm ( width, height );
       mdc.SelectObject ( bm );
 
+#ifdef __WXOSX_COCOA__
+      if(width > 0 && height > 0 && wxMin( X0, X1) >= 0 && Y0 >= 0)
+#endif
       mdc.Blit ( 0, 0, width, height, pDC, wxMin ( X0, X1 ), Y0 );
 
       // convert bitmap to image
@@ -7017,6 +7020,9 @@ void DrawWuLine ( wxDC *pDC, int X0, int Y0, int X1, int Y1, wxColour clrLine, i
             wxBitmap fbm ( img, -1 );
             mdc.SelectObject ( fbm );
 
+#ifdef __WXOSX_COCOA__
+            if(width > 0 && height > 0 && wxMin( X0, X1) >= 0 && Y0 >= 0)
+#endif
             pDC->Blit ( wxMin ( X0, X1 ), Y0, width, height, &mdc, 0, 0 );
 
             mdc.SelectObject ( wxNullBitmap );
@@ -7110,6 +7116,9 @@ void DrawWuLine ( wxDC *pDC, int X0, int Y0, int X1, int Y1, wxColour clrLine, i
       wxBitmap fbm ( img, -1 );
       mdc.SelectObject ( fbm );
 
+#ifdef __WXOSX_COCOA__
+            if(width > 0 && height > 0 && wxMin( X0, X1) >= 0 && Y0 >= 0)
+#endif
       pDC->Blit ( wxMin ( X0, X1 ), Y0, width, height, &mdc, 0, 0 );
 
       mdc.SelectObject ( wxNullBitmap );

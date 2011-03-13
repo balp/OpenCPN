@@ -28,7 +28,12 @@ PROJECT(OpenCPN)
 SET(CMAKE_VERBOSE_MAKEFILE OFF)
 # make VERBOSE=1 makes this onb build time
 
-SET(PACKAGE_NAME opencpn)
+IF(APPLE)
+  SET(PACKAGE_NAME OpenCPN)
+ELSE(APPLE)
+  SET(PACKAGE_NAME opencpn)
+ENDIF(APPLE)
+
 INCLUDE( ${CMAKE_SOURCE_DIR}/VERSION.cmake )
 SET(PACKAGE_VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}" )
 
@@ -102,6 +107,7 @@ SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/build)
 # Let cmake find additional modules private to opencpn
 SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/")
 
+IF(NOT APPLE)
 FIND_PACKAGE(GTK2 2.6)
 IF (GTK2_FOUND)
     INCLUDE_DIRECTORIES(${GTK2_INCLUDE_DIRS})
@@ -114,6 +120,8 @@ FIND_PACKAGE(OpenGL REQUIRED)
 INCLUDE_DIRECTORIES(${OPENGL_INCLUDE_DIR})
 
 FIND_PACKAGE(Gettext REQUIRED)
+ENDIF(NOT APPLE)
+
 
 # For convenience we define the sources as a variable. You can add 
 # header files and cpp/c files and CMake will sort them out
@@ -465,6 +473,7 @@ IF(APPLE)
   SET(SRCS ${SRCS}
     include/macsercomm.h
     src/macsercomm.cpp
+    src/macutils_cocoa.cpp
     include/macutils.h
     src/macutils.c
     )
@@ -511,14 +520,12 @@ ENDIF(UNIX)
 
 #   Certain older Cmake FindGTK2 modules ( e.g. cmake-2.8.0-2) do not yield all of the required link libraries
 #   So, add them manually.
-IF(UNIX)
-  IF(NOT APPLE)
-    TARGET_LINK_LIBRARIES(${PACKAGE_NAME}
+IF(UNIX AND NOT APPLE)
+TARGET_LINK_LIBRARIES(${PACKAGE_NAME}
       dl
       gobject-2.0
-    )
-  ENDIF(NOT APPLE)
-ENDIF(UNIX)
+)
+ENDIF(UNIX AND NOT APPLE)
 
 
 
@@ -643,7 +650,11 @@ MACRO(GETTEXT_BUILD_MO _poFile _lang)
       COMMENT "i18n [${_poBasename}]: Created mo file."
    )
 
+IF(APPLE)
+   INSTALL(FILES ${_gmoFile} DESTINATION ${CMAKE_HOME_DIRECTORY}/OpenCPN.app/Contents/Resources/${_lang}.lproj RENAME ${PACKAGE_NAME}.mo )
+ELSE(APPLE)
    INSTALL(FILES ${_gmoFile} DESTINATION ${PREFIX_DATA}/locale/${_lang}/LC_MESSAGES RENAME ${PACKAGE_NAME}.mo )
+ENDIF(APPLE)
    SET(_gmoFiles ${_gmoFiles} ${_gmoFile})
 ENDMACRO(GETTEXT_BUILD_MO)
 

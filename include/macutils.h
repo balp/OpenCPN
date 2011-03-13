@@ -19,4 +19,7 @@ extern "C" bool ValidateSerialPortName(const char* pPortName, int iMaxNamesToSea
 #endif // __WXOSX__
 // end rms
 
+class wxRegion;
+bool ocpn_mac_region_compare(const wxRegion&, const wxRegion&);  // workaround for cocoa wx2.9
+
 #endif // MACUTILS_H_INCLUDED_H__

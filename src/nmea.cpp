@@ -414,7 +414,11 @@ NMEAHandler::NMEAHandler(int handler_id, wxFrame *frame, const wxString& NMEADat
 #define DYNAMIC_LOAD_LIBGPS 1
 #ifdef DYNAMIC_LOAD_LIBGPS
 
+#ifdef __WXOSX__
+            m_lib_handle = dlopen("/opt/local/lib/libgps.19.dylib", RTLD_LAZY);
+#else
             m_lib_handle = dlopen("libgps.so.19", RTLD_LAZY);
+#endif
 
             if(!m_lib_handle)
             {

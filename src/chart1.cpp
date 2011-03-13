@@ -879,7 +879,7 @@ bool MyApp::OnInit()
 #endif
 #ifdef __WXOSX_COCOA__
 // set a debugging assertion handler for 2.9.2-trunk wxwidgets - patg
-	wxSetAssertHandler(ocpnwxAssert);
+	//wxSetAssertHandler(ocpnwxAssert);
 #endif
 
         // create the opencpn "log" directory if we need to
@@ -2361,7 +2361,8 @@ ocpnToolBarSimple *MyFrame::CreateAToolbar()
     if(!GetToolBar()) {
 	tb = CreateToolBar(wxTB_HORIZONTAL | wxTB_FLAT);
     } else {
-	tb = GetToolBar(); tb->ClearTools();
+	tb = GetToolBar();
+	tb->ClearTools();
     }
 #else
     tb = new ocpnToolBarSimple(this, -1, wxPoint(-1, -1), wxSize(-1, -1), wxTB_HORIZONTAL | wxNO_BORDER | wxTB_FLAT);
@@ -5163,6 +5164,10 @@ void MyFrame::UpdateToolbarStatusBox(bool b_update_toolbar)
             // Update the tool in the toolbar
             if(m_toolBar && b_update_toolbar && b_need_refresh)
             {
+#ifdef __WXOSX_COCOA__ // avoid flickering of toolbar
+		m_pStatBoxToolStaticBmp->SetBitmap(m_StatBmp); 
+		return;
+#endif
 
                   //   Delete the current status tool, if present
                   int ct_pos = m_toolBar->GetToolPos(ID_TBSTATBOX);

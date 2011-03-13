@@ -116,6 +116,9 @@
 #define new DEBUG_NEW
 #endif
 
+#ifdef __WXOSX_COCOA__
+#include "macutils.h"
+#endif
 
 CPL_CVSID("$Id: s57chart.cpp,v 1.61 2010/06/24 01:48:02 bdbcat Exp $");
 
@@ -1663,7 +1666,11 @@ bool s57chart::RenderRegionViewOnDC(wxMemoryDC& dc, const ViewPort& VPoint, cons
 
       bool force_new_view = false;
 
-      if(&Region != &m_last_Region)
+#ifdef __WXOSX_COCOA__
+      if(!ocpn_mac_region_compare(Region, m_last_Region))  // workaround for cocoa wx2.9
+#else
+      if(Region != m_last_Region)
+#endif
             force_new_view = true;
 
       ps52plib->PrepareForRender();

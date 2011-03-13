@@ -1023,7 +1023,7 @@ bool dashboard_pi::SaveConfig(void)
 void dashboard_pi::ApplyConfig(void)
 {
       // Reverse order to handle deletes
-      for (size_t i = m_ArrayOfDashboardWindow.GetCount(); i > 0; i--)
+      for (int i = m_ArrayOfDashboardWindow.GetCount(); i > 0; i--)
       {
             DashboardWindowContainer *cont = m_ArrayOfDashboardWindow.Item(i-1);
             if ( cont->m_bIsDeleted )
