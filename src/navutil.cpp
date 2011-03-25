@@ -85,6 +85,7 @@ extern double           vLat, vLon, gLat, gLon;
 extern double           kLat, kLon;
 extern double           initial_scale_ppm;
 extern ColorScheme      global_color_scheme;
+extern int              g_nbrightness;
 
 extern wxToolBarBase    *toolBar;
 extern wxString         *pNMEADataSource;
@@ -453,6 +454,41 @@ bool Select::AddAllSelectableRouteSegments ( Route *pr )
                   slon2 = prp->m_lon;
 
                   AddSelectableRouteSegment ( slat1, slon1, slat2, slon2, prp0, prp, pr );
+
+                  slat1 = slat2;
+                  slon1 = slon2;
+                  prp0 = prp;
+
+                  node = node->GetNext();
+            }
+            return true;
+      }
+      else
+            return false;
+}
+
+bool Select::AddAllSelectableTrackSegments ( Route *pr )
+{
+      wxPoint rpt, rptn;
+      float slat1, slon1, slat2, slon2;
+
+      if ( pr->pRoutePointList->GetCount() )
+      {
+            wxRoutePointListNode *node = ( pr->pRoutePointList )->GetFirst();
+
+            RoutePoint *prp0 = node->GetData();
+            slat1 = prp0->m_lat;
+            slon1 = prp0->m_lon;
+
+            node = node->GetNext();
+
+            while ( node )
+            {
+                  RoutePoint *prp = node->GetData();
+                  slat2 = prp->m_lat;
+                  slon2 = prp->m_lon;
+
+                  AddSelectableTrackSegment ( slat1, slon1, slat2, slon2, prp0, prp, pr );
 
                   slat1 = slat2;
                   slon1 = slon2;
@@ -1004,6 +1040,10 @@ void RoutePoint::Draw ( wxDC& dc, wxPoint *rpn )
       if ( !m_bIsVisible && !m_bIsInTrack)     // pjotrc 2010.02.13
             return;
 
+      //    Optimization, especially apparent on tracks in normal cases
+      if (m_IconName == _T("empty"))
+            return;
+
       wxPen *pen;
       if ( m_bBlink )
             pen = g_pRouteMan->GetActiveRoutePointPen();
@@ -1173,6 +1213,91 @@ Route::~Route ( void )
       delete pRoutePointList;
 }
 
+// The following is used only for route splitting, assumes just created, empty route
+//
+void Route::CloneRoute(Route *psourceroute, int start_nPoint, int end_nPoint, wxString suffix)
+{
+      m_bIsTrack = psourceroute->m_bIsTrack;
+
+      m_RouteNameString = psourceroute->m_RouteNameString+suffix;
+      m_RouteStartString = psourceroute->m_RouteStartString;
+      m_RouteEndString = psourceroute->m_RouteEndString;
+
+      int i;
+      for (i = start_nPoint; i <= end_nPoint; i++) {
+            AddPoint(psourceroute->GetPoint(i), false);
+      }
+
+      CalculateBBox();
+ 
+}
+
+void Route::CloneTrack(Route *psourceroute, int start_nPoint, int end_nPoint, wxString suffix)
+{
+      m_bIsTrack = psourceroute->m_bIsTrack;
+
+      m_RouteNameString = psourceroute->m_RouteNameString+suffix;
+      m_RouteStartString = psourceroute->m_RouteStartString;
+      m_RouteEndString = psourceroute->m_RouteEndString;
+
+      bool b_splitting = GetnPoints()==0;
+
+      int startTrkSegNo;
+      if (b_splitting)
+            startTrkSegNo = psourceroute->GetPoint(start_nPoint)->m_GPXTrkSegNo;
+      else
+            startTrkSegNo = this->GetLastPoint()->m_GPXTrkSegNo;
+
+      int i;
+      for (i = start_nPoint; i <= end_nPoint; i++) {
+
+            RoutePoint *psourcepoint = psourceroute->GetPoint(i);
+            RoutePoint *ptargetpoint = new RoutePoint( psourcepoint->m_lat, psourcepoint->m_lon, psourcepoint->m_IconName, psourcepoint->m_MarkName, GPX_EMPTY_STRING, false );
+
+            AddPoint(ptargetpoint, false);
+
+            CloneAddedTrackPoint(m_pLastAddedPoint, psourcepoint);
+
+            int segment_shift = psourcepoint->m_GPXTrkSegNo;
+
+            if ((start_nPoint == 2) /*&& (psourcepoint->m_GPXTrkSegNo == startTrkSegNo)*/)
+                  segment_shift = psourcepoint->m_GPXTrkSegNo - 1;  // continue first segment if tracks share the first point
+
+            if (b_splitting)
+                  m_pLastAddedPoint->m_GPXTrkSegNo = (psourcepoint->m_GPXTrkSegNo - startTrkSegNo) + 1;
+            else
+                  m_pLastAddedPoint->m_GPXTrkSegNo = startTrkSegNo + segment_shift;
+      }
+
+      CalculateBBox();
+ 
+}
+
+void Route::CloneAddedTrackPoint(RoutePoint *ptargetpoint, RoutePoint *psourcepoint)
+{
+            //    This is a hack, need to undo the action of Route::AddPoint
+            ptargetpoint->m_bIsInRoute = false;
+            ptargetpoint->m_bIsInTrack = true;
+            ptargetpoint->m_MarkDescription = psourcepoint->m_MarkDescription;
+            ptargetpoint->m_prop_string_format = psourcepoint->m_prop_string_format;
+            ptargetpoint->m_bKeepXRoute = psourcepoint->m_bKeepXRoute;
+            ptargetpoint->m_bIsVisible = psourcepoint->m_bIsVisible;
+            ptargetpoint->m_bPtIsSelected = false;
+            ptargetpoint->m_pbmIcon = psourcepoint->m_pbmIcon;
+            ptargetpoint->m_bShowName = psourcepoint->m_bShowName;
+            ptargetpoint->m_bBlink = psourcepoint->m_bBlink;
+            ptargetpoint->m_bBlink = psourcepoint->m_bDynamicName;
+            ptargetpoint->CurrentRect_in_DC = psourcepoint->CurrentRect_in_DC;
+            ptargetpoint->m_NameLocationOffsetX = psourcepoint->m_NameLocationOffsetX;
+            ptargetpoint->m_NameLocationOffsetX = psourcepoint->m_NameLocationOffsetY;
+            ptargetpoint->m_CreateTime = psourcepoint->m_CreateTime;
+            ptargetpoint->m_HyperlinkList = new HyperlinkList;
+            // Hyperlinks not implemented currently in GPX for trackpoints
+            //if (!psourcepoint->m_HyperlinkList->IsEmpty()) {
+            //      HyperlinkList::iterator iter = psourcepoint->m_HyperlinkList->begin();
+            //      psourcepoint->m_HyperlinkList->splice(iter, *(ptargetpoint->m_HyperlinkList));
+            //}
+}
 
 void Route::AddPoint ( RoutePoint *pNewPoint, bool b_rename_in_sequence )
 {
@@ -1611,6 +1736,9 @@ void Route::DeletePoint ( RoutePoint *rp, bool bRenamePoints )
 
 void Route::RemovePoint ( RoutePoint *rp, bool bRenamePoints )
 {
+      if ( rp->m_bIsActive && this->IsActive() )                  //FS#348
+            g_pRouteMan->DeactivateRoute();
+
       pSelect->DeleteAllSelectableRoutePoints ( this );
       pSelect->DeleteAllSelectableRouteSegments ( this );
 
@@ -2231,6 +2359,7 @@ int MyConfig::LoadMyConfig ( int iteration )
       g_COGFilterSec = wxMax(g_COGFilterSec, 1);
       g_SOGFilterSec = g_COGFilterSec;
 
+      Read ( _T ( "ScreenBrightness" ),  &g_nbrightness, 100 );
 
       Read ( _T ( "MemFootprintMgrTimeSec" ),  &g_MemFootSec, 60 );
       Read ( _T ( "MemFootprintTargetMB" ),  &g_MemFootMB, 200 );
@@ -6644,9 +6773,21 @@ wxString toSDMM ( int NEflag, double a, bool hi_precision )
 
 /****************************************************************************/
 /* Convert dd mm.mmm' (DMM-Format) to degree.                               */
+/*        or dd°mm.m′ (degree sign or alternate minute sign)                */
 /****************************************************************************/
-double fromDMM(char *dms)
+double fromDMM(wxString sdms)
 {
+      wxString rdms = sdms;
+
+	  // Handle e.g. 16°53.2′N
+	wxString a("°", wxConvUTF8);
+      rdms.Replace(a, _T(" "));
+	wxString b("′", wxConvUTF8);
+      rdms.Replace(b, _T("'"));
+
+      char str[50];
+      strncpy(str, rdms.mb_str(wxConvUTF8), 49);
+
       float d = 0;
       double m = 0.0;
       char buf[20];
@@ -6654,11 +6795,10 @@ double fromDMM(char *dms)
 
       buf[0] = buf1[0] = '\0';
 
-//      sscanf(dms, "%d%[ ]%lf%[ 'NSWEnswe]", &d, buf, &m, buf);
-      sscanf(dms, "%f%[ ]%s%[ 'NSWEnswe]", &d, buf, buf1, buf);
-      wxString min(buf1,  wxConvUTF8);
-      min.Replace(_T(","), _T("."));
-      min.ToDouble(&m);
+      sscanf(str, "%f%[ ]%s%[ 'NSWEnswe]", &d, buf, buf1, buf);
+      wxString minutes(buf1,  wxConvUTF8);
+      minutes.Replace(_T(","), _T("."));
+      minutes.ToDouble(&m);
 
       m = (double) (fabs(d)) + m / 60.0;
 
@@ -6672,8 +6812,8 @@ double fromDMM(char *dms)
             return m;
       else
             return -m;
-}
 
+}
 
 void AlphaBlending ( wxDC &dc, int x, int y, int size_x, int size_y,
                                       wxColour color, unsigned char transparency )

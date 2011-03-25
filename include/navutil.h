@@ -74,7 +74,7 @@ extern wxString toSDMM(int NEflag, double a, bool hi_precision = false);
 extern void AlphaBlending ( wxDC& dc, int x, int y, int size_x, int size_y,
                                       wxColour color, unsigned char transparency );
 
-extern double fromDMM(char *dms);
+extern double fromDMM(wxString sdms);
 
 // ----------------------------------------------------------------------------
 // resources
@@ -201,6 +201,9 @@ public:
       wxString GetNewMarkSequenced(void);
       void AssembleRoute();
       bool IsEqualTo(Route *ptargetroute);
+      void CloneRoute(Route *psourceroute, int start_nPoint, int end_nPoint, wxString suffix);
+      void CloneTrack(Route *psourceroute, int start_nPoint, int end_nPoint, wxString suffix);
+      void CloneAddedTrackPoint(RoutePoint *ptargetpoint, RoutePoint *psourcepoint);
       void ClearHighlights(void);
       void RenderSegment(wxDC& dc, int xa, int ya, int xb, int yb, ViewPort &VP, bool bdraw_arrow, int hilite_width = 0);
 
@@ -441,6 +444,7 @@ public:
       bool DeleteAllSelectableTrackSegments(Route *);
       bool DeleteAllSelectableRoutePoints(Route *);
       bool AddAllSelectableRouteSegments(Route *pr);
+      bool AddAllSelectableTrackSegments(Route *pr);
       bool AddAllSelectableRoutePoints(Route *pr);
       bool UpdateSelectableRouteSegments(RoutePoint *prp);
 

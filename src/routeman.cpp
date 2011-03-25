@@ -1530,6 +1530,28 @@ RoutePoint *WayPointman::GetNearbyWaypoint(double lat, double lon, double radius
 
 }
 
+RoutePoint *WayPointman::GetOtherNearbyWaypoint(double lat, double lon, double radius_meters, wxString &guid)
+{
+      //    Iterate on the RoutePoint list, checking distance
+
+      wxRoutePointListNode *node = m_pWayPointList->GetFirst();
+      while(node)
+      {
+            RoutePoint *pr = node->GetData();
+
+            double a = lat - pr->m_lat;
+            double b = lon - pr->m_lon;
+            double l = sqrt((a*a) + (b*b));
+
+            if((l * 60. * 1852.) < radius_meters)
+                  if ( pr->m_GUID != guid ) return pr;
+
+            node = node->GetNext();
+      }
+      return NULL;
+
+}
+
 void WayPointman::DeleteAllWaypoints(bool b_delete_used)
 {
       //    Iterate on the RoutePoint list, deleting all
@@ -1574,9 +1596,10 @@ void WayPointman::DestroyWaypoint(RoutePoint *pRp)
                   {
                         Route *pr = (Route *)proute_array->Item(ir);
 
+/*  FS#348
                         if ( g_pRouteMan->GetpActiveRoute() == pr )            // Deactivate any route containing this point
                               g_pRouteMan->DeactivateRoute();
-
+*/
                         pr->RemovePoint ( pRp );
 
                   }
