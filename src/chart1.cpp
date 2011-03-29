@@ -3815,6 +3815,7 @@ void MyFrame::OnToolLeftClick(wxCommandEvent& event)
             pRouteManagerDialog->UpdateTrkListCtrl();
             pRouteManagerDialog->UpdateWptListCtrl();
             pRouteManagerDialog->Show();
+            pRouteManagerDialog->SetFocus();
             break;
       }
 

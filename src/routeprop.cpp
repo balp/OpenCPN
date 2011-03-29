@@ -906,6 +906,7 @@ void RouteProp::OnRoutepropCancelClick( wxCommandEvent& event )
             m_pRoute->ClearHighlights();
 
       Hide();
+      EndModal(wxYES);
       cc1->Refresh(false);
 
       event.Skip();
@@ -941,6 +942,7 @@ void RouteProp::OnRoutepropOkClick( wxCommandEvent& event )
       }
 
     Hide();
+    EndModal(wxYES);
     cc1->Refresh(false);
 
     event.Skip();

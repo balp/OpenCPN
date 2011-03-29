@@ -883,6 +883,10 @@ void dashboard_pi::OnToolbarToolCallback(int id)
                   wxAuiPaneInfo &pane = m_pauimgr->GetPane( dashboard_window );
                   if (pane.IsOk())
                         pane.Show(cnt==0);
+		  if (pane.IsFloating() && pane.IsShown()) {
+			std::cout << "IMPDEBUG: Floating Pane, making transparent" << std::endl;
+			pane.frame->SetTransparent(128);
+		}
             }
       }
       // Toggle is handled by the toolbar but we must keep plugin manager b_toggle updated
@@ -1002,7 +1006,7 @@ bool dashboard_pi::SaveConfig(void)
             pConf->Write( _T("FontSmall"), g_pFontSmall->GetNativeFontInfoDesc() );
 
             pConf->Write( _T("DashboardCount" ), (int)m_ArrayOfDashboardWindow.GetCount() );
-            for (size_t i = 0; i < m_ArrayOfDashboardWindow.GetCount(); i++)
+            for (int i = 0; i < m_ArrayOfDashboardWindow.GetCount(); i++)
             {
                   DashboardWindowContainer *cont = m_ArrayOfDashboardWindow.Item(i);
                   pConf->SetPath( wxString::Format( _T("/PlugIns/Dashboard/Dashboard%d"), i+1 ) );
@@ -1538,14 +1542,12 @@ void DashboardWindow::SetInstrumentList(wxArrayInt list)
       // rudder range
 
 */
-std::cout << "IMPDEBUGdb: " << "SetInstrumentList" << std::endl;
       m_ArrayOfInstrument.Clear();
       itemBoxSizer->Clear(true);
       for (size_t i = 0; i < list.GetCount(); i++)
       {
             int id = list.Item(i);
             DashboardInstrument *instrument;
-std::cout << "IMPDEBUGdb: " << "Instrument " << i << ", id: " << id << std::endl;
             switch (id)
             {
             case ID_DBP_I_POS:
