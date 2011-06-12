@@ -36,6 +36,8 @@
 
 #include <wx/treectrl.h>
 #include <wx/fileconf.h>
+#include <wx/arrstr.h>
+#include <wx/combobox.h>
 
 #include "grib_pi.h"
 #include "grib.h"
@@ -236,6 +238,15 @@ void grib_pi::ShowPreferencesDialog( wxWindow* parent )
     m_pGRIBUseHiDef = new wxCheckBox( dialog, -1, _("Use High Definition Graphics"));
     itemStaticBoxSizerGRIB->Add(m_pGRIBUseHiDef, 1, wxALIGN_LEFT|wxALL, border_size);
 
+    wxArrayString choices;
+    choices.Add(_("Nautic"));
+    choices.Add(_("Metric"));
+
+    m_pGRIBUnits = new wxComboBox( dialog, -1, m_Units, wxDefaultPosition, wxDefaultSize, choices, wxCB_DROPDOWN);
+    itemStaticBoxSizerGRIB->Add(m_pGRIBUnits, 1, wxALIGN_LEFT|wxALL, border_size);
+
+
+
     m_pGRIBShowIcon->SetValue(m_bGRIBShowIcon);
     m_pGRIBUseHiDef->SetValue(m_bGRIBUseHiDef);
 
@@ -260,6 +271,7 @@ void grib_pi::ShowPreferencesDialog( wxWindow* parent )
             }
 
             m_bGRIBUseHiDef= m_pGRIBUseHiDef->GetValue();
+	    m_Units = m_pGRIBUnits->GetValue();
 
             SaveConfig();
       }
@@ -389,7 +401,7 @@ bool grib_pi::LoadConfig(void)
             pConf->SetPath ( _T( "/Settings" ) );
             pConf->Read ( _T( "GRIBUseHiDef" ),  &m_bGRIBUseHiDef, 0 );
             pConf->Read ( _T( "ShowGRIBIcon" ),  &m_bGRIBShowIcon, 1 );
-
+            pConf->Read ( _T( "GRIBUnits" ),  &m_Units );
 
             m_grib_dialog_sx = pConf->Read ( _T ( "GRIBDialogSizeX" ), 300L );
             m_grib_dialog_sy = pConf->Read ( _T ( "GRIBDialogSizeY" ), 540L );
@@ -419,6 +431,7 @@ bool grib_pi::SaveConfig(void)
             pConf->SetPath ( _T ( "/Settings" ) );
             pConf->Write ( _T ( "GRIBUseHiDef" ), m_bGRIBUseHiDef );
             pConf->Write ( _T ( "ShowGRIBIcon" ), m_bGRIBShowIcon );
+            pConf->Write ( _T ( "GRIBUnits" ), m_Units );
 
             pConf->Write ( _T ( "GRIBDialogSizeX" ),  m_grib_dialog_sx );
             pConf->Write ( _T ( "GRIBDialogSizeY" ),  m_grib_dialog_sy );

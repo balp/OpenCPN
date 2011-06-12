@@ -247,7 +247,12 @@ void GRIBUIDialog::CreateControls()
       m_cbWindSpeed.SetValue(true);
       pDataGrid->Add(&m_cbWindSpeed, 0, wxALIGN_LEFT|wxALL, group_item_spacing);
 
-      wxStaticText *ps1 = new wxStaticText(this, wxID_ANY, _("Wind Speed, Kts."));
+      wxStaticText *ps1 = NULL;
+      if(units == NAUTIC) {
+             ps1 = new wxStaticText(this, wxID_ANY, _("Wind Speed, Kts."));
+      } else {
+	     ps1 = new wxStaticText(this, wxID_ANY, _("Wind Speed, m/s"));
+      }
       pDataGrid->Add(ps1, 0, wxALIGN_LEFT|wxALL, group_item_spacing);
 
       m_pWindSpeedTextCtrl = new wxTextCtrl(this, -1, _T(""), wxDefaultPosition, wxDefaultSize, wxTE_READONLY );

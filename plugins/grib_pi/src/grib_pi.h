@@ -122,6 +122,9 @@ private:
       //    Controls added to Preferences panel
       wxCheckBox              *m_pGRIBShowIcon;
       wxCheckBox              *m_pGRIBUseHiDef;
+      wxComboBox              *m_pGRIBUnits;
+      wxString                 m_Units;
+
 
 };
 
