@@ -248,11 +248,8 @@ void GRIBUIDialog::CreateControls()
       pDataGrid->Add(&m_cbWindSpeed, 0, wxALIGN_LEFT|wxALL, group_item_spacing);
 
       wxStaticText *ps1 = NULL;
-      if(units == NAUTIC) {
-             ps1 = new wxStaticText(this, wxID_ANY, _("Wind Speed, Kts."));
-      } else {
-	     ps1 = new wxStaticText(this, wxID_ANY, _("Wind Speed, m/s"));
-      }
+      
+      ps1 = new wxStaticText(this, wxID_ANY, pPlugIn.getUnitConverter().getWindSpeedName());
       pDataGrid->Add(ps1, 0, wxALIGN_LEFT|wxALL, group_item_spacing);
 
       m_pWindSpeedTextCtrl = new wxTextCtrl(this, -1, _T(""), wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
@@ -303,7 +300,7 @@ void GRIBUIDialog::CreateControls()
       m_cbSeaCurrent.SetValue(true);
       pDataGrid->Add(&m_cbSeaCurrent, 0, wxALIGN_LEFT|wxALL, group_item_spacing);
 
-      wxStaticText *ps6 = new wxStaticText(this, wxID_ANY, _("Current Velocity, Kts."));
+      wxStaticText *ps6 = new wxStaticText(this, wxID_ANY, pPlugIn.getUnitConverter().getWindVelocityName()));
       pDataGrid->Add(ps6, 0, wxALIGN_LEFT|wxALL, group_item_spacing);
 
       m_pSeaCurrentTextCtrl = new wxTextCtrl(this, -1, _T(""), wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
@@ -358,13 +355,13 @@ void GRIBUIDialog::UpdateTrackingControls(void)
 
                   if((vx != GRIB_NOTDEF) && (vy != GRIB_NOTDEF))
                   {
-                        double  vkn = sqrt(vx*vx+vy*vy)*3.6/1.852;
+                        double  vkn = pPlugIn->getUnitConverter().getWindSpeed(vx, vy);
                         double ang = 90. + (atan2(vy, -vx)  * 180. / PI);
                         if(ang > 360.) ang -= 360.;
                         if(ang < 0.) ang += 360.;
 
                         wxString t;
-                        t.Printf(_T("%2d"), (int)vkn);
+                        t.Printf(pPlugIn->getUnitConverter.getWindSpeedFormat(), (int)vkn);
                         if(m_pWindSpeedTextCtrl)
                               m_pWindSpeedTextCtrl->AppendText(t);
 
@@ -409,13 +406,13 @@ void GRIBUIDialog::UpdateTrackingControls(void)
 
                   if((vx != GRIB_NOTDEF) && (vy != GRIB_NOTDEF))
                   {
-                        double  vkn = sqrt(vx*vx+vy*vy)*3.6/1.852;
+                        double  vkn = pPlugIn->getUnitConverter().getWindSpeed(vx, vy);
                         double ang = 90. + (atan2(vy, -vx)  * 180. / PI);
                         if(ang > 360.) ang -= 360.;
                         if(ang < 0.) ang += 360.;
 
                         wxString t;
-                        t.Printf(_T("%2d"), (int)vkn);
+                        t.Printf(pPlugIn->getUnitConverter().getWindSpeedFormat, (int)vkn);
                         if(m_pWindSpeedTextCtrl)
                               m_pWindSpeedTextCtrl->AppendText(t);
 
@@ -450,7 +447,7 @@ void GRIBUIDialog::UpdateTrackingControls(void)
 
                   if((vx != GRIB_NOTDEF) && (vy != GRIB_NOTDEF))
                   {
-                        double  vkn = sqrt(vx*vx+vy*vy)*3.6/1.852;
+                        double  vkn = pPlugIn->getUnitConverter().getWindSpeed(vx, vy);
                         double ang = 90. + (atan2(vy, -vx)  * 180. / PI);
                         if(ang > 360.) ang -= 360.;
                         if(ang < 0.) ang += 360.;

@@ -97,6 +97,20 @@ public:
       void OnGribDialogClose();
       GRIBOverlayFactory *GetGRIBOverlayFactory(){ return m_pGRIBOverlayFactory; }
 
+      class UnitConverter {
+	    public:
+		  wxString& getWindSpeedName() { return _("Wind Speed, Kts."); }
+		  wxString& getWindVelocityName() { return _("Current Velocity, Kts."); }
+		  double getWindSpeed(double vx, double vy) {
+                        return sqrt(vx*vx+vy*vy)*3.6/1.852;
+		  }
+		  wxString& getWindSpeedFormat() { return _T("%2d"); }
+			
+
+      };
+      UnitConverter& getUnitConverter() { return m_UnitConverter; }
+
+
 private:
       bool LoadConfig(void);
       bool SaveConfig(void);
