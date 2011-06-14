@@ -454,13 +454,8 @@ void GRIBUIDialog::UpdateTrackingControls(void)
 
                         wxString t;
                         t.Printf(_T("%5.2f"), vkn);
-                        if(m_pWindSpeedTextCtrl)
+                        if(m_pSeaCurrentTextCtrl)
                               m_pSeaCurrentTextCtrl->AppendText(t);
-
- //                       t.Printf(_T("%03d"), (int)(ang));
- //                       if(m_pWindDirTextCtrl)
- //                             m_pWindDirTextCtrl->AppendText(t);
-
                   }
             }
 
