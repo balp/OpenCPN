@@ -249,7 +249,7 @@ void GRIBUIDialog::CreateControls()
 
       wxStaticText *ps1 = NULL;
       
-      ps1 = new wxStaticText(this, wxID_ANY, pPlugIn.getUnitConverter().getWindSpeedName());
+      ps1 = new wxStaticText(this, wxID_ANY, pPlugIn->getUnitConverter().getWindSpeedName());
       pDataGrid->Add(ps1, 0, wxALIGN_LEFT|wxALL, group_item_spacing);
 
       m_pWindSpeedTextCtrl = new wxTextCtrl(this, -1, _T(""), wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
@@ -300,7 +300,7 @@ void GRIBUIDialog::CreateControls()
       m_cbSeaCurrent.SetValue(true);
       pDataGrid->Add(&m_cbSeaCurrent, 0, wxALIGN_LEFT|wxALL, group_item_spacing);
 
-      wxStaticText *ps6 = new wxStaticText(this, wxID_ANY, pPlugIn.getUnitConverter().getWindVelocityName()));
+      wxStaticText *ps6 = new wxStaticText(this, wxID_ANY, pPlugIn->getUnitConverter().getCurrentVelocityName() );
       pDataGrid->Add(ps6, 0, wxALIGN_LEFT|wxALL, group_item_spacing);
 
       m_pSeaCurrentTextCtrl = new wxTextCtrl(this, -1, _T(""), wxDefaultPosition, wxDefaultSize, wxTE_READONLY );
@@ -361,7 +361,7 @@ void GRIBUIDialog::UpdateTrackingControls(void)
                         if(ang < 0.) ang += 360.;
 
                         wxString t;
-                        t.Printf(pPlugIn->getUnitConverter.getWindSpeedFormat(), (int)vkn);
+                        t.Printf(pPlugIn->getUnitConverter().getWindSpeedFormat(), (int)vkn);
                         if(m_pWindSpeedTextCtrl)
                               m_pWindSpeedTextCtrl->AppendText(t);
 
@@ -412,7 +412,7 @@ void GRIBUIDialog::UpdateTrackingControls(void)
                         if(ang < 0.) ang += 360.;
 
                         wxString t;
-                        t.Printf(pPlugIn->getUnitConverter().getWindSpeedFormat, (int)vkn);
+                        t.Printf(pPlugIn->getUnitConverter().getWindSpeedFormat(), (int)vkn);
                         if(m_pWindSpeedTextCtrl)
                               m_pWindSpeedTextCtrl->AppendText(t);
 
@@ -447,7 +447,7 @@ void GRIBUIDialog::UpdateTrackingControls(void)
 
                   if((vx != GRIB_NOTDEF) && (vy != GRIB_NOTDEF))
                   {
-                        double  vkn = pPlugIn->getUnitConverter().getWindSpeed(vx, vy);
+                        double  vkn = pPlugIn->getUnitConverter().getCurrentSpeed(vx, vy);
                         double ang = 90. + (atan2(vy, -vx)  * 180. / PI);
                         if(ang > 360.) ang -= 360.;
                         if(ang < 0.) ang += 360.;

@@ -99,12 +99,15 @@ public:
 
       class UnitConverter {
 	    public:
-		  wxString& getWindSpeedName() { return _("Wind Speed, Kts."); }
-		  wxString& getWindVelocityName() { return _("Current Velocity, Kts."); }
+		  const wchar_t* getWindSpeedName() { return _("Wind Speed, Kts."); }
 		  double getWindSpeed(double vx, double vy) {
                         return sqrt(vx*vx+vy*vy)*3.6/1.852;
 		  }
-		  wxString& getWindSpeedFormat() { return _T("%2d"); }
+		  const wchar_t* getCurrentVelocityName() { return _("Current Velocity, Kts."); }
+		  double getCurrentSpeed(double vx, double vy) {
+                        return sqrt(vx*vx+vy*vy)*3.6/1.852;
+		  }
+		  const wchar_t* getWindSpeedFormat() { return _T("%2d"); }
 			
 
       };
@@ -120,6 +123,7 @@ private:
 
       GRIBUIDialog     *m_pGribDialog;
       GRIBOverlayFactory *m_pGRIBOverlayFactory;
+      UnitConverter    m_UnitConverter;
 
       int              m_display_width, m_display_height;
       int              m_leftclick_tool_id;

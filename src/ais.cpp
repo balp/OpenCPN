@@ -1970,6 +1970,8 @@ bool AIS_Decoder::Parse_VDXBitstring(AIS_Bitstring *bstr, AIS_Target_Data *ptd)
         {
             n_msg1++;
 
+            ptd->b_positionValid = true;
+
             ptd->NavStatus = bstr->GetInt(39, 4);
             ptd->SOG = 0.1 * (bstr->GetInt(51, 10));
 
@@ -1981,6 +1983,7 @@ bool AIS_Decoder::Parse_VDXBitstring(AIS_Bitstring *bstr, AIS_Target_Data *ptd)
             int lat = bstr->GetInt(90, 27);
             if(lat & 0x04000000)                    // negative?
                 lat |= 0xf8000000;
+<<<<<<< HEAD
             double lat_tentative = lat / 600000.;
 
             if((lon_tentative <= 180.) && (lat_tentative <= 90.))   // Ship does not report Lat or Lon "unavailable"
@@ -2209,6 +2212,8 @@ bool AIS_Decoder::Parse_VDXBitstring(AIS_Bitstring *bstr, AIS_Target_Data *ptd)
                 parse_result = true;
                 b_posn_report = true;
 
+                if(ptd->b_positionValid)
+                      ptd->ReportTicks = now.GetTicks();
                 break;
           }
      case 9:                                    // Special Position Report (Standard SAR Aircraft Position Report)
@@ -2618,6 +2623,10 @@ void AIS_Decoder::UpdateOneCPA(AIS_Target_Data *ptarget)
                   return;
             }
       }
+      else
+            cpa_calc_ownship_cog = gCog;
+
+
 
 //    Target is maybe anchored and not reporting COG
       if(ptarget->COG == 360.0)
