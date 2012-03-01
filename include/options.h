@@ -92,6 +92,7 @@ enum {
         ID_ATONTEXTCHECKBOX,
         ID_LDISTEXTCHECKBOX,
         ID_DECLTEXTCHECKBOX,
+        ID_SWEDISHTEXT, // Balp 2011.05.11
         ID_PANELADVANCED,
         ID_GPXCHECKBOX,
         ID_DRAGGINGCHECKBOX,
@@ -278,6 +279,7 @@ public:
     wxCheckBox              *pCheck_ATONTEXT;
     wxCheckBox              *pCheck_LDISTEXT;
     wxCheckBox              *pCheck_DECLTEXT;
+    wxCheckBox              *pCheck_SWEDISHTEXT;
     wxTextCtrl              *m_ShallowCtl;
     wxTextCtrl              *m_SafetyCtl;
     wxTextCtrl              *m_DeepCtl;

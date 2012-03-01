@@ -925,6 +925,10 @@ void options::CreateControls()
     pCheck_DECLTEXT->SetValue(FALSE);
     itemBoxSizer75->Add(pCheck_DECLTEXT, 1, wxALIGN_LEFT|wxALL|wxEXPAND, check_spacing_2);
 
+    pCheck_SWEDISHTEXT = new wxCheckBox( ps57Ctl, ID_SWEDISHTEXT, _("Convert Swedish AA (exp.)"));
+    pCheck_SWEDISHTEXT->SetValue(FALSE);
+    itemBoxSizer75->Add(pCheck_SWEDISHTEXT, 1, wxALIGN_LEFT|wxALL|wxEXPAND, check_spacing_2);
+
     wxStaticBox* itemStaticBoxSizer83Static = new wxStaticBox(ps57Ctl, wxID_ANY, _("Chart Display Style"));
     wxStaticBoxSizer* itemStaticBoxSizer83 = new wxStaticBoxSizer(itemStaticBoxSizer83Static, wxVERTICAL);
     itemStaticBoxSizer26->Add(itemStaticBoxSizer83, 1, wxALL|wxEXPAND, 2);
@@ -1594,6 +1598,7 @@ void options::SetInitialSettings()
       pCheck_ATONTEXT->SetValue(ps52plib->m_bShowAtonText);
       pCheck_LDISTEXT->SetValue(ps52plib->m_bShowLdisText);
       pCheck_DECLTEXT->SetValue(ps52plib->m_bDeClutterText);
+      pCheck_SWEDISHTEXT->SetValue(ps52plib->m_bConvertSwedish);
 
      // Chart Display Style
       if(ps52plib->m_nSymbolStyle == PAPER_CHART)
@@ -2058,6 +2063,7 @@ void options::OnXidOkClick( wxCommandEvent& event )
             ps52plib->m_bShowAtonText= pCheck_ATONTEXT->GetValue();
             ps52plib->m_bShowLdisText= pCheck_LDISTEXT->GetValue();
             ps52plib->m_bDeClutterText= pCheck_DECLTEXT->GetValue();
+            ps52plib->m_bConvertSwedish= pCheck_SWEDISHTEXT->GetValue();
 
 
             if(0 == pPointStyle->GetSelection())
