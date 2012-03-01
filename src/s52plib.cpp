@@ -133,6 +133,7 @@ s52plib::s52plib( const wxString& PLib, bool b_forceLegacy ) {
 
       //        Set up some default flags
       m_bDeClutterText = false;
+      m_bConvertSwedish = false;
       m_bShowAtonText = true;
 
       HPGL = new RenderFromHPGL( this );
@@ -1201,7 +1202,51 @@ char *_parseTEXT( ObjRazRules *rzRules, S52_TextC *text, char *str0 ) {
       return str;
 }
 
-S52_TextC *S52_PL_parseTX( ObjRazRules *rzRules, Rules *rules, char *cmd ) {
+void convertSwedishAA2UTF8(char *str)
+{
+      printf("convertSwedishAA2UTF8(%s)\n", str);
+      char* pos = str;
+      char* prev = NULL;
+      do { // ÅÄÖåäö 
+	    if(prev) {
+		  if(*prev == 'A') {
+			if(*pos == 'A') {
+			      *prev = 0xC3;
+			      *pos = 0x85;
+			}
+			if(*pos == 'E') {
+			      *prev = 0xC3;
+			      *pos = 0x84;
+			}
+		  }
+		  if(*prev == 'O') {
+			if(*pos == 'E') {
+			      *prev = 0xC3;
+			      *pos = 0xD6;
+			}
+		  }
+		  if(*prev == 'a') {
+			if(*pos == 'a') {
+			      *prev = 0xC3;
+			      *pos = 0xA5;
+			}
+			if(*pos == 'e') {
+			      *prev = 0xC3;
+			      *pos = 0xA4;
+			}
+		  }
+		  if(*prev == 'o') {
+			if(*pos == 'e') {
+			      *prev = 0xC3;
+			      *pos = 0xB6;
+			}
+		  }
+	    }
+	    prev = pos;
+      } while( *(++pos) != '\0');
+}
+
+S52_TextC *S52_PL_parseTX( ObjRazRules *rzRules, Rules *rules, char *cmd, bool convertSwedish ) {
       S52_TextC *text = NULL;
       char *str = NULL;
       char val[MAXL] = { '\0' }; // value of arg
@@ -1213,6 +1258,9 @@ S52_TextC *S52_PL_parseTX( ObjRazRules *rzRules, Rules *rules, char *cmd ) {
 
       val[MAXL - 1] = '\0'; // make sure the string terminates
 
+      if(convertSwedish) {
+	    convertSwedishAA2UTF8(val);
+      }
       text = new S52_TextC;
       str = _parseTEXT( rzRules, text, str );
       if( NULL != text ) text->frmtd = wxString( val, wxConvUTF8 );
@@ -1549,7 +1597,7 @@ int s52plib::RenderT_All( ObjRazRules *rzRules, Rules *rules, ViewPort *vp,
       //  The first Ftext object is cached in the S57Obj.
       //  If not present, create it on demand
       if( !rzRules->obj->bFText_Added ) {
-            if( bTX ) text = S52_PL_parseTX( rzRules, rules, NULL );
+            if( bTX ) text = S52_PL_parseTX( rzRules, rules, NULL, m_bConvertSwedish );
             else text = S52_PL_parseTE( rzRules, rules, NULL );
 
             if( text ) {
@@ -1567,7 +1615,7 @@ int s52plib::RenderT_All( ObjRazRules *rzRules, Rules *rules, ViewPort *vp,
             if( rules->n_sequence == rzRules->obj->FText->rul_seq_creator ) text =
                         rzRules->obj->FText;
             else {
-                  if( bTX ) text = S52_PL_parseTX( rzRules, rules, NULL );
+                  if( bTX ) text = S52_PL_parseTX( rzRules, rules, NULL, m_bConvertSwedish );
                   else text = S52_PL_parseTE( rzRules, rules, NULL );
 
                   b_free_text = true;

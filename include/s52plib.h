@@ -243,6 +243,14 @@ public:
 		m_bShowLdisText = f;
 	}
 
+	bool GetConvertSwedish() {
+		return m_bConvertSwedish;
+	}
+
+	void SetConvertSwedish(bool f) {
+		m_bConvertSwedish = f;
+	}
+
 	wxArrayOfLUPrec* SelectLUPARRAY( LUPname TNAM );
 	void DestroyPatternRuleNode( Rule *pR );
 	void DestroyRuleNode( Rule *pR );
@@ -266,6 +274,7 @@ public:
 	int m_VersionMinor;
 
 	int m_nDepthUnitDisplay;
+	bool m_bConvertSwedish;
 
 	//    Library data
 	wxArrayPtrVoid *pAlloc;

@@ -4844,6 +4844,7 @@ void MyFrame::OnToolLeftClick(wxCommandEvent& event)
 #ifdef USE_S57
     case ID_TEXT:
         {
+	    printf("show ENC\n");
             ps52plib->SetShowS57Text(!ps52plib->GetShowS57Text());
             if (m_toolBar)
                   m_toolBar->ToggleTool(ID_TEXT, ps52plib->GetShowS57Text());

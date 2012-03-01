@@ -3213,6 +3213,9 @@ int MyConfig::LoadMyConfig ( int iteration )
             Read ( _T ( "bDeClutterText" ), &read_int, 0 );
             ps52plib->m_bDeClutterText = ! ( read_int == 0 );
 
+            Read ( _T ( "bConvertSwedish" ), &read_int, 0 );
+            ps52plib->m_bConvertSwedish = ! ( read_int == 0 );
+
             if ( Read ( _T ( "S52_MAR_SAFETY_CONTOUR" ), &dval, 5.0 ) )
             {
                   S52_setMarinerParam ( S52_MAR_SAFETY_CONTOUR, dval );
@@ -4520,6 +4523,7 @@ void MyConfig::UpdateSettings()
             Write ( _T ( "bShowAtonText" ), ps52plib->m_bShowAtonText );
             Write ( _T ( "bShowLightDescription" ), ps52plib->m_bShowLdisText );
             Write ( _T ( "bDeClutterText" ), ps52plib->m_bDeClutterText );
+	    Write ( _T ( "bConvertSwedish" ), ps52plib->m_bConvertSwedish );
 
             Write ( _T ( "S52_MAR_SAFETY_CONTOUR" ), S52_getMarinerParam ( S52_MAR_SAFETY_CONTOUR ) );
             Write ( _T ( "S52_MAR_SHALLOW_CONTOUR" ), S52_getMarinerParam ( S52_MAR_SHALLOW_CONTOUR ) );
