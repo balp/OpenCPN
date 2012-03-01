@@ -36,7 +36,7 @@ ENDIF(APPLE)
 
 
 INCLUDE( ${CMAKE_SOURCE_DIR}/VERSION.cmake )
-SET(PACKAGE_VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}" )
+SET(PACKAGE_VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}-Swedish" )
 
 #Red Hat:   /etc/redhat-release
 #Slackware: /etc/slackware-version
