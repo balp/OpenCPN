@@ -157,6 +157,7 @@ s52plib::s52plib ( const wxString& PLib )
 
       //        Set up some default flags
       m_bDeClutterText = false;
+      m_bConvertSwedish = false;
       m_bShowAtonText = true;
 
 
@@ -2630,8 +2631,51 @@ char *_parseTEXT ( ObjRazRules *rzRules, S52_TextC *text, char *str0 )
       return str;
 }
 
+void convertSwedishAA2UTF8(char *str)
+{
+      printf("convertSwedishAA2UTF8(%s)\n", str);
+      char* pos = str;
+      char* prev = NULL;
+      do { // ÅÄÖåäö 
+	    if(prev) {
+		  if(*prev == 'A') {
+			if(*pos == 'A') {
+			      *prev = 0xC3;
+			      *pos = 0x85;
+			}
+			if(*pos == 'E') {
+			      *prev = 0xC3;
+			      *pos = 0x84;
+			}
+		  }
+		  if(*prev == 'O') {
+			if(*pos == 'E') {
+			      *prev = 0xC3;
+			      *pos = 0xD6;
+			}
+		  }
+		  if(*prev == 'a') {
+			if(*pos == 'a') {
+			      *prev = 0xC3;
+			      *pos = 0xA5;
+			}
+			if(*pos == 'e') {
+			      *prev = 0xC3;
+			      *pos = 0xA4;
+			}
+		  }
+		  if(*prev == 'o') {
+			if(*pos == 'e') {
+			      *prev = 0xC3;
+			      *pos = 0xB6;
+			}
+		  }
+	    }
+	    prev = pos;
+      } while( *(++pos) != '\0');
+}
 
-S52_TextC   *S52_PL_parseTX ( ObjRazRules *rzRules, Rules *rules, char *cmd )
+S52_TextC   *S52_PL_parseTX ( ObjRazRules *rzRules, Rules *rules, char *cmd, bool convertSwedish )
 {
       S52_TextC *text = NULL;
       char *str      = NULL;
@@ -2644,11 +2688,15 @@ S52_TextC   *S52_PL_parseTX ( ObjRazRules *rzRules, Rules *rules, char *cmd )
             return 0;   // abort this command word if mandatory param absent
 
       val[MAXL - 1] = '\0';                               // make sure the string terminates
+      sprintf ( b, "%s", val );
+      if(convertSwedish) {
+	    convertSwedishAA2UTF8(b);
+      }
 
       text = new S52_TextC;
       str = _parseTEXT ( rzRules, text, str );
       if ( NULL != text )
-            text->frmtd = wxString ( val, wxConvUTF8 );
+            text->frmtd = wxString ( b, wxConvUTF8 );
 
       return text;
 }
@@ -3086,7 +3134,7 @@ int s52plib::RenderT_All ( ObjRazRules *rzRules, Rules *rules, ViewPort *vp, boo
       if ( !rzRules->obj->bFText_Added )
       {
             if ( bTX )
-                  text = S52_PL_parseTX ( rzRules, rules, NULL );
+                  text = S52_PL_parseTX ( rzRules, rules, NULL, m_bConvertSwedish );
             else
                   text = S52_PL_parseTE ( rzRules, rules, NULL );
 
@@ -3109,7 +3157,7 @@ int s52plib::RenderT_All ( ObjRazRules *rzRules, Rules *rules, ViewPort *vp, boo
             else
             {
                   if ( bTX )
-                        text = S52_PL_parseTX ( rzRules, rules, NULL );
+                        text = S52_PL_parseTX ( rzRules, rules, NULL, m_bConvertSwedish );
                   else
                         text = S52_PL_parseTE ( rzRules, rules, NULL );
 

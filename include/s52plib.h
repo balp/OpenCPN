@@ -218,6 +218,9 @@ public:
       void SetShowAtonText(bool f){m_bShowAtonText = f;}
       void SetShowLdisText(bool f){m_bShowLdisText = f;}
 
+      bool GetConvertSwedish(){return m_bConvertSwedish;}
+      void SetConvertSwedish(bool f){m_bConvertSwedish = f;}
+
  //Todo accessors
       DisCat      m_nDisplayCategory;
       LUPname     m_nSymbolStyle;
@@ -232,6 +235,7 @@ public:
       bool        m_bShowLdisText;
       bool        m_bShowS57ImportantTextOnly;
       bool        m_bDeClutterText;
+      bool        m_bConvertSwedish;
 
       int         m_nDepthUnitDisplay;
 
