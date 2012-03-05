@@ -99,19 +99,49 @@ public:
 
       class UnitConverter {
 	    public:
-		  const wchar_t* getWindSpeedName() { return _("Wind Speed, Kts."); }
-		  double getWindSpeed(double vx, double vy) {
+		  virtual const wchar_t* getWindSpeedName() {
+                      return _("Wind Speed, Kts.");
+                  }
+		  virtual double getWindSpeed(double vx, double vy) {
                         return sqrt(vx*vx+vy*vy)*3.6/1.852;
 		  }
-		  const wchar_t* getCurrentVelocityName() { return _("Current Velocity, Kts."); }
-		  double getCurrentSpeed(double vx, double vy) {
+		  virtual const wchar_t* getCurrentVelocityName() {
+                      return _("Current Velocity, Kts.");
+                  }
+		  virtual double getCurrentSpeed(double vx, double vy) {
                         return sqrt(vx*vx+vy*vy)*3.6/1.852;
 		  }
-		  const wchar_t* getWindSpeedFormat() { return _T("%2d"); }
+		  virtual const wchar_t* getWindSpeedFormat() {
+                      return _T("%2d");
+                  }
 			
 
       };
-      UnitConverter& getUnitConverter() { return m_UnitConverter; }
+      class UnitConverterMetric : public UnitConverter {
+	    public:
+		  virtual const wchar_t* getWindSpeedName() {
+                      return _("Wind Speed, m/s.");
+                  }
+		  virtual double getWindSpeed(double vx, double vy) {
+                        return sqrt(vx*vx+vy*vy);
+		  }
+		  virtual const wchar_t* getCurrentVelocityName() {
+                      return _("Current Velocity, m/s.");
+                  }
+		  virtual double getCurrentSpeed(double vx, double vy) {
+                        return sqrt(vx*vx+vy*vy);
+		  }
+		  virtual const wchar_t* getWindSpeedFormat() {
+                      return _T("%2d");
+                  }
+      };
+
+      UnitConverter& getUnitConverter() {
+          if(m_bGRIBMetric) {
+              return m_UnitConverterMetric;
+          }
+          return m_UnitConverterKnot;
+      }
 
 
 private:
@@ -123,7 +153,8 @@ private:
 
       GRIBUIDialog     *m_pGribDialog;
       GRIBOverlayFactory *m_pGRIBOverlayFactory;
-      UnitConverter    m_UnitConverter;
+      UnitConverter    m_UnitConverterKnot;
+      UnitConverterMetric m_UnitConverterMetric;
 
       int              m_display_width, m_display_height;
       int              m_leftclick_tool_id;
@@ -135,6 +166,7 @@ private:
 
       bool              m_bGRIBUseHiDef;
       bool              m_bGRIBShowIcon;
+      bool              m_bGRIBMetric;
 
 
       //    Controls added to Preferences panel

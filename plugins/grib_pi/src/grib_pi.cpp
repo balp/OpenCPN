@@ -240,7 +240,7 @@ void grib_pi::ShowPreferencesDialog( wxWindow* parent )
 
     wxArrayString choices;
     choices.Add(_("Nautic"));
-    choices.Add(_("Metric"));
+    choices.Add(_("Metric")); // Adding more selections need more updates
 
     m_pGRIBUnits = new wxComboBox( dialog, -1, m_Units, wxDefaultPosition, wxDefaultSize, choices, wxCB_DROPDOWN);
     itemStaticBoxSizerGRIB->Add(m_pGRIBUnits, 1, wxALIGN_LEFT|wxALL, border_size);
@@ -249,6 +249,7 @@ void grib_pi::ShowPreferencesDialog( wxWindow* parent )
 
     m_pGRIBShowIcon->SetValue(m_bGRIBShowIcon);
     m_pGRIBUseHiDef->SetValue(m_bGRIBUseHiDef);
+    m_pGRIBUnits->SetSelection(m_bGRIBMetric);
 
       wxStdDialogButtonSizer* DialogButtonSizer = dialog->CreateStdDialogButtonSizer(wxOK|wxCANCEL);
       itemBoxSizerGRIBPanel->Add(DialogButtonSizer, 0, wxALIGN_RIGHT|wxALL, 5);
@@ -271,7 +272,8 @@ void grib_pi::ShowPreferencesDialog( wxWindow* parent )
             }
 
             m_bGRIBUseHiDef= m_pGRIBUseHiDef->GetValue();
-	    m_Units = m_pGRIBUnits->GetValue();
+            m_Units = m_pGRIBUnits->GetValue();
+            m_bGRIBMetric = m_pGRIBUnits->GetSelection();
 
             SaveConfig();
       }
@@ -401,7 +403,8 @@ bool grib_pi::LoadConfig(void)
             pConf->SetPath ( _T( "/Settings" ) );
             pConf->Read ( _T( "GRIBUseHiDef" ),  &m_bGRIBUseHiDef, 0 );
             pConf->Read ( _T( "ShowGRIBIcon" ),  &m_bGRIBShowIcon, 1 );
-            pConf->Read ( _T( "GRIBUnits" ),  &m_Units );
+            pConf->Read ( _T( "GRIBMetric" ),  &m_bGRIBMetric, 0 );
+            pConf->Read ( _T( "GRIBUnits" ),  & m_Units );
 
             m_grib_dialog_sx = pConf->Read ( _T ( "GRIBDialogSizeX" ), 300L );
             m_grib_dialog_sy = pConf->Read ( _T ( "GRIBDialogSizeY" ), 540L );
@@ -431,6 +434,7 @@ bool grib_pi::SaveConfig(void)
             pConf->SetPath ( _T ( "/Settings" ) );
             pConf->Write ( _T ( "GRIBUseHiDef" ), m_bGRIBUseHiDef );
             pConf->Write ( _T ( "ShowGRIBIcon" ), m_bGRIBShowIcon );
+            pConf->Write ( _T ( "GRIBMetric" ), m_bGRIBMetric );
             pConf->Write ( _T ( "GRIBUnits" ), m_Units );
 
             pConf->Write ( _T ( "GRIBDialogSizeX" ),  m_grib_dialog_sx );
