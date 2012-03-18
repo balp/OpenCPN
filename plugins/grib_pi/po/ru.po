@@ -158,3 +158,4 @@ msgstr "Скорость ветра, узл."
 # 
 #~ msgid "WARNING:  QuickScat GRIB data is %d hours old."
 #~ msgstr "ВНИМАНИЕ: данные QuickScat GRIB актуальны на %d часов назад"
+

@@ -104,3 +104,4 @@ msgstr "Tuulen nopeus, solmua"
 #
 #~ msgid "WARNING:  QuickScat GRIB data is %d hours old."
 #~ msgstr "VAROITUS:  QuickScat GRIB data on %d tuntia vanhaa."
+

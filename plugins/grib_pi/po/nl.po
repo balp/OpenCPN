@@ -126,3 +126,4 @@ msgstr "windsnelheid (knopen)"
 #
 #~ msgid "WARNING:  QuickScat GRIB data is %d hours old."
 #~ msgstr "WAARSCHUWING: QuickScat GRIB gegevens zijn %d uur oud"
+

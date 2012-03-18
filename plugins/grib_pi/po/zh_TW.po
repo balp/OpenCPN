@@ -105,3 +105,4 @@ msgstr "風速,  Kts."
 #
 #~ msgid "WARNING:  QuickScat GRIB data is %d hours old."
 #~ msgstr "警告:  QuickScat GRIB 資料為 %d 小時前資料."
+

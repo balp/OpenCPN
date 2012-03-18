@@ -100,12 +100,12 @@ msgstr "Vis meteorologiikon(GRIB)"
 # 
 # 
 msgid "Significant Wave Height, m"
-msgstr "Signifikant bølgehøjde, m"
+msgstr "Signifikant bÃ¸lgehÃ¸jde, m"
 #
 # 
 # 
 msgid "Use High Definition Graphics"
-msgstr "Brug højopløsningsgrafik"
+msgstr "Brug hÃ¸joplÃ¸sningsgrafik"
 #
 # 
 # 
@@ -128,3 +128,4 @@ msgstr "Vindhastighed, knob"
 # 
 #~ msgid "WARNING:  QuickScat GRIB data is %d hours old."
 #~ msgstr "ADVARSEL:  QuickScat GRIB data er %d timer gammel."
+

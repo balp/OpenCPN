@@ -143,3 +143,4 @@ msgstr "Rychlost větru, Uzly"
 #
 #~ msgid "WARNING:  QuickScat GRIB data is %d hours old."
 #~ msgstr "VAROVÁNÍ:  QuickScat GRIB data jsou %d hodin stará."
+

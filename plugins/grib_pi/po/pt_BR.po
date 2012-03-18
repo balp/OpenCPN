@@ -136,3 +136,4 @@ msgstr "Veloc. do Vento, Nós"
 # 
 #~ msgid "WARNING:  QuickScat GRIB data is %d hours old."
 #~ msgstr "AVISO: Dados GRIB são de %d horas atrás."
+

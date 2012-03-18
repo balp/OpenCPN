@@ -138,3 +138,4 @@ msgstr "Velocità Vento (nodi)"
 #
 #~ msgid "WARNING:  QuickScat GRIB data is %d hours old."
 #~ msgstr "Attenzione:  Dati QuickScat GRIB sono vecchi di %d ore."
+

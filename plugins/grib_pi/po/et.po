@@ -121,3 +121,4 @@ msgstr "Tuule kiirus, sõlmedes"
 #
 #~ msgid "WARNING:  QuickScat GRIB data is %d hours old."
 #~ msgstr "HOIATUS: GRIB-i andmed on %d tundi vanad."
+

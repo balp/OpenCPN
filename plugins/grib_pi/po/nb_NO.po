@@ -104,3 +104,4 @@ msgstr "Vindhastighet, Knop"
 #
 #~ msgid "WARNING:  QuickScat GRIB data is %d hours old."
 #~ msgstr "ADVARSEL:  QuickSCAT GRIB data er %d timer gammel."
+
