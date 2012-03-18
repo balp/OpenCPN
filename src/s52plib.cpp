@@ -2633,7 +2633,6 @@ char *_parseTEXT ( ObjRazRules *rzRules, S52_TextC *text, char *str0 )
 
 void convertSwedishAA2UTF8(char *str)
 {
-      printf("convertSwedishAA2UTF8(%s)\n", str);
       char* pos = str;
       char* prev = NULL;
       do { // ÅÄÖåäö 
@@ -2688,15 +2687,14 @@ S52_TextC   *S52_PL_parseTX ( ObjRazRules *rzRules, Rules *rules, char *cmd, boo
             return 0;   // abort this command word if mandatory param absent
 
       val[MAXL - 1] = '\0';                               // make sure the string terminates
-      sprintf ( b, "%s", val );
       if(convertSwedish) {
-	    convertSwedishAA2UTF8(b);
+	    convertSwedishAA2UTF8(val);
       }
 
       text = new S52_TextC;
       str = _parseTEXT ( rzRules, text, str );
       if ( NULL != text )
-            text->frmtd = wxString ( b, wxConvUTF8 );
+            text->frmtd = wxString ( val, wxConvUTF8 );
 
       return text;
 }
