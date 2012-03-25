@@ -5469,3 +5469,4 @@ msgstr ""
 # 
 #~ msgid "Reserved 14"
 #~ msgstr "Rezervováno 14"
+

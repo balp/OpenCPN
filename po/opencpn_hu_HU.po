@@ -3515,3 +3515,4 @@ msgstr ""
 # 
 #~ msgid "Toggle Names"
 #~ msgstr "Nevek kapcsolása"
+

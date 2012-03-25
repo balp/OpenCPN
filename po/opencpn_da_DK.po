@@ -5713,3 +5713,4 @@ msgstr ""
 # 
 #~ msgid "Wind Direction"
 #~ msgstr "Vindretning"
+

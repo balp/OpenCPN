@@ -5541,3 +5541,4 @@ msgstr ""
 # 
 #~ msgid "Position:               "
 #~ msgstr "Posizione Target AIS  : "
+

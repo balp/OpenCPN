@@ -5306,3 +5306,4 @@ msgstr ""
 # 
 #~ msgid "Wind Direction"
 #~ msgstr "Rüzgar Yönü"
+
