@@ -288,6 +288,7 @@ SET(HDRS
 		include/options.h
 		include/wvschart.h
 		include/about.h
+		include/comport.h
 		include/ais.h
                 include/pluginmanager.h
                 include/ocpn_plugin.h
@@ -316,6 +317,7 @@ SET(SRCS
 		src/options.cpp
 		src/wvschart.cpp
 		src/about.cpp
+		src/comport.cpp
 		src/ais.cpp
                 src/pluginmanager.cpp
 		src/gpxdocument.cpp

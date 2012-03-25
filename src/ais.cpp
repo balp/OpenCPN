@@ -1104,7 +1104,7 @@ int AIS_Bitstring::GetInt(int sp, int len)
     int acc = 0;
     int s0p = sp-1;                          // to zero base
 
-    int cp, cx, c0, cs;
+    int cp, cx, c0;
 
 
     for(int i=0 ; i<len ; i++)
@@ -1112,7 +1112,6 @@ int AIS_Bitstring::GetInt(int sp, int len)
         acc  = acc << 1;
         cp = (s0p + i) / 6;
         cx = bitbytes[cp];		// what if cp >= byte_length?
-        cs = 5 - ((s0p + i) % 6);
         c0 = (cx >> (5 - ((s0p + i) % 6))) & 1;
         acc |= c0;
     }
@@ -1129,7 +1128,7 @@ bool AIS_Bitstring::GetStr(int sp, int len, char *dest, int max_len)
     int s0p = sp-1;                          // to zero base
 
     int k=0;
-    int cp, cx, c0, cs;
+    int cp, cx, c0;
 
     int i = 0;
     while(i < len)
@@ -1140,7 +1139,6 @@ bool AIS_Bitstring::GetStr(int sp, int len, char *dest, int max_len)
             acc  = acc << 1;
             cp = (s0p + i) / 6;
             cx = bitbytes[cp];		// what if cp >= byte_length?
-            cs = 5 - ((s0p + i) % 6);
             c0 = (cx >> (5 - ((s0p + i) % 6))) & 1;
             acc |= c0;
 
@@ -1172,7 +1170,7 @@ bool AIS_Bitstring::GetStr(int sp, int len, char *dest, int max_len)
 //---------------------------------------------------------------------------------
 BEGIN_EVENT_TABLE(AIS_Decoder, wxEvtHandler)
 
-//  EVT_SOCKET(AIS_SOCKET_ID, AIS_Decoder::OnSocketEvent)
+  EVT_SOCKET(AIS_SOCKET_ID, AIS_Decoder::OnSocketEvent)
   EVT_TIMER(TIMER_AIS1, AIS_Decoder::OnTimerAIS)
   EVT_TIMER(TIMER_AISAUDIO, AIS_Decoder::OnTimerAISAudio)
 //  EVT_COMMAND(ID_AIS_WINDOW, EVT_AIS, AIS_Decoder::OnEvtAIS)
@@ -2737,8 +2735,22 @@ AIS_Error AIS_Decoder::OpenDataSource(wxFrame *pParent, const wxString& AISDataS
 //      Data Source is private TCP/IP Server
       if(m_data_source_string.Contains(_T("TCP/IP")))
       {
+	    long ais_port = 3047; // GPSD Known port number
+
             wxString AIS_data_ip;
             AIS_data_ip = m_data_source_string.Mid(7);         // extract the IP
+	    int portIndex = AIS_data_ip.Find(wxChar(':'), true);
+	    if(portIndex != wxNOT_FOUND) { // have hostname:port
+		  wxString portStr = AIS_data_ip.Mid(portIndex + 1);
+		  portStr.ToLong(&ais_port);
+		  wxString msg(_T("AIS Data Source port...."));
+		  msg.Append(portStr);
+		  wxLogMessage(msg);
+		  AIS_data_ip = AIS_data_ip.Mid(0, portIndex);
+	    }
+	    wxString msg(_T("AIS Data Source is TCP/IP...."));
+	    msg.Append(AIS_data_ip);
+	    wxLogMessage(msg);
 
 // Create the socket
             m_sock = new wxSocketClient();
@@ -2799,9 +2811,21 @@ AIS_Error AIS_Decoder::OpenDataSource(wxFrame *pParent, const wxString& AISDataS
 
 
             //      Resolved the name, somehow, so Connect() the socket
+	    wxString msg2(_T("Connect to "));
+	    msg2.Append(AIS_data_ip);
+	    msg2.Append(wxString::Format(_(" port %d "), ais_port));
+	    wxLogMessage(msg2);
+
             addr.Hostname(AIS_data_ip);
-            addr.Service(3047/*GPSD_PORT_NUMBER*/);
-            m_sock->Connect(addr, FALSE);       // Non-blocking connect
+            addr.Service(ais_port);
+            if(m_sock->Connect(addr, FALSE))       // Non-blocking connect
+            {
+                  wxString msg(_T("Connect returned OK...."));
+                  wxLogMessage(msg);
+            } else {
+                  wxString msg(_T("Connect returned False, still not error...."));
+                  wxLogMessage(msg);
+            }
             m_OK = true;
       }
 
@@ -2910,59 +2934,60 @@ void AIS_Decoder::OnSocketEvent(wxSocketEvent& event)
 
 #define RD_BUF_SIZE    200
 
-    int nBytes;
-    char *bp;
-    char buf[RD_BUF_SIZE + 1];
-    int char_count;
 
 
-  switch(event.GetSocketEvent())
-  {
-      case wxSOCKET_INPUT :                     // from  Daemon
-            m_sock->SetFlags(wxSOCKET_NOWAIT);
+      switch(event.GetSocketEvent())
+      {
+	    case wxSOCKET_INPUT :                     // from  Daemon
+                  {
+                        char *bp;
+                        char buf[RD_BUF_SIZE + 1];
+                        int char_count;
+                        m_sock->SetFlags(wxSOCKET_NOWAIT);
 
 
-//          Read the reply, one character at a time, looking for 0x0a (lf)
-            bp = buf;
-            char_count = 0;
+                        //          Read the reply, one character at a time, looking for 0x0a (lf)
+                        bp = buf;
+                        char_count = 0;
 
-            while (char_count < RD_BUF_SIZE)
-            {
-                m_sock->Read(bp, 1);
-                nBytes = m_sock->LastCount();
-                if(*bp == 0x0a)
-                {
-                    bp++;
-                    break;
-                }
+                        while (char_count < RD_BUF_SIZE)
+                        {
+                              m_sock->Read(bp, 1);
+                              if(*bp == 0x0a)
+                              {
+                                    bp++;
+                                    break;
+                              }
 
-                bp++;
-                char_count++;
-            }
+                              bp++;
+                              char_count++;
+                        }
 
-            *bp = 0;                        // end string
+                        *bp = 0;                        // end string
 
-//          Validate the string
+                        //          Validate the string
 
-            if(!strncmp((const char *)buf, "!AIVDM", 6))
-            {
-//                  Decode(buf);
+                        if(!strncmp((const char *)buf, "!AIVDM", 6))
+                        {
+                              //                  Decode(buf);
 
-//    Signal the main program thread
+                              //    Signal the main program thread
 
-//                    wxCommandEvent event( EVT_AIS, ID_AIS_WINDOW );
-//                    event.SetEventObject( (wxObject *)this );
-//                    event.SetExtraLong(EVT_AIS_DIRECT);
-//                    m_pParentEventHandler->AddPendingEvent(event);
-            }
+			      OCPN_AISEvent event(wxEVT_OCPN_AIS , ID_AIS_WINDOW );
+			      event.SetEventObject( (wxObject *)this );
+			      event.SetExtraLong(EVT_AIS_PARSE_RX);
+			      event.SetNMEAString(wxString(buf,  wxConvUTF8));
+			      this->AddPendingEvent(event);
+                        }
 
 
 
-    case wxSOCKET_LOST       :
-    case wxSOCKET_CONNECTION :
-    default                  :
-          break;
-  }
+                  }
+	    case wxSOCKET_LOST       :
+	    case wxSOCKET_CONNECTION :
+	    default                  :
+		  break;
+      }
 #endif
 }
 

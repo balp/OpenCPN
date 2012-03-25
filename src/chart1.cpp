@@ -1734,6 +1734,9 @@ bool MyApp::OnInit()
       }
 #endif
 
+#ifndef OCPN_NO_SOCKETS
+      wxSocketBase::Initialize();
+#endif
 
 
 
