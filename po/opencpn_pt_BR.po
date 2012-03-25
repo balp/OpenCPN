@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn 2.1.0b620\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-23 21:15-0500\n"
+"POT-Creation-Date: 2012-03-25 07:34+0200\n"
 "PO-Revision-Date: 2010-06-25 19:44-0300\n"
 "Last-Translator: Eloi Barros <eloibarros@hotmail.com>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -534,8 +535,17 @@ msgstr "---<<< Aviso: Pouca precisão no georeferenciamento da carta . >>>---"
 msgid "---<<< Warning:  Chart georef accuracy may be poor. >>>---"
 msgstr "---<<< Aviso: Pouca precisão no georeferenciamento da carta . >>>---"
 #
+msgid "..."
+msgstr ""
+#
+msgid "1 pixel"
+msgstr ""
+#
 # 
 msgid "1.0 NM along COG"
+msgstr ""
+#
+msgid "10 pixels"
 msgstr ""
 #
 # 
@@ -544,11 +554,35 @@ msgstr ""
 msgid "2 Color"
 msgstr "2 Cores"
 #
+msgid "2 pixels"
+msgstr ""
+#
+msgid "3 pixels"
+msgstr ""
+#
 # 
 # 
 # 
 msgid "4 Color"
 msgstr "4 Cores"
+#
+msgid "4 pixels"
+msgstr ""
+#
+msgid "5 pixels"
+msgstr ""
+#
+msgid "6 pixels"
+msgstr ""
+#
+msgid "7 pixels"
+msgstr ""
+#
+msgid "8 pixels"
+msgstr ""
+#
+msgid "9 pixels"
+msgstr ""
 #
 # 
 # 
@@ -566,6 +600,9 @@ msgid ""
 "\n"
 "\n"
 msgstr "Veloc:           Não disponível\n"
+#
+msgid "<--Remove"
+msgstr ""
 #
 # 
 msgid "?"
@@ -676,8 +713,25 @@ msgstr "Ativar Ponto da Derrota"
 # 
 # 
 # 
+#, fuzzy
+msgid "Active"
+msgstr "Ativar"
+#
+# 
+# 
+# 
 msgid "Active Chart Directories"
 msgstr "Diretórios de Cartas Ativos"
+#
+# 
+# 
+# 
+#, fuzzy
+msgid "Active Charts"
+msgstr "Diretórios de Cartas Ativos"
+#
+msgid "Add"
+msgstr ""
 #
 # 
 # 
@@ -685,17 +739,17 @@ msgstr "Diretórios de Cartas Ativos"
 msgid "Add Selection"
 msgstr "Adicionar Seleção"
 #
+msgid "Add new"
+msgstr ""
+#
 # 
 # 
 # 
 msgid "Add this chart to quilt."
 msgstr "Adicionar esta carta para emendar."
 #
-# 
-# 
-# 
-msgid "Additional information"
-msgstr "Informação Adicional"
+msgid "Add-->"
+msgstr ""
 #
 # 
 msgid "Aground"
@@ -709,6 +763,13 @@ msgid "Aid to Navigation"
 msgstr ""
 "Auxílio a Navegação\n"
 "\n"
+#
+# 
+# 
+# 
+#, fuzzy
+msgid "All Active Charts"
+msgstr "Diretórios de Cartas Ativos"
 #
 # 
 # 
@@ -832,6 +893,9 @@ msgstr "Base"
 msgid "Base Station"
 msgstr "Destino"
 #
+msgid "Basic"
+msgstr ""
+#
 # 
 msgid "Beacon, Isolated Danger"
 msgstr ""
@@ -897,6 +961,9 @@ msgstr "Limites"
 # 
 msgid "Brg"
 msgstr "Marc."
+#
+msgid "Buddy"
+msgstr ""
 #
 # 
 msgid "Bulk carrier maritime"
@@ -1109,6 +1176,19 @@ msgstr "Estilo de Apresentação da Carta"
 # 
 # 
 # 
+#, fuzzy
+msgid "Chart Groups"
+msgstr "Cartas"
+#
+msgid "Chart Groups..."
+msgstr ""
+#
+msgid "Chart Groups...New Group"
+msgstr ""
+#
+# 
+# 
+# 
 msgid "Chart Print"
 msgstr "Imprimir Carta"
 #
@@ -1129,6 +1209,9 @@ msgstr "Cartas"
 # 
 msgid "Choose Font..."
 msgstr "Escolher Fonte..."
+#
+msgid "Choose a file"
+msgstr ""
 #
 # 
 # 
@@ -1191,6 +1274,9 @@ msgstr "c&or:"
 # 
 msgid "Colors"
 msgstr "Cores"
+#
+msgid "Combo!"
+msgstr ""
 #
 # 
 # 
@@ -1281,6 +1367,16 @@ msgstr "Cancelar"
 msgid "D/V"
 msgstr ""
 #
+msgid "DSC"
+msgstr ""
+#
+# 
+# 
+# 
+#, fuzzy
+msgid "DSC Position Report"
+msgstr "Hora do Último Relatório:"
+#
 msgid "Dark Blue"
 msgstr ""
 #
@@ -1333,6 +1429,13 @@ msgstr "Profundidade Funda"
 # 
 # 
 #, fuzzy
+msgid "Default"
+msgstr "Cor da fonte."
+#
+# 
+# 
+# 
+#, fuzzy
 msgid "Default color"
 msgstr "Cor da fonte."
 #
@@ -1346,8 +1449,22 @@ msgstr ""
 # 
 # 
 #, fuzzy
+msgid "Delete"
+msgstr "Apagar"
+#
+# 
+# 
+# 
+#, fuzzy
 msgid "Delete All"
 msgstr "Selecionar Tudo"
+#
+# 
+# 
+# 
+#, fuzzy
+msgid "Delete Group"
+msgstr "Excluir Derrota"
 #
 # 
 # 
@@ -1458,7 +1575,20 @@ msgid "Distance between rings"
 msgstr "Distância entre anéis"
 #
 # 
+# 
+# 
+#, fuzzy
+msgid "Distress"
+msgstr "Distância"
+#
+# 
 msgid "Done."
+msgstr ""
+#
+msgid "Dot"
+msgstr ""
+#
+msgid "Dot dash"
 msgstr ""
 #
 # 
@@ -1574,6 +1704,9 @@ msgstr "TEC"
 msgid "ETE/ETD"
 msgstr "TEC"
 #
+msgid "Edit"
+msgstr ""
+#
 # 
 msgid "Elapsed time : "
 msgstr ""
@@ -1628,6 +1761,9 @@ msgstr "Fim da Derrota"
 msgid "Engaged in Fishing"
 msgstr ""
 #
+msgid "Enter Group Name"
+msgstr ""
+#
 # 
 # 
 # 
@@ -1669,6 +1805,13 @@ msgstr "Fim da Derrota"
 #, fuzzy
 msgid "Extend Track"
 msgstr "Excluir Acompanhamento"
+#
+# 
+# 
+# 
+#, fuzzy
+msgid "Extended"
+msgstr "Fim da Derrota"
 #
 # 
 msgid "ExtendedTideIcon"
@@ -1763,11 +1906,51 @@ msgstr "Porta do GPS/Plotter"
 msgid "GPSD Data Server"
 msgstr "Servidor de Dados GPSD"
 #
+msgid "GPSGate Buddy"
+msgstr ""
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+msgid "GPX"
+msgstr "GPX"
+#
 # 
 # 
 # 
 msgid "GUI Options"
 msgstr "Opções"
+#
+msgid "GUID"
+msgstr ""
 #
 # 
 # 
@@ -1800,7 +1983,13 @@ msgstr "Ir Para Aqui"
 msgid "Go to "
 msgstr "Ir Para Aqui"
 #
+msgid "GpsGate Buddy"
+msgstr ""
+#
 msgid "Green"
+msgstr ""
+#
+msgid "Groups"
 msgstr ""
 #
 # 
@@ -2058,8 +2247,38 @@ msgstr ""
 # 
 # 
 # 
+#, fuzzy
+msgid "Link"
+msgstr "Atalhos"
+#
+# 
+# 
+# 
+#, fuzzy
+msgid "Link Properties"
+msgstr "Propriedades da Marca..."
+#
+# 
+# 
+# 
+#, fuzzy
+msgid "Link description"
+msgstr "Descrição"
+#
+msgid "Link not complete, can't be saved."
+msgstr ""
+#
+# 
+# 
+# 
 msgid "Links"
 msgstr "Atalhos"
+#
+msgid "Links are opened for editing."
+msgstr ""
+#
+msgid "Links are opened in the default browser."
+msgstr ""
 #
 # 
 msgid "Liquified gas tanker"
@@ -2076,6 +2295,9 @@ msgstr "Licença"
 msgid "Local @ PC"
 msgstr ""
 #
+msgid "Local file..."
+msgstr ""
+#
 # 
 # 
 # 
@@ -2086,6 +2308,9 @@ msgstr ""
 #
 # 
 msgid "Long Tow"
+msgstr ""
+#
+msgid "Long dash"
 msgstr ""
 #
 # 
@@ -2145,13 +2370,6 @@ msgid "MMSI"
 msgstr "MMSI"
 #
 # 
-# 
-# 
-#, fuzzy, c-format
-msgid "MMSI:                 %09d\n"
-msgstr "ETA:                  "
-#
-# 
 msgid "M_COVR ID"
 msgstr ""
 #
@@ -2174,20 +2392,8 @@ msgstr "Mariner's Standard"
 # 
 # 
 # 
-msgid "Mark Icon"
-msgstr "Símbolo da Marca"
-#
-# 
-# 
-# 
 msgid "Mark Information"
 msgstr "Informação da Marca"
-#
-# 
-# 
-# 
-msgid "Mark Name"
-msgstr "Nome da Marca"
 #
 # 
 # 
@@ -2368,6 +2574,9 @@ msgstr "Dados da Navegação"
 # 
 msgid "Navigational Status:  "
 msgstr "Situação da Navegação:"
+#
+msgid "New Group..."
+msgstr ""
 #
 # 
 # 
@@ -2682,6 +2891,13 @@ msgstr "Posição"
 # 
 # 
 # 
+#, fuzzy
+msgid "Position Report"
+msgstr "Hora do Último Relatório:"
+#
+# 
+# 
+# 
 #, fuzzy, c-format
 msgid ""
 "Position Report Age:       %3d Sec.\n"
@@ -2753,6 +2969,9 @@ msgstr "Imprimir Carta"
 # 
 msgid "Printing"
 msgstr "Imprimir"
+#
+msgid "Problem discovered"
+msgstr ""
 #
 # 
 # 
@@ -3003,6 +3222,10 @@ msgstr "Remover esta carta das emendas."
 msgid "Rename Waypoints?"
 msgstr "Renomear Pontos da Derrota?"
 #
+#, c-format
+msgid "Report as of: %d:%d UTC "
+msgstr ""
+#
 # 
 msgid "Reserved 11"
 msgstr ""
@@ -3013,10 +3236,6 @@ msgstr ""
 #
 # 
 msgid "Reserved 13"
-msgstr ""
-#
-# 
-msgid "Reserved 14"
 msgstr ""
 #
 # 
@@ -3107,6 +3326,9 @@ msgstr ""
 #
 # 
 msgid "SAR/V"
+msgstr ""
+#
+msgid "SART"
 msgstr ""
 #
 # 
@@ -3242,6 +3464,9 @@ msgstr "Mudar para Carta de Maior Escala"
 msgid "Shift to Smaller Scale Chart"
 msgstr "Mudar para Carta de  Menor Escala"
 #
+msgid "Short dash"
+msgstr ""
+#
 # 
 # 
 # 
@@ -3327,12 +3552,6 @@ msgstr "Mostrar descrição dos Faróis"
 # 
 # 
 # 
-msgid "Show Name"
-msgstr "Mostrar Nome"
-#
-# 
-# 
-# 
 msgid "Show Printing Icon"
 msgstr "Mostrar Ícone Imprimir"
 #
@@ -3377,6 +3596,13 @@ msgstr "Mostrar Nome"
 #
 msgid "Show layers initially"
 msgstr ""
+#
+# 
+# 
+# 
+#, fuzzy
+msgid "Show name"
+msgstr "Mostrar Nome"
 #
 # 
 # 
@@ -3508,6 +3734,9 @@ msgstr ""
 msgid "SoG"
 msgstr "V fd"
 #
+msgid "Solid"
+msgstr ""
+#
 # 
 # 
 # 
@@ -3584,6 +3813,13 @@ msgstr ""
 # 
 msgid "Stbd Hand"
 msgstr ""
+#
+# 
+# 
+# 
+#, fuzzy
+msgid "Style:"
+msgstr "E&stilo:"
 #
 # 
 # 
@@ -3686,6 +3922,26 @@ msgstr "Enviar"
 msgid "Test Alert Sound"
 msgstr "Testar Som do Alerta"
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# 
+# 
+# 
+#, fuzzy
+msgid "Testing"
+msgstr "Ligar Acompanhamento"
+#
 # 
 # 
 # 
@@ -3743,6 +3999,9 @@ msgstr ""
 # 
 msgid "This Leg"
 msgstr "Esta Pernada"
+#
+msgid "This waypoint is part of a layer and can't be edited"
+msgstr ""
 #
 # 
 # 
@@ -3923,6 +4182,9 @@ msgstr "ETA:                  "
 #, fuzzy
 msgid "UN Ship Type:         "
 msgstr "Tipo de Navio:"
+#
+msgid "URL"
+msgstr ""
 #
 # 
 # 
@@ -4164,6 +4426,9 @@ msgstr ""
 msgid "WiFi Options"
 msgstr "Opções WiFi"
 #
+msgid "Width:"
+msgstr ""
+#
 # 
 msgid "Wing In Ground Effect"
 msgstr ""
@@ -4262,6 +4527,11 @@ msgstr ""
 msgid "wgsoy"
 msgstr ""
 #
+msgid "wxFB Website"
+msgstr ""
+#
+#
+#
 #
 #
 #
@@ -4291,6 +4561,8 @@ msgstr ""
 # 
 #~ msgid "&Close"
 #~ msgstr "Fechar"
+#
+#
 #
 #
 #
@@ -4340,6 +4612,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -4359,6 +4633,8 @@ msgstr ""
 # 
 #~ msgid "&Delete All Tracks..."
 #~ msgstr "Excluir to&dos os Acompanhamentos..."
+#
+#
 #
 #
 #
@@ -4396,6 +4672,16 @@ msgstr ""
 #
 #
 #
+# 
+# 
+# 
+#~ msgid "Additional information"
+#~ msgstr "Informação Adicional"
+#
+#
+#
+#
+#
 #
 #
 #
@@ -4409,6 +4695,8 @@ msgstr ""
 #~ "Não foi possível carregar libgps.\n"
 #~ "\n"
 #~ "O host gpsd é: "
+#
+#
 #
 #
 #
@@ -4456,6 +4744,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -4467,6 +4757,8 @@ msgstr ""
 # 
 #~ msgid "Chart file corrupt.. disabling this chart \n"
 #~ msgstr "Arquivo da Carta corrompido...desabilitando esta carta\n"
+#
+#
 #
 #
 #
@@ -4520,6 +4812,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -4540,6 +4834,8 @@ msgstr ""
 #~ msgstr ""
 #~ "Classe:     A\n"
 #~ "\n"
+#
+#
 #
 #
 #
@@ -4593,6 +4889,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -4608,6 +4906,8 @@ msgstr ""
 # 
 #~ msgid "Current Velocity, Kts."
 #~ msgstr "Velocidade da Corrente, Nós."
+#
+#
 #
 #
 #
@@ -4657,6 +4957,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -4674,6 +4976,8 @@ msgstr ""
 # 
 #~ msgid "ETA:                  Unknown"
 #~ msgstr "ETA:                 Desconhecido"
+#
+#
 #
 #
 #
@@ -4698,6 +5002,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -4705,6 +5011,8 @@ msgstr ""
 # 
 #~ msgid "Exit OpenCPN"
 #~ msgstr "Sair OpenCPN"
+#
+#
 #
 #
 #
@@ -4746,6 +5054,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -4755,6 +5065,8 @@ msgstr ""
 #~ "Não foi possível carregar libgps.\n"
 #~ "\n"
 #~ "O host gpsd é: "
+#
+#
 #
 #
 #
@@ -4786,38 +5098,6 @@ msgstr ""
 #
 #
 #
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-#~ msgid "GPX"
-#~ msgstr "GPX"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
 #
 #
 # 
@@ -4833,6 +5113,8 @@ msgstr ""
 # 
 #~ msgid "GRIB"
 #~ msgstr "GRIB"
+#
+#
 #
 #
 #
@@ -4878,6 +5160,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -4893,6 +5177,8 @@ msgstr ""
 # 
 #~ msgid "GRIB Display Control"
 #~ msgstr "Controle da Apresentação GRIB"
+#
+#
 #
 #
 #
@@ -4936,12 +5222,25 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
 #, fuzzy
 #~ msgid "Import new layer"
 #~ msgstr "Importar arquivo GPX"
+#
+#
+#
+# 
+# 
+# 
+#, fuzzy
+#~ msgid "MMSI:                 %09d\n"
+#~ msgstr "ETA:                  "
+#
+#
 #
 #
 #
@@ -4968,11 +5267,31 @@ msgstr ""
 #~ msgstr "MarinersStandard"
 #
 #
+#
+# 
+# 
+# 
+#~ msgid "Mark Icon"
+#~ msgstr "Símbolo da Marca"
+#
+#
+#
+# 
+# 
+# 
+#~ msgid "Mark Name"
+#~ msgstr "Nome da Marca"
+#
+#
+#
+#
 # 
 # 
 # 
 #~ msgid "New Mark"
 #~ msgstr "Nova Marca"
+#
+#
 #
 #
 #
@@ -5018,6 +5337,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -5033,6 +5354,8 @@ msgstr ""
 # 
 #~ msgid "Please Zoom or Scale Out to view suppressed HTSGW GRIB"
 #~ msgstr "Por favor Afaste ou Diminua a Escala para ver HTSGW GRIB suprimido"
+#
+#
 #
 #
 #
@@ -5079,6 +5402,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -5097,12 +5422,16 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
 #, fuzzy
 #~ msgid "Position:               "
 #~ msgstr "Posição:"
+#
+#
 #
 #
 #
@@ -5147,6 +5476,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -5157,6 +5488,8 @@ msgstr ""
 #~ msgstr ""
 #~ "Período Recente do Relatório:     %3d Seg.\n"
 #~ "\n"
+#
+#
 #
 #
 #
@@ -5206,6 +5539,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -5236,6 +5571,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -5251,6 +5588,8 @@ msgstr ""
 # 
 #~ msgid "Select GRIB Directory"
 #~ msgstr "Selecionar Diretório de Arquivos GRIB"
+#
+#
 #
 #
 #
@@ -5300,6 +5639,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -5309,6 +5650,8 @@ msgstr ""
 # 
 #~ msgid "ShipName:  "
 #~ msgstr "Nome do Navio:"
+#
+#
 #
 #
 #
@@ -5358,6 +5701,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -5377,6 +5722,8 @@ msgstr ""
 # 
 #~ msgid "Show GRIB dialog"
 #~ msgstr "Mostrar Janela GRIB"
+#
+#
 #
 #
 #
@@ -5420,6 +5767,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -5444,6 +5793,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -5456,23 +5807,6 @@ msgstr ""
 #~ "\n"
 #
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-# 
-# 
-# 
-#, fuzzy
-#~ msgid "Toggle Listing"
-#~ msgstr "Ligar Acompanhamento"
 #
 #
 #
@@ -5507,6 +5841,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -5520,6 +5856,8 @@ msgstr ""
 # 
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Usar Gráficos de Alta Definição"
+#
+#
 #
 #
 #
@@ -5565,6 +5903,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -5580,6 +5920,8 @@ msgstr ""
 # 
 #~ msgid "Wind Direction"
 #~ msgstr "Direção do Vento"
+#
+#
 #
 #
 #

@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenCPN 2.4.714\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-23 21:15-0500\n"
+"POT-Creation-Date: 2012-03-25 07:34+0200\n"
 "PO-Revision-Date: 2011-07-19 00:33+0100\n"
 "Last-Translator: Frode Lynum <post@kb-h.com>\n"
 "Language-Team: OpenCPN Norge <post@opencpn.kb-h.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -306,14 +307,47 @@ msgstr "---<<< Advarsel:  Georeferanse nøyaktighet for kart er dårlig. >>>---"
 msgid "---<<< Warning:  Chart georef accuracy may be poor. >>>---"
 msgstr "---<<< Advarsel:  Georeferanse for kart kan være dårlig. >>>---"
 #
+msgid "..."
+msgstr ""
+#
+msgid "1 pixel"
+msgstr ""
+#
 msgid "1.0 NM along COG"
 msgstr "1.0 NM langs COG"
+#
+msgid "10 pixels"
+msgstr ""
 #
 msgid "2 Color"
 msgstr "2 Farger"
 #
+msgid "2 pixels"
+msgstr ""
+#
+msgid "3 pixels"
+msgstr ""
+#
 msgid "4 Color"
 msgstr "4 Farger"
+#
+msgid "4 pixels"
+msgstr ""
+#
+msgid "5 pixels"
+msgstr ""
+#
+msgid "6 pixels"
+msgstr ""
+#
+msgid "7 pixels"
+msgstr ""
+#
+msgid "8 pixels"
+msgstr ""
+#
+msgid "9 pixels"
+msgstr ""
 #
 #, fuzzy
 msgid ":               "
@@ -325,6 +359,9 @@ msgid ""
 "\n"
 "\n"
 msgstr "Kurs:                Utilgjengelig\n"
+#
+msgid "<--Remove"
+msgstr ""
 #
 msgid "?"
 msgstr "?"
@@ -380,23 +417,41 @@ msgstr "Aktiver ruten"
 msgid "Activate Waypoint"
 msgstr "Aktiver veipunkt"
 #
+#, fuzzy
+msgid "Active"
+msgstr "Aktiver"
+#
 msgid "Active Chart Directories"
 msgstr "Aktiverte kartmapper"
+#
+#, fuzzy
+msgid "Active Charts"
+msgstr "Aktiverte kartmapper"
+#
+msgid "Add"
+msgstr ""
 #
 msgid "Add Selection"
 msgstr "Legg til utvalg"
 #
+msgid "Add new"
+msgstr ""
+#
 msgid "Add this chart to quilt."
 msgstr "Legg dette kartet til for fletting."
 #
-msgid "Additional information"
-msgstr "Tilleggsinformasjon"
+msgid "Add-->"
+msgstr ""
 #
 msgid "Aground"
 msgstr "På grunn"
 #
 msgid "Aid to Navigation"
 msgstr "Hjelp til Navigasjon (AtoN)"
+#
+#, fuzzy
+msgid "All Active Charts"
+msgstr "Aktiverte kartmapper"
 #
 msgid "All files (*.*)|*.*"
 msgstr "Alle filer (*.*)|*.*"
@@ -455,6 +510,9 @@ msgstr "Base"
 msgid "Base Station"
 msgstr "Basestasjon"
 #
+msgid "Basic"
+msgstr ""
+#
 msgid "Beacon, Isolated Danger"
 msgstr "Lys, isolert fare"
 #
@@ -497,6 +555,9 @@ msgstr "Grenser"
 #
 msgid "Brg"
 msgstr "Kurs"
+#
+msgid "Buddy"
+msgstr ""
 #
 msgid "Bulk carrier maritime"
 msgstr "Maritim bulkfrakt"
@@ -624,6 +685,16 @@ msgstr "Kartvisnings valg"
 msgid "Chart Display Style"
 msgstr "Kartvisnings alternativer"
 #
+#, fuzzy
+msgid "Chart Groups"
+msgstr "Karter"
+#
+msgid "Chart Groups..."
+msgstr ""
+#
+msgid "Chart Groups...New Group"
+msgstr ""
+#
 msgid "Chart Print"
 msgstr "Skriv ut kart"
 #
@@ -635,6 +706,9 @@ msgstr "Karter"
 #
 msgid "Choose Font..."
 msgstr "Velg skrifttype"
+#
+msgid "Choose a file"
+msgstr ""
 #
 msgid "Class"
 msgstr "Klasse"
@@ -665,6 +739,9 @@ msgstr "Farge:"
 #
 msgid "Colors"
 msgstr "Farger"
+#
+msgid "Combo!"
+msgstr ""
 #
 msgid "Console Legend"
 msgstr "Konsoll Forklaring"
@@ -715,6 +792,14 @@ msgstr "Cyan"
 msgid "D/V"
 msgstr "D/V"
 #
+#, fuzzy
+msgid "DSC"
+msgstr "HSC"
+#
+#, fuzzy
+msgid "DSC Position Report"
+msgstr "Tid for siste posisjonsrapport:  "
+#
 msgid "Dark Blue"
 msgstr "Mørk Blå"
 #
@@ -751,6 +836,10 @@ msgstr "Desimal grader"
 msgid "Deep Depth"
 msgstr "Klart farvann (dybde)"
 #
+#, fuzzy
+msgid "Default"
+msgstr "Standard farge"
+#
 msgid "Default color"
 msgstr "Standard farge"
 #
@@ -760,8 +849,16 @@ msgstr "Grader, Desimal minutter"
 msgid "Degrees, Minutes, Seconds"
 msgstr "Grader, Minutter, Sekunder"
 #
+#, fuzzy
+msgid "Delete"
+msgstr "&Slett"
+#
 msgid "Delete All"
 msgstr "Slett alle"
+#
+#, fuzzy
+msgid "Delete Group"
+msgstr "Slett rute"
 #
 msgid "Delete Mark"
 msgstr "Slett merke"
@@ -817,8 +914,18 @@ msgstr "Distanse"
 msgid "Distance between rings"
 msgstr "Distanse mellom ringene"
 #
+#, fuzzy
+msgid "Distress"
+msgstr "Distanse"
+#
 msgid "Done."
 msgstr "Ferdig."
+#
+msgid "Dot"
+msgstr ""
+#
+msgid "Dot dash"
+msgstr ""
 #
 msgid "Dredge"
 msgstr "Oppmudring"
@@ -854,6 +961,9 @@ msgstr "ETE"
 msgid "ETE/ETD"
 msgstr "ETE"
 #
+msgid "Edit"
+msgstr ""
+#
 msgid "Elapsed time : "
 msgstr "Forbrukt tid : "
 #
@@ -887,6 +997,9 @@ msgstr "Avslutt rute"
 msgid "Engaged in Fishing"
 msgstr "Deltar i fiske"
 #
+msgid "Enter Group Name"
+msgstr ""
+#
 msgid "Error on Route Upload.  Please check logfiles..."
 msgstr "Feil ved rute opplasting. Sjekk loggfiler..."
 #
@@ -907,6 +1020,10 @@ msgstr "Utvid rute"
 #
 msgid "Extend Track"
 msgstr "Forleng slepestrek"
+#
+#, fuzzy
+msgid "Extended"
+msgstr "Utvid rute"
 #
 msgid "ExtendedTideIcon"
 msgstr "UtvidetTidevannsIkon"
@@ -966,8 +1083,18 @@ msgstr "GPS/Plotter port"
 msgid "GPSD Data Server"
 msgstr "GPSD Dataserver"
 #
+msgid "GPSGate Buddy"
+msgstr ""
+#
+#, fuzzy
+msgid "GPX"
+msgstr "GPS"
+#
 msgid "GUI Options"
 msgstr "Brukergrensesnitt alternativer"
+#
+msgid "GUID"
+msgstr ""
 #
 msgid "Gas tanker"
 msgstr "Gasstanker"
@@ -984,8 +1111,14 @@ msgstr "Gå til merke/veipunkt"
 msgid "Go to "
 msgstr "Gå til"
 #
+msgid "GpsGate Buddy"
+msgstr ""
+#
 msgid "Green"
 msgstr "Grønn"
+#
+msgid "Groups"
+msgstr ""
 #
 msgid "HSC"
 msgstr "HSC"
@@ -1131,8 +1264,29 @@ msgstr "Fyr m/sektorer"
 msgid "Limit range: NM"
 msgstr "Begrens avstand: NM"
 #
+#, fuzzy
+msgid "Link"
+msgstr "Linker"
+#
+#, fuzzy
+msgid "Link Properties"
+msgstr "Egenskaper for merke"
+#
+#, fuzzy
+msgid "Link description"
+msgstr "Beskrivelse"
+#
+msgid "Link not complete, can't be saved."
+msgstr ""
+#
 msgid "Links"
 msgstr "Linker"
+#
+msgid "Links are opened for editing."
+msgstr ""
+#
+msgid "Links are opened in the default browser."
+msgstr ""
 #
 msgid "Liquified gas tanker"
 msgstr "Gasstanker med flytende gass"
@@ -1143,11 +1297,17 @@ msgstr "Vis innhold"
 msgid "Local @ PC"
 msgstr "Lokal @ PC"
 #
+msgid "Local file..."
+msgstr ""
+#
 msgid "Lock all waypoints unless a waypoint property dialog is visible"
 msgstr "Lås alle veipunkt untatt når dialogboksen er synlig"
 #
 msgid "Long Tow"
 msgstr "Langt slep"
+#
+msgid "Long dash"
+msgstr ""
 #
 msgid "Longitude"
 msgstr "Lengdegrad"
@@ -1182,10 +1342,6 @@ msgstr "META Objekter"
 msgid "MMSI"
 msgstr "MMSI"
 #
-#, c-format
-msgid "MMSI:                 %09d\n"
-msgstr "MMSI:                 %09d\n"
-#
 msgid "M_COVR ID"
 msgstr "M_COVR ID"
 #
@@ -1198,14 +1354,8 @@ msgstr "Mariner's Standard"
 msgid "Mariners Standard"
 msgstr "Mariners Standard"
 #
-msgid "Mark Icon"
-msgstr "Merke ikon"
-#
 msgid "Mark Information"
 msgstr "Merke informasjon"
-#
-msgid "Mark Name"
-msgstr "Merkenavn"
 #
 msgid "Mark Properties"
 msgstr "Egenskaper for merke"
@@ -1311,6 +1461,9 @@ msgstr "Navigasjonsdata"
 #
 msgid "Navigational Status:  "
 msgstr "Navigasjons status:  "
+#
+msgid "New Group..."
+msgstr ""
 #
 msgid "Next"
 msgstr "Neste"
@@ -1483,6 +1636,10 @@ msgstr "Havneoppsyn"
 msgid "Position"
 msgstr "Posisjon"
 #
+#, fuzzy
+msgid "Position Report"
+msgstr "Tid for siste posisjonsrapport:  "
+#
 #, c-format
 msgid ""
 "Position Report Age:       %3d Sec.\n"
@@ -1531,6 +1688,9 @@ msgstr "Skriv ut kart"
 #
 msgid "Printing"
 msgstr "Utskrift"
+#
+msgid "Problem discovered"
+msgstr ""
 #
 msgid "Processing Waypoints..."
 msgstr "Behandler veipunkter..."
@@ -1676,6 +1836,10 @@ msgstr "Fjern dette kartet fra fletting."
 msgid "Rename Waypoints?"
 msgstr "Bytte navn på veipunkter?"
 #
+#, c-format
+msgid "Report as of: %d:%d UTC "
+msgstr ""
+#
 msgid "Reserved 11"
 msgstr "Reservert 11"
 #
@@ -1684,9 +1848,6 @@ msgstr "Reservert 12"
 #
 msgid "Reserved 13"
 msgstr "Reservert 13"
-#
-msgid "Reserved 14"
-msgstr "Reservert 14"
 #
 msgid "Restricted Manoeuvrability"
 msgstr "Begrenset manøvrerbarhet"
@@ -1736,6 +1897,9 @@ msgstr "S/V"
 #
 msgid "SAR/V"
 msgstr "SAR/V"
+#
+msgid "SART"
+msgstr ""
 #
 msgid "SOG COG"
 msgstr "SOG COG"
@@ -1810,6 +1974,9 @@ msgstr "Bytt til større kartskala"
 msgid "Shift to Smaller Scale Chart"
 msgstr "Bytt til mindre kartskala"
 #
+msgid "Short dash"
+msgstr ""
+#
 msgid "Show AIS Targets"
 msgstr "Vis AIS-mål"
 #
@@ -1849,9 +2016,6 @@ msgstr "Vis lengde og breddegrad som"
 msgid "Show Light Descriptions"
 msgstr "Vis lyskarakteristikk"
 #
-msgid "Show Name"
-msgstr "Vis navn"
-#
 msgid "Show Printing Icon"
 msgstr "Vis utskrifts ikon"
 #
@@ -1875,6 +2039,10 @@ msgstr "Vis VPT-navn"
 #
 msgid "Show layers initially"
 msgstr "Vis lag først"
+#
+#, fuzzy
+msgid "Show name"
+msgstr "Vis navn"
 #
 msgid "Show on chart"
 msgstr "Vis på kart"
@@ -1958,6 +2126,9 @@ msgstr ""
 msgid "SoG"
 msgstr "SOG"
 #
+msgid "Solid"
+msgstr ""
+#
 msgid "Spare"
 msgstr "Reserve"
 #
@@ -1997,6 +2168,10 @@ msgstr "Stbd"
 #
 msgid "Stbd Hand"
 msgstr "Stbd side"
+#
+#, fuzzy
+msgid "Style:"
+msgstr "&Stil:"
 #
 msgid "Supress Alerts for anchored/moored targets"
 msgstr "Forhindre varsel for ankrede/fortøyde mål"
@@ -2056,6 +2231,10 @@ msgstr "Hjelper"
 msgid "Test Alert Sound"
 msgstr "Test lyd for varsel"
 #
+#, fuzzy
+msgid "Testing"
+msgstr "Innstillinger"
+#
 msgid "Text Element"
 msgstr "Tekstelement"
 #
@@ -2086,6 +2265,9 @@ msgstr ""
 #
 msgid "This Leg"
 msgstr "Denne leggen"
+#
+msgid "This waypoint is part of a layer and can't be edited"
+msgstr ""
 #
 msgid "Tide"
 msgstr "Tidevann"
@@ -2185,6 +2367,9 @@ msgstr "Type:                 "
 #
 msgid "UN Ship Type:         "
 msgstr "UN Skipstype:            "
+#
+msgid "URL"
+msgstr ""
 #
 msgid "UTC"
 msgstr "UTC"
@@ -2333,6 +2518,9 @@ msgstr "Hvit"
 msgid "WiFi Options"
 msgstr "WiFi alternativer"
 #
+msgid "Width:"
+msgstr ""
+#
 msgid "Wing In Ground Effect"
 msgstr "Vingen i bakken-effekt fartøy (WIG)"
 #
@@ -2393,6 +2581,11 @@ msgstr "wgsox"
 msgid "wgsoy"
 msgstr "wgsoy"
 #
+msgid "wxFB Website"
+msgstr ""
+#
+#
+#
 #
 #
 #~ msgid ""
@@ -2407,8 +2600,12 @@ msgstr "wgsoy"
 #
 #
 #
+#
+#
 #~ msgid "   PlugInManager: Cannot load library: "
 #~ msgstr "   Utvidelses behandling: Kan ikke laste bibliotek: "
+#
+#
 #
 #
 #
@@ -2419,8 +2616,17 @@ msgstr "wgsoy"
 #
 #
 #
+#
+#
 #~ msgid "   PlugInManager: Cannot load symbol destroy_pi: "
 #~ msgstr "   Utvidelses behandling: Kan ikke laste symbol destroy_pi: "
+#
+#
+#
+#~ msgid "Additional information"
+#~ msgstr "Tilleggsinformasjon"
+#
+#
 #
 #
 #
@@ -2431,8 +2637,27 @@ msgstr "wgsoy"
 #
 #
 #
+#
+#
 #~ msgid "ETE/Timestamp"
 #~ msgstr "ETE/Tids stempel"
+#
+#
+#
+#~ msgid "MMSI:                 %09d\n"
+#~ msgstr "MMSI:                 %09d\n"
+#
+#
+#
+#~ msgid "Mark Icon"
+#~ msgstr "Merke ikon"
+#
+#
+#
+#~ msgid "Mark Name"
+#~ msgstr "Merkenavn"
+#
+#
 #
 #
 #~ msgid "New Mark"
@@ -2441,8 +2666,12 @@ msgstr "wgsoy"
 #
 #
 #
+#
+#
 #~ msgid "OpenCPN PlugIn Base Class"
 #~ msgstr "OpenCPN Utvidelses Baseklasse"
+#
+#
 #
 #
 #
@@ -2457,8 +2686,12 @@ msgstr "wgsoy"
 #
 #
 #
+#
+#
 #~ msgid "PlugInManager searching for PlugIns in location "
 #~ msgstr "Utvidelses behandling søker etter mappen for utvidelser"
+#
+#
 #
 #
 #
@@ -2469,8 +2702,12 @@ msgstr "wgsoy"
 #
 #
 #
+#
+#
 #~ msgid "PlugInManager: Initializing PlugIn: "
 #~ msgstr "Utvidelses behandling: Starter utvidelse: "
+#
+#
 #
 #
 #
@@ -2481,8 +2718,12 @@ msgstr "wgsoy"
 #
 #
 #
+#
+#
 #~ msgid "PlugInManager: UnLoading PlugIn: "
 #~ msgstr "Utvidelses behandling: Laster ut utvidelse: "
+#
+#
 #
 #
 #
@@ -2493,5 +2734,11 @@ msgstr "wgsoy"
 #
 #
 #
+#
+#
 #~ msgid "Position:               "
 #~ msgstr "Posisjon:"
+#
+#
+#~ msgid "Reserved 14"
+#~ msgstr "Reservert 14"

@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn 1.3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-23 21:15-0500\n"
+"POT-Creation-Date: 2012-03-25 07:34+0200\n"
 "PO-Revision-Date: 2010-03-31 01:12+0300\n"
 "Last-Translator: \n"
 "Language-Team: Eugene Polyan <epolyan@gmail.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -608,8 +609,17 @@ msgstr ""
 msgid "---<<< Warning:  Chart georef accuracy may be poor. >>>---"
 msgstr ""
 #
+msgid "..."
+msgstr ""
+#
+msgid "1 pixel"
+msgstr ""
+#
 # 
 msgid "1.0 NM along COG"
+msgstr ""
+#
+msgid "10 pixels"
 msgstr ""
 #
 # 
@@ -619,12 +629,36 @@ msgstr ""
 msgid "2 Color"
 msgstr "2 цвета"
 #
+msgid "2 pixels"
+msgstr ""
+#
+msgid "3 pixels"
+msgstr ""
+#
 # 
 # 
 # 
 # 
 msgid "4 Color"
 msgstr "4 цвета"
+#
+msgid "4 pixels"
+msgstr ""
+#
+msgid "5 pixels"
+msgstr ""
+#
+msgid "6 pixels"
+msgstr ""
+#
+msgid "7 pixels"
+msgstr ""
+#
+msgid "8 pixels"
+msgstr ""
+#
+msgid "9 pixels"
+msgstr ""
 #
 # 
 # 
@@ -644,6 +678,9 @@ msgid ""
 "\n"
 "\n"
 msgstr "Тип судна:  "
+#
+msgid "<--Remove"
+msgstr ""
 #
 # 
 msgid "?"
@@ -772,8 +809,27 @@ msgstr "Активировать путевую точку"
 # 
 # 
 # 
+#, fuzzy
+msgid "Active"
+msgstr "Активировать маршрут"
+#
+# 
+# 
+# 
+# 
 msgid "Active Chart Directories"
 msgstr "Выбранные каталоги карт"
+#
+# 
+# 
+# 
+# 
+#, fuzzy
+msgid "Active Charts"
+msgstr "Выбранные каталоги карт"
+#
+msgid "Add"
+msgstr ""
 #
 # 
 # 
@@ -782,6 +838,9 @@ msgstr "Выбранные каталоги карт"
 msgid "Add Selection"
 msgstr "Добавить выбранные"
 #
+msgid "Add new"
+msgstr ""
+#
 # 
 # 
 # 
@@ -789,12 +848,8 @@ msgstr "Добавить выбранные"
 msgid "Add this chart to quilt."
 msgstr ""
 #
-# 
-# 
-# 
-# 
-msgid "Additional information"
-msgstr "Дополнительная информация"
+msgid "Add-->"
+msgstr ""
 #
 # 
 msgid "Aground"
@@ -807,6 +862,14 @@ msgstr ""
 #, fuzzy
 msgid "Aid to Navigation"
 msgstr "Навишационные данные"
+#
+# 
+# 
+# 
+# 
+#, fuzzy
+msgid "All Active Charts"
+msgstr "Выбранные каталоги карт"
 #
 # 
 # 
@@ -958,6 +1021,9 @@ msgstr "Базовые"
 msgid "Base Station"
 msgstr "Пункт назначения"
 #
+msgid "Basic"
+msgstr ""
+#
 # 
 msgid "Beacon, Isolated Danger"
 msgstr ""
@@ -1029,6 +1095,9 @@ msgstr "Границы"
 #, fuzzy
 msgid "Brg"
 msgstr "Направление"
+#
+msgid "Buddy"
+msgstr ""
 #
 # 
 msgid "Bulk carrier maritime"
@@ -1257,6 +1326,20 @@ msgstr "Стиль отображения карт"
 # 
 # 
 # 
+#, fuzzy
+msgid "Chart Groups"
+msgstr "Карты"
+#
+msgid "Chart Groups..."
+msgstr ""
+#
+msgid "Chart Groups...New Group"
+msgstr ""
+#
+# 
+# 
+# 
+# 
 msgid "Chart Print"
 msgstr "Печать карты"
 #
@@ -1280,6 +1363,9 @@ msgstr "Карты"
 # 
 msgid "Choose Font..."
 msgstr "Шрифт..."
+#
+msgid "Choose a file"
+msgstr ""
 #
 # 
 # 
@@ -1352,6 +1438,9 @@ msgstr "&Цвет:"
 # 
 msgid "Colors"
 msgstr "Цветность"
+#
+msgid "Combo!"
+msgstr ""
 #
 # 
 # 
@@ -1451,6 +1540,17 @@ msgstr "Отмена"
 msgid "D/V"
 msgstr ""
 #
+msgid "DSC"
+msgstr ""
+#
+# 
+# 
+# 
+# 
+#, fuzzy
+msgid "DSC Position Report"
+msgstr "Время последнего сообщения:       "
+#
 msgid "Dark Blue"
 msgstr ""
 #
@@ -1509,6 +1609,14 @@ msgstr "Глубоко"
 # 
 # 
 #, fuzzy
+msgid "Default"
+msgstr "Цвет шрифта."
+#
+# 
+# 
+# 
+# 
+#, fuzzy
 msgid "Default color"
 msgstr "Цвет шрифта."
 #
@@ -1523,8 +1631,24 @@ msgstr ""
 # 
 # 
 #, fuzzy
+msgid "Delete"
+msgstr "Удалить маркер"
+#
+# 
+# 
+# 
+# 
+#, fuzzy
 msgid "Delete All"
 msgstr "Выбрать всё"
+#
+# 
+# 
+# 
+# 
+#, fuzzy
+msgid "Delete Group"
+msgstr "Удалить маршрут"
 #
 # 
 # 
@@ -1648,7 +1772,21 @@ msgid "Distance between rings"
 msgstr "Ширина колец"
 #
 # 
+# 
+# 
+# 
+#, fuzzy
+msgid "Distress"
+msgstr "Расстояние"
+#
+# 
 msgid "Done."
+msgstr ""
+#
+msgid "Dot"
+msgstr ""
+#
+msgid "Dot dash"
 msgstr ""
 #
 # 
@@ -1800,6 +1938,9 @@ msgstr "Время прибытия"
 msgid "ETE/ETD"
 msgstr "Время прибытия"
 #
+msgid "Edit"
+msgstr ""
+#
 # 
 msgid "Elapsed time : "
 msgstr ""
@@ -1858,6 +1999,9 @@ msgstr "Конец маршрута"
 msgid "Engaged in Fishing"
 msgstr ""
 #
+msgid "Enter Group Name"
+msgstr ""
+#
 # 
 # 
 # 
@@ -1903,6 +2047,14 @@ msgstr "Конец маршрута"
 #, fuzzy
 msgid "Extend Track"
 msgstr "Удалить трек"
+#
+# 
+# 
+# 
+# 
+#, fuzzy
+msgid "Extended"
+msgstr "Конец маршрута"
 #
 # 
 msgid "ExtendedTideIcon"
@@ -2005,12 +2157,54 @@ msgstr "Порт GPS/Плоттера"
 msgid "GPSD Data Server"
 msgstr "Сервер GPSD"
 #
+msgid "GPSGate Buddy"
+msgstr ""
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+msgid "GPX"
+msgstr "GPX"
+#
 # 
 # 
 # 
 # 
 msgid "GUI Options"
 msgstr "Настройки интерфейса пользователя"
+#
+msgid "GUID"
+msgstr ""
 #
 # 
 # 
@@ -2048,7 +2242,13 @@ msgstr "Установить судно здесь"
 msgid "Go to "
 msgstr "Установить судно здесь"
 #
+msgid "GpsGate Buddy"
+msgstr ""
+#
 msgid "Green"
+msgstr ""
+#
+msgid "Groups"
 msgstr ""
 #
 # 
@@ -2328,8 +2528,41 @@ msgstr ""
 # 
 # 
 # 
+#, fuzzy
+msgid "Link"
+msgstr "Ссылки"
+#
+# 
+# 
+# 
+# 
+#, fuzzy
+msgid "Link Properties"
+msgstr "Параметры маркера/точки"
+#
+# 
+# 
+# 
+# 
+#, fuzzy
+msgid "Link description"
+msgstr "Описание"
+#
+msgid "Link not complete, can't be saved."
+msgstr ""
+#
+# 
+# 
+# 
+# 
 msgid "Links"
 msgstr "Ссылки"
+#
+msgid "Links are opened for editing."
+msgstr ""
+#
+msgid "Links are opened in the default browser."
+msgstr ""
 #
 # 
 msgid "Liquified gas tanker"
@@ -2347,6 +2580,9 @@ msgstr "Лицензия"
 msgid "Local @ PC"
 msgstr ""
 #
+msgid "Local file..."
+msgstr ""
+#
 # 
 # 
 # 
@@ -2356,6 +2592,9 @@ msgstr "Заблокировать все точки пока активно о�
 #
 # 
 msgid "Long Tow"
+msgstr ""
+#
+msgid "Long dash"
 msgstr ""
 #
 # 
@@ -2419,14 +2658,6 @@ msgid "MMSI"
 msgstr ""
 #
 # 
-# 
-# 
-# 
-#, fuzzy, c-format
-msgid "MMSI:                 %09d\n"
-msgstr "Ожидаемое время прибытия:                  "
-#
-# 
 msgid "M_COVR ID"
 msgstr ""
 #
@@ -2452,23 +2683,9 @@ msgstr "Морской стандарт"
 # 
 # 
 # 
-msgid "Mark Icon"
-msgstr "Иконка маркера"
-#
-# 
-# 
-# 
-# 
 #, fuzzy
 msgid "Mark Information"
 msgstr "Иконка маркера"
-#
-# 
-# 
-# 
-# 
-msgid "Mark Name"
-msgstr "Название маркера"
 #
 # 
 # 
@@ -2670,6 +2887,9 @@ msgstr "Навишационные данные"
 # 
 msgid "Navigational Status:  "
 msgstr "Навигационный статус:  "
+#
+msgid "New Group..."
+msgstr ""
 #
 # 
 # 
@@ -3022,6 +3242,14 @@ msgstr "Положение"
 # 
 # 
 # 
+#, fuzzy
+msgid "Position Report"
+msgstr "Время последнего сообщения:       "
+#
+# 
+# 
+# 
+# 
 #, fuzzy, c-format
 msgid ""
 "Position Report Age:       %3d Sec.\n"
@@ -3094,6 +3322,9 @@ msgstr "Распечатать карту"
 # 
 msgid "Printing"
 msgstr "Печать"
+#
+msgid "Problem discovered"
+msgstr ""
 #
 # 
 # 
@@ -3370,6 +3601,10 @@ msgstr "Удалить точку из маршрута"
 msgid "Rename Waypoints?"
 msgstr "Путевые точки"
 #
+#, c-format
+msgid "Report as of: %d:%d UTC "
+msgstr ""
+#
 # 
 msgid "Reserved 11"
 msgstr ""
@@ -3380,10 +3615,6 @@ msgstr ""
 #
 # 
 msgid "Reserved 13"
-msgstr ""
-#
-# 
-msgid "Reserved 14"
 msgstr ""
 #
 # 
@@ -3482,6 +3713,9 @@ msgstr ""
 #
 # 
 msgid "SAR/V"
+msgstr ""
+#
+msgid "SART"
 msgstr ""
 #
 # 
@@ -3632,6 +3866,9 @@ msgstr "Переключиться к большему масштабу"
 msgid "Shift to Smaller Scale Chart"
 msgstr "Переключиться к меньшему масштабу"
 #
+msgid "Short dash"
+msgstr ""
+#
 # 
 # 
 # 
@@ -3732,13 +3969,6 @@ msgstr "Показывать описания маяков"
 # 
 # 
 # 
-msgid "Show Name"
-msgstr "Отображать название"
-#
-# 
-# 
-# 
-# 
 msgid "Show Printing Icon"
 msgstr "Показать иконку печати"
 #
@@ -3789,6 +4019,14 @@ msgstr "Отображать название"
 #
 msgid "Show layers initially"
 msgstr ""
+#
+# 
+# 
+# 
+# 
+#, fuzzy
+msgid "Show name"
+msgstr "Отображать название"
 #
 # 
 # 
@@ -3917,6 +4155,9 @@ msgstr "Скорость:                %5.2f узл.\n"
 msgid "SoG"
 msgstr ""
 #
+msgid "Solid"
+msgstr ""
+#
 # 
 # 
 # 
@@ -4002,6 +4243,14 @@ msgstr ""
 # 
 msgid "Stbd Hand"
 msgstr ""
+#
+# 
+# 
+# 
+# 
+#, fuzzy
+msgid "Style:"
+msgstr "&Стиль:"
 #
 # 
 # 
@@ -4110,6 +4359,27 @@ msgstr "Отправить"
 msgid "Test Alert Sound"
 msgstr "Тестирование звука предупреждений"
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# 
+# 
+# 
+# 
+#, fuzzy
+msgid "Testing"
+msgstr "Включить слежение"
+#
 # 
 # 
 # 
@@ -4177,6 +4447,9 @@ msgstr ""
 # 
 msgid "This Leg"
 msgstr "Участок"
+#
+msgid "This waypoint is part of a layer and can't be edited"
+msgstr ""
 #
 # 
 # 
@@ -4368,6 +4641,9 @@ msgstr "Ожидаемое время прибытия:                  "
 #, fuzzy
 msgid "UN Ship Type:         "
 msgstr "Тип судна:  "
+#
+msgid "URL"
+msgstr ""
 #
 # 
 # 
@@ -4613,6 +4889,9 @@ msgstr ""
 msgid "WiFi Options"
 msgstr "Параметры WiFi"
 #
+msgid "Width:"
+msgstr ""
+#
 # 
 msgid "Wing In Ground Effect"
 msgstr ""
@@ -4709,6 +4988,11 @@ msgstr ""
 msgid "wgsoy"
 msgstr ""
 #
+msgid "wxFB Website"
+msgstr ""
+#
+#
+#
 #
 #
 #
@@ -4740,6 +5024,8 @@ msgstr ""
 #, fuzzy
 #~ msgid "&Close"
 #~ msgstr "Закрыть"
+#
+#
 #
 #
 #
@@ -4792,6 +5078,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -4829,6 +5117,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -4851,6 +5141,17 @@ msgstr ""
 #, fuzzy
 #~ msgid "(Active Track)"
 #~ msgstr "Удалить трек"
+#
+#
+#
+# 
+# 
+# 
+# 
+#~ msgid "Additional information"
+#~ msgstr "Дополнительная информация"
+#
+#
 #
 #
 #
@@ -4899,6 +5200,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -4911,6 +5214,8 @@ msgstr ""
 # 
 #~ msgid "Chart file corrupt.. disabling this chart \n"
 #~ msgstr "Файл карты повреждён... данная карта не будет доступна \n"
+#
+#
 #
 #
 #
@@ -4962,6 +5267,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -4987,6 +5294,8 @@ msgstr ""
 #~ msgstr ""
 #~ "Класс:     B\n"
 #~ "\n"
+#
+#
 #
 #
 #
@@ -5046,6 +5355,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -5079,6 +5390,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -5087,6 +5400,8 @@ msgstr ""
 # 
 #~ msgid "Exit OpenCPN"
 #~ msgstr "Выйти"
+#
+#
 #
 #
 #
@@ -5146,40 +5461,6 @@ msgstr ""
 #
 #
 #
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-#~ msgid "GPX"
-#~ msgstr "GPX"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
 #
 #
 # 
@@ -5196,6 +5477,8 @@ msgstr ""
 # 
 #~ msgid "GRIB"
 #~ msgstr "GRIB"
+#
+#
 #
 #
 #
@@ -5242,6 +5525,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -5258,6 +5543,8 @@ msgstr ""
 # 
 #~ msgid "GRIB Display Control"
 #~ msgstr "Настройки отображения информации GRIB"
+#
+#
 #
 #
 #
@@ -5292,6 +5579,18 @@ msgstr ""
 #
 #
 #
+# 
+# 
+# 
+# 
+#, fuzzy
+#~ msgid "MMSI:                 %09d\n"
+#~ msgstr "Ожидаемое время прибытия:                  "
+#
+#
+#
+#
+#
 #
 #
 #
@@ -5316,12 +5615,34 @@ msgstr ""
 #~ msgstr "Морской стандарт"
 #
 #
+#
+# 
+# 
+# 
+# 
+#~ msgid "Mark Icon"
+#~ msgstr "Иконка маркера"
+#
+#
+#
+# 
+# 
+# 
+# 
+#~ msgid "Mark Name"
+#~ msgstr "Название маркера"
+#
+#
+#
+#
 # 
 # 
 # 
 # 
 #~ msgid "New Mark"
 #~ msgstr "Новый маркер"
+#
+#
 #
 #
 #
@@ -5368,6 +5689,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -5384,6 +5707,8 @@ msgstr ""
 # 
 #~ msgid "Please Zoom or Scale Out to view suppressed HTSGW GRIB"
 #~ msgstr "Уменьшите масштаб для просмотра скртых меток HTSGW GRIB"
+#
+#
 #
 #
 #
@@ -5431,6 +5756,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -5451,6 +5778,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -5458,6 +5787,8 @@ msgstr ""
 #, fuzzy
 #~ msgid "Position:               "
 #~ msgstr "Координаты:              "
+#
+#
 #
 #
 #
@@ -5503,6 +5834,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -5514,6 +5847,8 @@ msgstr ""
 #~ msgstr ""
 #~ "Период последних отчётов:     %3d Сек.\n"
 #~ "\n"
+#
+#
 #
 #
 #
@@ -5546,6 +5881,8 @@ msgstr ""
 #, fuzzy
 #~ msgid "Select GRIB Directory"
 #~ msgstr "Каталог файлов GRIB"
+#
+#
 #
 #
 #
@@ -5598,6 +5935,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -5608,6 +5947,8 @@ msgstr ""
 # 
 #~ msgid "ShipName:  "
 #~ msgstr "Название корабля:  "
+#
+#
 #
 #
 #
@@ -5659,6 +6000,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -5680,6 +6023,8 @@ msgstr ""
 # 
 #~ msgid "Show GRIB dialog"
 #~ msgstr "Показать диалог GRIB"
+#
+#
 #
 #
 #
@@ -5724,6 +6069,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -5749,6 +6096,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -5760,24 +6109,6 @@ msgstr ""
 #~ msgstr "Ожидаемое время прибытия:                  "
 #
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-# 
-# 
-# 
-# 
-#, fuzzy
-#~ msgid "Toggle Listing"
-#~ msgstr "Включить слежение"
 #
 #
 #
@@ -5813,6 +6144,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -5827,6 +6160,8 @@ msgstr ""
 # 
 #~ msgid "Use High Definition Graphics"
 #~ msgstr "Использовать графику с высоким разрешением"
+#
+#
 #
 #
 #
@@ -5873,6 +6208,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -5889,6 +6226,8 @@ msgstr ""
 # 
 #~ msgid "Wind Direction"
 #~ msgstr "Направление ветра"
+#
+#
 #
 #
 #

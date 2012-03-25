@@ -6,10 +6,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn 2.1.0b415\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-23 21:15-0500\n"
+"POT-Creation-Date: 2012-03-25 07:34+0200\n"
 "PO-Revision-Date: 2010-12-06 16:30+0200\n"
 "Last-Translator: Yalin <yalinb@ii.metu.edu.tr>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -379,17 +380,50 @@ msgstr "---<<< Warning:  Chart georef accuracy is poor. >>>---"
 msgid "---<<< Warning:  Chart georef accuracy may be poor. >>>---"
 msgstr "---<<< Warning:  Chart georef accuracy may be poor. >>>---"
 #
+msgid "..."
+msgstr ""
+#
+msgid "1 pixel"
+msgstr ""
+#
 # 
 msgid "1.0 NM along COG"
+msgstr ""
+#
+msgid "10 pixels"
 msgstr ""
 #
 # 
 msgid "2 Color"
 msgstr "2 Renk"
 #
+msgid "2 pixels"
+msgstr ""
+#
+msgid "3 pixels"
+msgstr ""
+#
 # 
 msgid "4 Color"
 msgstr "4 Renk"
+#
+msgid "4 pixels"
+msgstr ""
+#
+msgid "5 pixels"
+msgstr ""
+#
+msgid "6 pixels"
+msgstr ""
+#
+msgid "7 pixels"
+msgstr ""
+#
+msgid "8 pixels"
+msgstr ""
+#
+msgid "9 pixels"
+msgstr ""
 #
 # 
 #, fuzzy
@@ -403,6 +437,9 @@ msgid ""
 "\n"
 "\n"
 msgstr "Hız:              Bilinmiyor\n"
+#
+msgid "<--Remove"
+msgstr ""
 #
 # 
 msgid "?"
@@ -479,20 +516,35 @@ msgid "Activate Waypoint"
 msgstr "Mevkiyi Aktive Et"
 #
 # 
+#, fuzzy
+msgid "Active"
+msgstr "Aktive Et"
+#
+# 
 msgid "Active Chart Directories"
 msgstr "Aktif Harita Klasörleri"
+#
+# 
+#, fuzzy
+msgid "Active Charts"
+msgstr "Aktif Harita Klasörleri"
+#
+msgid "Add"
+msgstr ""
 #
 # 
 msgid "Add Selection"
 msgstr "Seçimi Ekle"
 #
+msgid "Add new"
+msgstr ""
+#
 # 
 msgid "Add this chart to quilt."
 msgstr "Bu haritayı örtüştürmeye dahil et."
 #
-# 
-msgid "Additional information"
-msgstr "Ekstra bilgi"
+msgid "Add-->"
+msgstr ""
 #
 # 
 msgid "Aground"
@@ -504,6 +556,11 @@ msgid "Aid to Navigation"
 msgstr ""
 "Navigasyona Yardım\n"
 "\n"
+#
+# 
+#, fuzzy
+msgid "All Active Charts"
+msgstr "Aktif Harita Klasörleri"
 #
 # 
 msgid "All files (*.*)|*.*"
@@ -584,6 +641,9 @@ msgstr "Temel (basit)"
 msgid "Base Station"
 msgstr "Varılacak yer"
 #
+msgid "Basic"
+msgstr ""
+#
 # 
 msgid "Beacon, Isolated Danger"
 msgstr ""
@@ -639,6 +699,9 @@ msgstr "Sınırlar"
 # 
 msgid "Brg"
 msgstr "Brg"
+#
+msgid "Buddy"
+msgstr ""
 #
 # 
 msgid "Bulk carrier maritime"
@@ -809,6 +872,17 @@ msgid "Chart Display Style"
 msgstr "Harita Görüntüleme Tarzı"
 #
 # 
+#, fuzzy
+msgid "Chart Groups"
+msgstr "Haritalar"
+#
+msgid "Chart Groups..."
+msgstr ""
+#
+msgid "Chart Groups...New Group"
+msgstr ""
+#
+# 
 msgid "Chart Print"
 msgstr "Çıktı Alma"
 #
@@ -823,6 +897,9 @@ msgstr "Haritalar"
 # 
 msgid "Choose Font..."
 msgstr "Yazı Tipi Seç..."
+#
+msgid "Choose a file"
+msgstr ""
 #
 # 
 msgid "Class"
@@ -865,6 +942,9 @@ msgstr "&Renk:"
 # 
 msgid "Colors"
 msgstr "Renkler"
+#
+msgid "Combo!"
+msgstr ""
 #
 # 
 msgid "Console Legend"
@@ -933,6 +1013,14 @@ msgstr "İptal"
 msgid "D/V"
 msgstr ""
 #
+msgid "DSC"
+msgstr ""
+#
+# 
+#, fuzzy
+msgid "DSC Position Report"
+msgstr "Son Rapor Zamanı:         "
+#
 msgid "Dark Blue"
 msgstr ""
 #
@@ -975,6 +1063,11 @@ msgstr "Derin Derinlik"
 #
 # 
 #, fuzzy
+msgid "Default"
+msgstr "Yazı rengi."
+#
+# 
+#, fuzzy
 msgid "Default color"
 msgstr "Yazı rengi."
 #
@@ -986,8 +1079,18 @@ msgstr ""
 #
 # 
 #, fuzzy
+msgid "Delete"
+msgstr "&Sil"
+#
+# 
+#, fuzzy
 msgid "Delete All"
 msgstr "Hepsini Seç"
+#
+# 
+#, fuzzy
+msgid "Delete Group"
+msgstr "Rotayı Sil"
 #
 # 
 msgid "Delete Mark"
@@ -1064,7 +1167,18 @@ msgid "Distance between rings"
 msgstr "Çemberler arası mesafe"
 #
 # 
+#, fuzzy
+msgid "Distress"
+msgstr "Uzaklık"
+#
+# 
 msgid "Done."
+msgstr ""
+#
+msgid "Dot"
+msgstr ""
+#
+msgid "Dot dash"
 msgstr ""
 #
 # 
@@ -1112,6 +1226,9 @@ msgstr ""
 msgid "ETE/ETD"
 msgstr ""
 #
+msgid "Edit"
+msgstr ""
+#
 # 
 msgid "Elapsed time : "
 msgstr ""
@@ -1154,6 +1271,9 @@ msgstr "Rotayı Sonlandır"
 msgid "Engaged in Fishing"
 msgstr ""
 #
+msgid "Enter Group Name"
+msgstr ""
+#
 # 
 msgid "Error on Route Upload.  Please check logfiles..."
 msgstr ""
@@ -1183,6 +1303,11 @@ msgstr "Rotayı Sonlandır"
 #, fuzzy
 msgid "Extend Track"
 msgstr "Seyir İzini Sil"
+#
+# 
+#, fuzzy
+msgid "Extended"
+msgstr "Rotayı Sonlandır"
 #
 # 
 msgid "ExtendedTideIcon"
@@ -1261,9 +1386,39 @@ msgstr "GPS/Plotter Port"
 msgid "GPSD Data Server"
 msgstr "GPSD Veri Sağlayıcısı"
 #
+msgid "GPSGate Buddy"
+msgstr ""
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# 
+# 
+# 
+# 
+# 
+# 
+# 
+msgid "GPX"
+msgstr "GPX"
+#
 # 
 msgid "GUI Options"
 msgstr "Kullanıcı Arayüzü Seçenekleri"
+#
+msgid "GUID"
+msgstr ""
 #
 # 
 #, fuzzy
@@ -1288,7 +1443,13 @@ msgstr "Buraya Git"
 msgid "Go to "
 msgstr "Buraya Git"
 #
+msgid "GpsGate Buddy"
+msgstr ""
+#
 msgid "Green"
+msgstr ""
+#
+msgid "Groups"
 msgstr ""
 #
 # 
@@ -1491,8 +1652,32 @@ msgid "Limit range: NM"
 msgstr ""
 #
 # 
+#, fuzzy
+msgid "Link"
+msgstr "Bağlantılar"
+#
+# 
+#, fuzzy
+msgid "Link Properties"
+msgstr "İşaret Özellikleri"
+#
+# 
+#, fuzzy
+msgid "Link description"
+msgstr "Açıklama"
+#
+msgid "Link not complete, can't be saved."
+msgstr ""
+#
+# 
 msgid "Links"
 msgstr "Bağlantılar"
+#
+msgid "Links are opened for editing."
+msgstr ""
+#
+msgid "Links are opened in the default browser."
+msgstr ""
 #
 # 
 msgid "Liquified gas tanker"
@@ -1507,12 +1692,18 @@ msgstr "Lisans"
 msgid "Local @ PC"
 msgstr ""
 #
+msgid "Local file..."
+msgstr ""
+#
 # 
 msgid "Lock all waypoints unless a waypoint property dialog is visible"
 msgstr "Mevki özellik kutusu görünür değilse tüm mevkileri kilitle "
 #
 # 
 msgid "Long Tow"
+msgstr ""
+#
+msgid "Long dash"
 msgstr ""
 #
 # 
@@ -1560,11 +1751,6 @@ msgid "MMSI"
 msgstr "MMSI"
 #
 # 
-#, fuzzy, c-format
-msgid "MMSI:                 %09d\n"
-msgstr "ETA(Tahmini Varış Zamanı):"
-#
-# 
 msgid "M_COVR ID"
 msgstr ""
 #
@@ -1581,16 +1767,8 @@ msgid "Mariners Standard"
 msgstr "Denizci Standartı"
 #
 # 
-msgid "Mark Icon"
-msgstr "İşaret ikonu"
-#
-# 
 msgid "Mark Information"
 msgstr "İşaret Bilgisi"
-#
-# 
-msgid "Mark Name"
-msgstr "Burayı İşaretle"
 #
 # 
 msgid "Mark Properties"
@@ -1733,6 +1911,9 @@ msgstr "Navigasyon Verisi"
 # 
 msgid "Navigational Status:  "
 msgstr "Navigasyon Durumu:  "
+#
+msgid "New Group..."
+msgstr ""
 #
 # 
 msgid "Next"
@@ -1970,6 +2151,11 @@ msgid "Position"
 msgstr "Konum"
 #
 # 
+#, fuzzy
+msgid "Position Report"
+msgstr "Son Rapor Zamanı:         "
+#
+# 
 #, fuzzy, c-format
 msgid ""
 "Position Report Age:       %3d Sec.\n"
@@ -2026,6 +2212,9 @@ msgstr "Harita Çıktısı Al"
 # 
 msgid "Printing"
 msgstr "Çıktı Alma"
+#
+msgid "Problem discovered"
+msgstr ""
 #
 # 
 #, fuzzy
@@ -2228,6 +2417,10 @@ msgstr "Bu haritayı örtüştürmeden çıkar."
 msgid "Rename Waypoints?"
 msgstr "Mevkileri Yeniden İsimlendir?"
 #
+#, c-format
+msgid "Report as of: %d:%d UTC "
+msgstr ""
+#
 # 
 msgid "Reserved 11"
 msgstr ""
@@ -2238,10 +2431,6 @@ msgstr ""
 #
 # 
 msgid "Reserved 13"
-msgstr ""
-#
-# 
-msgid "Reserved 14"
 msgstr ""
 #
 # 
@@ -2308,6 +2497,9 @@ msgstr ""
 #
 # 
 msgid "SAR/V"
+msgstr ""
+#
+msgid "SART"
 msgstr ""
 #
 # 
@@ -2407,6 +2599,9 @@ msgstr "Daha Büyük Ölçekli Haritaya Geç"
 msgid "Shift to Smaller Scale Chart"
 msgstr "Daha Küçük Ölçekli Haritaya Geç"
 #
+msgid "Short dash"
+msgstr ""
+#
 # 
 msgid "Show AIS Targets"
 msgstr "AIS Hedeflerini Göster"
@@ -2464,10 +2659,6 @@ msgid "Show Light Descriptions"
 msgstr "Fener Açıklamalarını Göster"
 #
 # 
-msgid "Show Name"
-msgstr "İsim Göster"
-#
-# 
 msgid "Show Printing Icon"
 msgstr "Çıktı Alma İkonunu Göster"
 #
@@ -2500,6 +2691,11 @@ msgstr "İsim Göster"
 #
 msgid "Show layers initially"
 msgstr ""
+#
+# 
+#, fuzzy
+msgid "Show name"
+msgstr "İsim Göster"
 #
 # 
 #, fuzzy
@@ -2601,6 +2797,9 @@ msgstr ""
 msgid "SoG"
 msgstr "SoG"
 #
+msgid "Solid"
+msgstr ""
+#
 # 
 #, fuzzy
 msgid "Spare"
@@ -2659,6 +2858,11 @@ msgstr ""
 # 
 msgid "Stbd Hand"
 msgstr ""
+#
+# 
+#, fuzzy
+msgid "Style:"
+msgstr "&Tarz: "
 #
 # 
 msgid "Supress Alerts for anchored/moored targets"
@@ -2739,6 +2943,24 @@ msgstr "Gönder"
 msgid "Test Alert Sound"
 msgstr "Alarm Sesini Test Et"
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# 
+#, fuzzy
+msgid "Testing"
+msgstr "İzleme şeklini değiştir"
+#
 # 
 msgid "Text Element"
 msgstr "Metin Öğesi"
@@ -2778,6 +3000,9 @@ msgstr ""
 # 
 msgid "This Leg"
 msgstr "Bu Ayak"
+#
+msgid "This waypoint is part of a layer and can't be edited"
+msgstr ""
 #
 # 
 msgid "Tide"
@@ -2914,6 +3139,9 @@ msgstr "ETA(Tahmini Varış Zamanı):"
 #, fuzzy
 msgid "UN Ship Type:         "
 msgstr "Gemi Tipi:           "
+#
+msgid "URL"
+msgstr ""
 #
 # 
 msgid "UTC"
@@ -3109,6 +3337,9 @@ msgstr ""
 msgid "WiFi Options"
 msgstr "WiFi Seçenekleri"
 #
+msgid "Width:"
+msgstr ""
+#
 # 
 msgid "Wing In Ground Effect"
 msgstr ""
@@ -3187,6 +3418,11 @@ msgstr ""
 msgid "wgsoy"
 msgstr ""
 #
+msgid "wxFB Website"
+msgstr ""
+#
+#
+#
 #
 #
 #
@@ -3210,6 +3446,8 @@ msgstr ""
 # 
 #~ msgid "&Close"
 #~ msgstr "&Kapat"
+#
+#
 #
 #
 #
@@ -3249,6 +3487,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -3273,6 +3513,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -3282,6 +3524,14 @@ msgstr ""
 # 
 #~ msgid "(Active Track)"
 #~ msgstr "(Aktif Seyir İzi)"
+#
+#
+#
+# 
+#~ msgid "Additional information"
+#~ msgstr "Ekstra bilgi"
+#
+#
 #
 #
 #
@@ -3321,6 +3571,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -3330,6 +3582,8 @@ msgstr ""
 # 
 #~ msgid "Chart file corrupt.. disabling this chart \n"
 #~ msgstr "Harita dosyası bozuk.. bu harita devre dışı bırakılıyor \n"
+#
+#
 #
 #
 #
@@ -3373,6 +3627,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -3386,6 +3642,8 @@ msgstr ""
 #~ msgstr ""
 #~ "Sınıf:     A\n"
 #~ "\n"
+#
+#
 #
 #
 #
@@ -3429,6 +3687,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -3438,6 +3698,8 @@ msgstr ""
 # 
 #~ msgid "Current Velocity, Kts."
 #~ msgstr "Şuanki Hız, Kts."
+#
+#
 #
 #
 #
@@ -3466,9 +3728,13 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 #~ msgid "ETE/Timestamp"
 #~ msgstr "ETE/Timestamp"
+#
+#
 #
 #
 #
@@ -3496,6 +3762,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 #, fuzzy
 #~ msgid "Failed to load libgps.so"
@@ -3503,6 +3771,8 @@ msgstr ""
 #~ "libgps yüklenemedi.\n"
 #~ "\n"
 #~ "gpsd hostu: "
+#
+#
 #
 #
 #
@@ -3519,28 +3789,6 @@ msgstr ""
 #~ "gpsd hostu: "
 #
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-#~ msgid "GPX"
-#~ msgstr "GPX"
 #
 #
 #
@@ -3580,6 +3828,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -3589,6 +3839,8 @@ msgstr ""
 # 
 #~ msgid "GRIB Data"
 #~ msgstr "GRIB Verisi"
+#
+#
 #
 #
 #
@@ -3628,6 +3880,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -3650,10 +3904,21 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 #, fuzzy
 #~ msgid "Import new layer"
 #~ msgstr "Dışarıdan GPX dosyası al"
+#
+#
+#
+# 
+#, fuzzy
+#~ msgid "MMSI:                 %09d\n"
+#~ msgstr "ETA(Tahmini Varış Zamanı):"
+#
+#
 #
 #
 #
@@ -3678,9 +3943,25 @@ msgstr ""
 #~ msgstr "Denizci Standartı"
 #
 #
+#
+# 
+#~ msgid "Mark Icon"
+#~ msgstr "İşaret ikonu"
+#
+#
+#
+# 
+#~ msgid "Mark Name"
+#~ msgstr "Burayı İşaretle"
+#
+#
+#
+#
 # 
 #~ msgid "New Mark"
 #~ msgstr "Yeni İşaret"
+#
+#
 #
 #
 #
@@ -3722,6 +4003,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -3733,6 +4016,8 @@ msgstr ""
 #~ msgstr ""
 #~ "Saklı HTSGW GRIB'i görmek için uzaklaştırma yapınız ya da büyük haritaya "
 #~ "geçiniz"
+#
+#
 #
 #
 #
@@ -3774,6 +4059,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -3788,10 +4075,14 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 #, fuzzy
 #~ msgid "Position:               "
 #~ msgstr "Konum:                 "
+#
+#
 #
 #
 #
@@ -3830,6 +4121,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 #, fuzzy
 #~ msgid ""
@@ -3838,6 +4131,8 @@ msgstr ""
 #~ msgstr ""
 #~ "Güncel Rapor Peryodu:     %3d Sec.\n"
 #~ "\n"
+#
+#
 #
 #
 #
@@ -3877,6 +4172,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -3886,6 +4183,8 @@ msgstr ""
 # 
 #~ msgid "Sea Surface Temp, C"
 #~ msgstr "Deniz Yüzeyi Sıcaklığı, C"
+#
+#
 #
 #
 #
@@ -3925,6 +4224,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -3949,6 +4250,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -3956,6 +4259,8 @@ msgstr ""
 # 
 #~ msgid "ShipName:  "
 #~ msgstr "Gemi İsmi:  "
+#
+#
 #
 #
 #
@@ -3995,6 +4300,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -4004,6 +4311,8 @@ msgstr ""
 # 
 #~ msgid "Show GRIB dialog"
 #~ msgstr "GRIB kutusunu göster"
+#
+#
 #
 #
 #
@@ -4043,6 +4352,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -4052,6 +4363,8 @@ msgstr ""
 # 
 #~ msgid "Significant Wave Height, m"
 #~ msgstr "Anlamlı Dalga Yüksekliği, m."
+#
+#
 #
 #
 #
@@ -4082,27 +4395,14 @@ msgstr ""
 #
 #
 #
-# 
-#, fuzzy
-#~ msgid "Toggle Listing"
-#~ msgstr "İzleme şeklini değiştir"
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
 #
 #
 # 
 #, fuzzy
 #~ msgid "Toggle Names"
 #~ msgstr "Rota İsmi"
+#
+#
 #
 #
 #
@@ -4142,6 +4442,8 @@ msgstr ""
 #
 #
 #
+#
+#
 # 
 # 
 # 
@@ -4151,6 +4453,8 @@ msgstr ""
 # 
 #~ msgid "WARNING:  QuickScat GRIB data is %d hours old."
 #~ msgstr "UYARI: QuickScat GRIB verisi %d saat öncesinin."
+#
+#
 #
 #
 #

@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn 2.4.423\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-23 21:15-0500\n"
+"POT-Creation-Date: 2012-03-25 07:34+0200\n"
 "PO-Revision-Date: 2011-05-30 21:07+0100\n"
 "Last-Translator: Szabolcs SZIGETI <szigi@ik.bme.hu>\n"
 "Language-Team: SZIGETI Szabolcs <szigi@ik.bme.hu>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -301,14 +302,47 @@ msgstr "---<<< Figyelem: a térkép georeferencia pontossága rossz. >>>---"
 msgid "---<<< Warning:  Chart georef accuracy may be poor. >>>---"
 msgstr "---<<< Figyelem: a térkép georeferencia pontossága rossz lehet >>>---"
 #
+msgid "..."
+msgstr ""
+#
+msgid "1 pixel"
+msgstr ""
+#
 msgid "1.0 NM along COG"
 msgstr "1.0 tmf COG irányban"
+#
+msgid "10 pixels"
+msgstr ""
 #
 msgid "2 Color"
 msgstr "2 színű"
 #
+msgid "2 pixels"
+msgstr ""
+#
+msgid "3 pixels"
+msgstr ""
+#
 msgid "4 Color"
 msgstr "4 színű"
+#
+msgid "4 pixels"
+msgstr ""
+#
+msgid "5 pixels"
+msgstr ""
+#
+msgid "6 pixels"
+msgstr ""
+#
+msgid "7 pixels"
+msgstr ""
+#
+msgid "8 pixels"
+msgstr ""
+#
+msgid "9 pixels"
+msgstr ""
 #
 #, fuzzy
 msgid ":               "
@@ -320,6 +354,9 @@ msgid ""
 "\n"
 "\n"
 msgstr "Iránylat:                Nem áll rendelkezésre\n"
+#
+msgid "<--Remove"
+msgstr ""
 #
 msgid "?"
 msgstr ""
@@ -375,23 +412,41 @@ msgstr "Aktív útvonal"
 msgid "Activate Waypoint"
 msgstr "Útpont aktiválása"
 #
+#, fuzzy
+msgid "Active"
+msgstr "Bekapcsola"
+#
 msgid "Active Chart Directories"
 msgstr "Aktív térkép könyvtárak"
+#
+#, fuzzy
+msgid "Active Charts"
+msgstr "Aktív térkép könyvtárak"
+#
+msgid "Add"
+msgstr ""
 #
 msgid "Add Selection"
 msgstr "Kiválasztás hozzáadása"
 #
+msgid "Add new"
+msgstr ""
+#
 msgid "Add this chart to quilt."
 msgstr "Térkép hozzáadása"
 #
-msgid "Additional information"
-msgstr "További információ"
+msgid "Add-->"
+msgstr ""
 #
 msgid "Aground"
 msgstr "Megfeneklett"
 #
 msgid "Aid to Navigation"
 msgstr ""
+#
+#, fuzzy
+msgid "All Active Charts"
+msgstr "Aktív térkép könyvtárak"
 #
 msgid "All files (*.*)|*.*"
 msgstr "Minden fájl (*.*)|*.*"
@@ -450,6 +505,9 @@ msgstr "Alap"
 msgid "Base Station"
 msgstr "Alap állomás"
 #
+msgid "Basic"
+msgstr ""
+#
 msgid "Beacon, Isolated Danger"
 msgstr "Különálló veszélyes hely, fény"
 #
@@ -492,6 +550,9 @@ msgstr "Határok"
 #
 msgid "Brg"
 msgstr "Iránylat"
+#
+msgid "Buddy"
+msgstr ""
 #
 msgid "Bulk carrier maritime"
 msgstr ""
@@ -615,6 +676,16 @@ msgstr "Térkép megjelenítési beállítások"
 msgid "Chart Display Style"
 msgstr "Térkép megjelenítés stílusa"
 #
+#, fuzzy
+msgid "Chart Groups"
+msgstr "Térképek"
+#
+msgid "Chart Groups..."
+msgstr ""
+#
+msgid "Chart Groups...New Group"
+msgstr ""
+#
 msgid "Chart Print"
 msgstr "Térkép nyomtatása"
 #
@@ -626,6 +697,9 @@ msgstr "Térképek"
 #
 msgid "Choose Font..."
 msgstr "Betűtípus választása..."
+#
+msgid "Choose a file"
+msgstr ""
 #
 msgid "Class"
 msgstr "Osztály"
@@ -657,6 +731,9 @@ msgstr "Szín"
 #
 msgid "Colors"
 msgstr "Színek"
+#
+msgid "Combo!"
+msgstr ""
 #
 msgid "Console Legend"
 msgstr ""
@@ -710,6 +787,13 @@ msgstr "Mégsem"
 msgid "D/V"
 msgstr ""
 #
+msgid "DSC"
+msgstr ""
+#
+#, fuzzy
+msgid "DSC Position Report"
+msgstr "Utolsó jelentési idő:"
+#
 msgid "Dark Blue"
 msgstr ""
 #
@@ -747,6 +831,10 @@ msgid "Deep Depth"
 msgstr "Mély"
 #
 #, fuzzy
+msgid "Default"
+msgstr "A betűtípus színe"
+#
+#, fuzzy
 msgid "Default color"
 msgstr "A betűtípus színe"
 #
@@ -756,8 +844,16 @@ msgstr ""
 msgid "Degrees, Minutes, Seconds"
 msgstr ""
 #
+#, fuzzy
+msgid "Delete"
+msgstr "Törlés"
+#
 msgid "Delete All"
 msgstr "Mind törlése"
+#
+#, fuzzy
+msgid "Delete Group"
+msgstr "Útvonal törlése"
 #
 msgid "Delete Mark"
 msgstr "Jel törlése"
@@ -813,8 +909,18 @@ msgstr "Távolság"
 msgid "Distance between rings"
 msgstr "Távolság a gyűrűk között"
 #
+#, fuzzy
+msgid "Distress"
+msgstr "Távolság"
+#
 msgid "Done."
 msgstr "Kész."
+#
+msgid "Dot"
+msgstr ""
+#
+msgid "Dot dash"
+msgstr ""
 #
 msgid "Dredge"
 msgstr "Kotró"
@@ -847,6 +953,9 @@ msgid "ETE"
 msgstr ""
 #
 msgid "ETE/ETD"
+msgstr ""
+#
+msgid "Edit"
 msgstr ""
 #
 msgid "Elapsed time : "
@@ -882,6 +991,9 @@ msgstr "Útvonal vége"
 msgid "Engaged in Fishing"
 msgstr "Halászatot folytat"
 #
+msgid "Enter Group Name"
+msgstr ""
+#
 msgid "Error on Route Upload.  Please check logfiles..."
 msgstr "Hiba történt az útvonal feltöltés közben. Ellenőrizd a naplófájlt..."
 #
@@ -903,6 +1015,10 @@ msgstr "Útvonal kiterjesztése"
 #, fuzzy
 msgid "Extend Track"
 msgstr "Útvonal törlése"
+#
+#, fuzzy
+msgid "Extended"
+msgstr "Útvonal kiterjesztése"
 #
 msgid "ExtendedTideIcon"
 msgstr ""
@@ -962,8 +1078,17 @@ msgstr "GPS/Plotter port"
 msgid "GPSD Data Server"
 msgstr "GPSD adat kiszolgáló"
 #
+msgid "GPSGate Buddy"
+msgstr ""
+#
+msgid "GPX"
+msgstr ""
+#
 msgid "GUI Options"
 msgstr "Grafikus felület beállítása"
+#
+msgid "GUID"
+msgstr ""
 #
 #, fuzzy
 msgid "Gas tanker"
@@ -981,7 +1106,13 @@ msgstr "Menj a jelhez / útponthoz"
 msgid "Go to "
 msgstr "Menj"
 #
+msgid "GpsGate Buddy"
+msgstr ""
+#
 msgid "Green"
+msgstr ""
+#
+msgid "Groups"
 msgstr ""
 #
 msgid "HSC"
@@ -1130,8 +1261,29 @@ msgstr "Fény, szektorokkal"
 msgid "Limit range: NM"
 msgstr "Távolság határolva:tmf"
 #
+#, fuzzy
+msgid "Link"
+msgstr "Kapcsolatok"
+#
+#, fuzzy
+msgid "Link Properties"
+msgstr "Útpont tulajdonságok"
+#
+#, fuzzy
+msgid "Link description"
+msgstr "Leírás"
+#
+msgid "Link not complete, can't be saved."
+msgstr ""
+#
 msgid "Links"
 msgstr "Kapcsolatok"
+#
+msgid "Links are opened for editing."
+msgstr ""
+#
+msgid "Links are opened in the default browser."
+msgstr ""
 #
 msgid "Liquified gas tanker"
 msgstr ""
@@ -1142,11 +1294,17 @@ msgstr "Tartalom listázása"
 msgid "Local @ PC"
 msgstr "Számítógép helyi idő"
 #
+msgid "Local file..."
+msgstr ""
+#
 msgid "Lock all waypoints unless a waypoint property dialog is visible"
 msgstr "Minden útpont zárolása, ha az útpont dialógus nem látható"
 #
 msgid "Long Tow"
 msgstr "Hosszú vontató"
+#
+msgid "Long dash"
+msgstr ""
 #
 msgid "Longitude"
 msgstr "Hosszúság"
@@ -1181,10 +1339,6 @@ msgstr "META objektumok"
 msgid "MMSI"
 msgstr "MMSI"
 #
-#, fuzzy, c-format
-msgid "MMSI:                 %09d\n"
-msgstr "Típus:"
-#
 msgid "M_COVR ID"
 msgstr ""
 #
@@ -1197,14 +1351,8 @@ msgstr ""
 msgid "Mariners Standard"
 msgstr ""
 #
-msgid "Mark Icon"
-msgstr "Jelölés képe"
-#
 msgid "Mark Information"
 msgstr "Útpont információ"
-#
-msgid "Mark Name"
-msgstr "Jel neve"
 #
 msgid "Mark Properties"
 msgstr "Útpont tulajdonságok"
@@ -1310,6 +1458,9 @@ msgstr "Navigációs adatok"
 #
 msgid "Navigational Status:  "
 msgstr "Navigációs státus:"
+#
+msgid "New Group..."
+msgstr ""
 #
 msgid "Next"
 msgstr "Következő"
@@ -1482,6 +1633,10 @@ msgstr ""
 msgid "Position"
 msgstr "Pozíció"
 #
+#, fuzzy
+msgid "Position Report"
+msgstr "Utolsó jelentési idő:"
+#
 #, fuzzy, c-format
 msgid ""
 "Position Report Age:       %3d Sec.\n"
@@ -1525,6 +1680,9 @@ msgstr "Térkép nyomtatása"
 #
 msgid "Printing"
 msgstr "Nyomtatás"
+#
+msgid "Problem discovered"
+msgstr ""
 #
 msgid "Processing Waypoints..."
 msgstr "Útpontok feldolgozása..."
@@ -1670,6 +1828,10 @@ msgstr "Térkép elvétele"
 msgid "Rename Waypoints?"
 msgstr "Átnevezzem az útpontot?"
 #
+#, c-format
+msgid "Report as of: %d:%d UTC "
+msgstr ""
+#
 msgid "Reserved 11"
 msgstr "Fenntartva 11"
 #
@@ -1678,9 +1840,6 @@ msgstr "Fenntartva 12"
 #
 msgid "Reserved 13"
 msgstr "Fenntartva 13"
-#
-msgid "Reserved 14"
-msgstr "Fenntartva 14"
 #
 msgid "Restricted Manoeuvrability"
 msgstr "Korlátozott manőverezhetőség"
@@ -1729,6 +1888,9 @@ msgid "S/V"
 msgstr ""
 #
 msgid "SAR/V"
+msgstr ""
+#
+msgid "SART"
 msgstr ""
 #
 msgid "SOG COG"
@@ -1805,6 +1967,9 @@ msgstr "Váltás nagyobb méretarányú térképre"
 msgid "Shift to Smaller Scale Chart"
 msgstr "Váltás kisebb méretarányú térképre"
 #
+msgid "Short dash"
+msgstr ""
+#
 msgid "Show AIS Targets"
 msgstr "AIS célpontok mutatása"
 #
@@ -1846,9 +2011,6 @@ msgstr "Térképen mutatni"
 msgid "Show Light Descriptions"
 msgstr "Fények leírásának mutatása"
 #
-msgid "Show Name"
-msgstr "Név mutatása"
-#
 msgid "Show Printing Icon"
 msgstr "Nyomtatási ikon mutatása"
 #
@@ -1873,6 +2035,10 @@ msgstr "Útpontok nevét mutatni"
 #
 msgid "Show layers initially"
 msgstr ""
+#
+#, fuzzy
+msgid "Show name"
+msgstr "Név mutatása"
 #
 msgid "Show on chart"
 msgstr "Térképen mutatni"
@@ -1956,6 +2122,9 @@ msgstr ""
 msgid "SoG"
 msgstr ""
 #
+msgid "Solid"
+msgstr ""
+#
 msgid "Spare"
 msgstr ""
 #
@@ -1996,6 +2165,10 @@ msgstr "Bal"
 #
 msgid "Stbd Hand"
 msgstr ""
+#
+#, fuzzy
+msgid "Style:"
+msgstr "Stílus"
 #
 msgid "Supress Alerts for anchored/moored targets"
 msgstr "Risztás elnyomása veszteglő célpontok esetében"
@@ -2058,6 +2231,22 @@ msgstr ""
 msgid "Test Alert Sound"
 msgstr "Risztási hang lejátszása"
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#, fuzzy
+msgid "Testing"
+msgstr "Listázás kapcsolása"
+#
 msgid "Text Element"
 msgstr "Szöveg elem"
 #
@@ -2088,6 +2277,9 @@ msgstr ""
 #
 msgid "This Leg"
 msgstr "Ez a szakasz"
+#
+msgid "This waypoint is part of a layer and can't be edited"
+msgstr ""
 #
 msgid "Tide"
 msgstr "Árapály"
@@ -2188,6 +2380,9 @@ msgstr "Típus:"
 #
 msgid "UN Ship Type:         "
 msgstr "UN hajó típus:"
+#
+msgid "URL"
+msgstr ""
 #
 msgid "UTC"
 msgstr "UTC"
@@ -2335,6 +2530,9 @@ msgstr ""
 msgid "WiFi Options"
 msgstr "WiFi beállítások"
 #
+msgid "Width:"
+msgstr ""
+#
 msgid "Wing In Ground Effect"
 msgstr ""
 #
@@ -2392,6 +2590,11 @@ msgstr ""
 msgid "wgsoy"
 msgstr ""
 #
+msgid "wxFB Website"
+msgstr ""
+#
+#
+#
 #
 #
 #
@@ -2405,6 +2608,13 @@ msgstr ""
 #
 #~ msgid "&Toggle Chart"
 #~ msgstr "Térkép kapcsolása"
+#
+#
+#
+#~ msgid "Additional information"
+#~ msgstr "További információ"
+#
+#
 #
 #
 #
@@ -2431,8 +2641,28 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Import new layer"
 #~ msgstr "Új réteg importálása"
+#
+#
+#
+#, fuzzy
+#~ msgid "MMSI:                 %09d\n"
+#~ msgstr "Típus:"
+#
+#
+#
+#~ msgid "Mark Icon"
+#~ msgstr "Jelölés képe"
+#
+#
+#
+#~ msgid "Mark Name"
+#~ msgstr "Jel neve"
+#
+#
 #
 #
 #~ msgid "New Mark"
@@ -2440,8 +2670,12 @@ msgstr ""
 #
 #
 #
+#
+#
 #~ msgid "Position:               "
 #~ msgstr "Pozíció:"
+#
+#
 #
 #
 #
@@ -2462,6 +2696,12 @@ msgstr ""
 #~ "\n"
 #
 #
+#~ msgid "Reserved 14"
+#~ msgstr "Fenntartva 14"
+#
+#
+#
+#
 #
 #
 #
@@ -2478,18 +2718,6 @@ msgstr ""
 #~ "\n"
 #
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#~ msgid "Toggle Listing"
-#~ msgstr "Listázás kapcsolása"
 #
 #
 #

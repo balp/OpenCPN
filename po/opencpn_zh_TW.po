@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenCPN 2.4.720\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-23 21:15-0500\n"
+"POT-Creation-Date: 2012-03-25 07:34+0200\n"
 "PO-Revision-Date: 2011-07-21 11:02+0800\n"
 "Last-Translator: Eddie Pai <eddie.pai@gmail.com>\n"
 "Language-Team: Eddie Pai <eddie.pai@gmail.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -379,17 +380,50 @@ msgstr "---<<< 警告:  海圖參考座標正確性不佳. >>>---"
 msgid "---<<< Warning:  Chart georef accuracy may be poor. >>>---"
 msgstr "---<<< 警告:  海圖參考座標正確性可能不佳. >>>---"
 #
+msgid "..."
+msgstr ""
+#
+msgid "1 pixel"
+msgstr ""
+#
 #
 msgid "1.0 NM along COG"
 msgstr "1.0 NM along COG"
+#
+msgid "10 pixels"
+msgstr ""
 #
 #
 msgid "2 Color"
 msgstr "2 色"
 #
+msgid "2 pixels"
+msgstr ""
+#
+msgid "3 pixels"
+msgstr ""
+#
 #
 msgid "4 Color"
 msgstr "4 色"
+#
+msgid "4 pixels"
+msgstr ""
+#
+msgid "5 pixels"
+msgstr ""
+#
+msgid "6 pixels"
+msgstr ""
+#
+msgid "7 pixels"
+msgstr ""
+#
+msgid "8 pixels"
+msgstr ""
+#
+msgid "9 pixels"
+msgstr ""
 #
 #
 #, fuzzy
@@ -403,6 +437,9 @@ msgid ""
 "\n"
 "\n"
 msgstr "方位:                無法取得\n"
+#
+msgid "<--Remove"
+msgstr ""
 #
 #
 msgid "?"
@@ -477,20 +514,35 @@ msgid "Activate Waypoint"
 msgstr "啟用轉向點"
 #
 #
+#, fuzzy
+msgid "Active"
+msgstr "啟用"
+#
+#
 msgid "Active Chart Directories"
 msgstr "使用中的海圖目錄"
+#
+#
+#, fuzzy
+msgid "Active Charts"
+msgstr "使用中的海圖目錄"
+#
+msgid "Add"
+msgstr ""
 #
 #
 msgid "Add Selection"
 msgstr "增加選擇項目"
 #
+msgid "Add new"
+msgstr ""
+#
 #
 msgid "Add this chart to quilt."
 msgstr "加入本圖為接圖一部份"
 #
-#
-msgid "Additional information"
-msgstr "其他資訊"
+msgid "Add-->"
+msgstr ""
 #
 #
 msgid "Aground"
@@ -499,6 +551,11 @@ msgstr "擱淺"
 #
 msgid "Aid to Navigation"
 msgstr "導航協助"
+#
+#
+#, fuzzy
+msgid "All Active Charts"
+msgstr "使用中的海圖目錄"
 #
 #
 msgid "All files (*.*)|*.*"
@@ -576,6 +633,9 @@ msgstr "基本"
 msgid "Base Station"
 msgstr "Base Station"
 #
+msgid "Basic"
+msgstr ""
+#
 #
 msgid "Beacon, Isolated Danger"
 msgstr "立標, 危險水域"
@@ -630,6 +690,9 @@ msgstr "邊界"
 #
 msgid "Brg"
 msgstr "船艏向"
+#
+msgid "Buddy"
+msgstr ""
 #
 #
 msgid "Bulk carrier maritime"
@@ -797,6 +860,17 @@ msgid "Chart Display Style"
 msgstr "海圖顯示方式"
 #
 #
+#, fuzzy
+msgid "Chart Groups"
+msgstr "海圖"
+#
+msgid "Chart Groups..."
+msgstr ""
+#
+msgid "Chart Groups...New Group"
+msgstr ""
+#
+#
 msgid "Chart Print"
 msgstr "海圖列印"
 #
@@ -811,6 +885,9 @@ msgstr "海圖"
 #
 msgid "Choose Font..."
 msgstr "選擇字型"
+#
+msgid "Choose a file"
+msgstr ""
 #
 #
 msgid "Class"
@@ -851,6 +928,9 @@ msgstr "顏色:"
 #
 msgid "Colors"
 msgstr "色彩"
+#
+msgid "Combo!"
+msgstr ""
 #
 #
 msgid "Console Legend"
@@ -916,6 +996,16 @@ msgstr "青"
 msgid "D/V"
 msgstr "水下作業船"
 #
+#
+#, fuzzy
+msgid "DSC"
+msgstr "高速船"
+#
+#
+#, fuzzy
+msgid "DSC Position Report"
+msgstr "最近位置發報時間:  "
+#
 msgid "Dark Blue"
 msgstr "暗藍"
 #
@@ -957,6 +1047,11 @@ msgid "Deep Depth"
 msgstr "最大水深"
 #
 #
+#, fuzzy
+msgid "Default"
+msgstr "預設顏色"
+#
+#
 msgid "Default color"
 msgstr "預設顏色"
 #
@@ -967,8 +1062,18 @@ msgid "Degrees, Minutes, Seconds"
 msgstr "度, 分, 秒"
 #
 #
+#, fuzzy
+msgid "Delete"
+msgstr "刪除(&D)"
+#
+#
 msgid "Delete All"
 msgstr "刪除全部"
+#
+#
+#, fuzzy
+msgid "Delete Group"
+msgstr "刪除航路"
 #
 #
 msgid "Delete Mark"
@@ -1043,8 +1148,19 @@ msgid "Distance between rings"
 msgstr "圈距"
 #
 #
+#, fuzzy
+msgid "Distress"
+msgstr "距離"
+#
+#
 msgid "Done."
 msgstr "完成."
+#
+msgid "Dot"
+msgstr ""
+#
+msgid "Dot dash"
+msgstr ""
 #
 #
 msgid "Dredge"
@@ -1089,6 +1205,9 @@ msgstr "ETE"
 msgid "ETE/ETD"
 msgstr "ETE"
 #
+msgid "Edit"
+msgstr ""
+#
 #
 msgid "Elapsed time : "
 msgstr "經過時間 : "
@@ -1131,6 +1250,9 @@ msgstr "結束航路"
 msgid "Engaged in Fishing"
 msgstr "從事捕漁"
 #
+msgid "Enter Group Name"
+msgstr ""
+#
 #
 msgid "Error on Route Upload.  Please check logfiles..."
 msgstr "航路上傳錯誤.  請檢查 logfiles..."
@@ -1158,6 +1280,11 @@ msgstr "延伸航路"
 #
 msgid "Extend Track"
 msgstr "延伸航跡"
+#
+#
+#, fuzzy
+msgid "Extended"
+msgstr "延伸航路"
 #
 #
 msgid "ExtendedTideIcon"
@@ -1236,9 +1363,20 @@ msgstr "GPS/繪圖機 連接埠"
 msgid "GPSD Data Server"
 msgstr "GPSD 伺服器"
 #
+msgid "GPSGate Buddy"
+msgstr ""
+#
+#
+#, fuzzy
+msgid "GPX"
+msgstr "GPS"
+#
 #
 msgid "GUI Options"
 msgstr "圖形介面選項"
+#
+msgid "GUID"
+msgstr ""
 #
 #
 msgid "Gas tanker"
@@ -1260,8 +1398,14 @@ msgstr "前往標記/轉向點"
 msgid "Go to "
 msgstr "前往"
 #
+msgid "GpsGate Buddy"
+msgstr ""
+#
 msgid "Green"
 msgstr "綠"
+#
+msgid "Groups"
+msgstr ""
 #
 #
 msgid "HSC"
@@ -1454,8 +1598,32 @@ msgid "Limit range: NM"
 msgstr "限制範圍: 海浬"
 #
 #
+#, fuzzy
+msgid "Link"
+msgstr "連結"
+#
+#
+#, fuzzy
+msgid "Link Properties"
+msgstr "標記屬性"
+#
+#
+#, fuzzy
+msgid "Link description"
+msgstr "說明"
+#
+msgid "Link not complete, can't be saved."
+msgstr ""
+#
+#
 msgid "Links"
 msgstr "連結"
+#
+msgid "Links are opened for editing."
+msgstr ""
+#
+msgid "Links are opened in the default browser."
+msgstr ""
 #
 #
 msgid "Liquified gas tanker"
@@ -1469,6 +1637,9 @@ msgstr "內容列表"
 msgid "Local @ PC"
 msgstr "Local @ PC"
 #
+msgid "Local file..."
+msgstr ""
+#
 #
 msgid "Lock all waypoints unless a waypoint property dialog is visible"
 msgstr "鎖定所有轉向點, 除非轉向點屬性對話框出現"
@@ -1476,6 +1647,9 @@ msgstr "鎖定所有轉向點, 除非轉向點屬性對話框出現"
 #
 msgid "Long Tow"
 msgstr "長距離拖曳"
+#
+msgid "Long dash"
+msgstr ""
 #
 #
 msgid "Longitude"
@@ -1522,11 +1696,6 @@ msgid "MMSI"
 msgstr "MMSI"
 #
 #
-#, c-format
-msgid "MMSI:                 %09d\n"
-msgstr "MMSI:                 %09d\n"
-#
-#
 msgid "M_COVR ID"
 msgstr "M_COVR ID"
 #
@@ -1542,16 +1711,8 @@ msgid "Mariners Standard"
 msgstr "航海用"
 #
 #
-msgid "Mark Icon"
-msgstr "標記圖示"
-#
-#
 msgid "Mark Information"
 msgstr "標記資訊"
-#
-#
-msgid "Mark Name"
-msgstr "標記名稱"
 #
 #
 msgid "Mark Properties"
@@ -1692,6 +1853,9 @@ msgstr "導航資料"
 #
 msgid "Navigational Status:  "
 msgstr "導航狀態:  "
+#
+msgid "New Group..."
+msgstr ""
 #
 #
 msgid "Next"
@@ -1922,6 +2086,11 @@ msgid "Position"
 msgstr "位置"
 #
 #
+#, fuzzy
+msgid "Position Report"
+msgstr "最近位置發報時間:  "
+#
+#
 #, c-format
 msgid ""
 "Position Report Age:       %3d Sec.\n"
@@ -1981,6 +2150,9 @@ msgstr "列印海圖"
 #
 msgid "Printing"
 msgstr "列印"
+#
+msgid "Problem discovered"
+msgstr ""
 #
 #
 msgid "Processing Waypoints..."
@@ -2172,6 +2344,10 @@ msgstr "從接圖中移除本圖"
 msgid "Rename Waypoints?"
 msgstr "重新命名轉向點?"
 #
+#, c-format
+msgid "Report as of: %d:%d UTC "
+msgstr ""
+#
 #
 msgid "Reserved 11"
 msgstr "Reserved 11"
@@ -2183,10 +2359,6 @@ msgstr "Reserved 12"
 #
 msgid "Reserved 13"
 msgstr "Reserved 13"
-#
-#
-msgid "Reserved 14"
-msgstr "Reserved 14"
 #
 #
 msgid "Restricted Manoeuvrability"
@@ -2252,6 +2424,9 @@ msgstr "帆船"
 #
 msgid "SAR/V"
 msgstr "搜救船"
+#
+msgid "SART"
+msgstr ""
 #
 #
 msgid "SOG COG"
@@ -2349,6 +2524,9 @@ msgstr "顯示大比例尺海圖"
 msgid "Shift to Smaller Scale Chart"
 msgstr "顯示小比例尺海圖"
 #
+msgid "Short dash"
+msgstr ""
+#
 #
 msgid "Show AIS Targets"
 msgstr "顯示 AIS 目標"
@@ -2402,10 +2580,6 @@ msgid "Show Light Descriptions"
 msgstr "顯示燈號說明"
 #
 #
-msgid "Show Name"
-msgstr "顯示名稱"
-#
-#
 msgid "Show Printing Icon"
 msgstr "顯示列印圖示"
 #
@@ -2435,6 +2609,11 @@ msgstr "顯示轉向點名稱"
 #
 msgid "Show layers initially"
 msgstr "啟始時顯示圖層"
+#
+#
+#, fuzzy
+msgid "Show name"
+msgstr "顯示名稱"
 #
 #
 msgid "Show on chart"
@@ -2534,6 +2713,9 @@ msgstr ""
 msgid "SoG"
 msgstr "SoG"
 #
+msgid "Solid"
+msgstr ""
+#
 #
 msgid "Spare"
 msgstr "備用"
@@ -2586,6 +2768,11 @@ msgstr "右舷"
 #
 msgid "Stbd Hand"
 msgstr "右舷側"
+#
+#
+#, fuzzy
+msgid "Style:"
+msgstr "樣式(&S):"
 #
 #
 msgid "Supress Alerts for anchored/moored targets"
@@ -2665,6 +2852,11 @@ msgid "Test Alert Sound"
 msgstr "測試警報聲效"
 #
 #
+#, fuzzy
+msgid "Testing"
+msgstr "設定"
+#
+#
 msgid "Text Element"
 msgstr "文字項目"
 #
@@ -2703,6 +2895,9 @@ msgstr ""
 #
 msgid "This Leg"
 msgstr "本區段"
+#
+msgid "This waypoint is part of a layer and can't be edited"
+msgstr ""
 #
 #
 msgid "Tide"
@@ -2834,6 +3029,9 @@ msgstr "ETA:                  "
 #
 msgid "UN Ship Type:         "
 msgstr "UN Ship Type:         "
+#
+msgid "URL"
+msgstr ""
 #
 #
 msgid "UTC"
@@ -3020,6 +3218,9 @@ msgstr "白"
 msgid "WiFi Options"
 msgstr "WiFi 選項"
 #
+msgid "Width:"
+msgstr ""
+#
 #
 msgid "Wing In Ground Effect"
 msgstr "翼地效應"
@@ -3097,6 +3298,11 @@ msgstr "wgsox"
 msgid "wgsoy"
 msgstr "wgsoy"
 #
+msgid "wxFB Website"
+msgstr ""
+#
+#
+#
 #
 #
 #
@@ -3113,8 +3319,12 @@ msgstr "wgsoy"
 #
 #
 #
+#
+#
 #~ msgid "   PlugInManager: Cannot load library: "
 #~ msgstr "   插件管理員: 無法載入程式庫: "
+#
+#
 #
 #
 #
@@ -3127,8 +3337,12 @@ msgstr "wgsoy"
 #
 #
 #
+#
+#
 #~ msgid "   PlugInManager: Cannot load symbol destroy_pi: "
 #~ msgstr "   插件管理員: 無法載入 symbol destroy_pi: "
+#
+#
 #
 #
 #
@@ -3161,8 +3375,12 @@ msgstr "wgsoy"
 #
 #
 #
+#
+#
 #~ msgid "&Delete All Routes..."
 #~ msgstr "刪除所有航路(&D)..."
+#
+#
 #
 #
 #
@@ -3194,8 +3412,12 @@ msgstr "wgsoy"
 #
 #
 #
+#
+#
 #~ msgid "&Toggle Chart"
 #~ msgstr "(&T)切換海圖顯示"
+#
+#
 #
 #
 #
@@ -3217,6 +3439,14 @@ msgstr "wgsoy"
 #
 #
 #
+#~ msgid "Additional information"
+#~ msgstr "其他資訊"
+#
+#
+#
+#
+#
+#
 #
 #
 #
@@ -3228,8 +3458,12 @@ msgstr "wgsoy"
 #
 #
 #
+#
+#
 #~ msgid "BaseClassCommonName"
 #~ msgstr "BaseClassCommonName"
+#
+#
 #
 #
 #
@@ -3262,8 +3496,12 @@ msgstr "wgsoy"
 #
 #
 #
+#
+#
 #~ msgid "CM93 Offset On"
 #~ msgstr "CM93 Offset On"
+#
+#
 #
 #
 #
@@ -3296,8 +3534,12 @@ msgstr "wgsoy"
 #
 #
 #
+#
+#
 #~ msgid "CM93 Offset Tool....."
 #~ msgstr "CM93 Offset Tool....."
+#
+#
 #
 #
 #
@@ -3330,8 +3572,12 @@ msgstr "wgsoy"
 #
 #
 #
+#
+#
 #~ msgid "CallSign:  "
 #~ msgstr "CallSign:  "
+#
+#
 #
 #
 #
@@ -3365,9 +3611,13 @@ msgstr "wgsoy"
 #
 #
 #
+#
+#
 #, fuzzy
 #~ msgid "Cell Y Offset"
 #~ msgstr "設定 CM93 Offset"
+#
+#
 #
 #
 #
@@ -3378,6 +3628,26 @@ msgstr "wgsoy"
 #
 #
 #
+#
+#~ msgid "MMSI:                 %09d\n"
+#~ msgstr "MMSI:                 %09d\n"
+#
+#
+#
+#
+#~ msgid "Mark Icon"
+#~ msgstr "標記圖示"
+#
+#
+#
+#
+#~ msgid "Mark Name"
+#~ msgstr "標記名稱"
+#
+#
+#
+#
+#
 #~ msgid "New Mark"
 #~ msgstr "新標記"
 #
@@ -3385,8 +3655,12 @@ msgstr "wgsoy"
 #
 #
 #
+#
+#
 #~ msgid "OpenCPN PlugIn Base Class"
 #~ msgstr "OpenCPN 插件基礎Class"
+#
+#
 #
 #
 #
@@ -3403,8 +3677,12 @@ msgstr "wgsoy"
 #
 #
 #
+#
+#
 #~ msgid "PlugInManager searching for PlugIns in location "
 #~ msgstr "插件管理員搜尋插件 "
+#
+#
 #
 #
 #
@@ -3417,8 +3695,12 @@ msgstr "wgsoy"
 #
 #
 #
+#
+#
 #~ msgid "PlugInManager: Initializing PlugIn: "
 #~ msgstr "插件管理員: 起始插件: "
+#
+#
 #
 #
 #
@@ -3431,8 +3713,12 @@ msgstr "wgsoy"
 #
 #
 #
+#
+#
 #~ msgid "PlugInManager: UnLoading PlugIn: "
 #~ msgstr "插件管理員: 卸載插件: "
+#
+#
 #
 #
 #
@@ -3444,5 +3730,12 @@ msgstr "wgsoy"
 #
 #
 #
+#
+#
 #~ msgid "Position:               "
 #~ msgstr "位置:               "
+#
+#
+#
+#~ msgid "Reserved 14"
+#~ msgstr "Reserved 14"

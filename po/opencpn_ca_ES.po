@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn 2.4.423\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-23 21:15-0500\n"
+"POT-Creation-Date: 2012-03-25 07:34+0200\n"
 "PO-Revision-Date: 2011-12-13 23:10+0100\n"
 "Last-Translator: \n"
 "Language-Team: SMN\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -314,14 +315,47 @@ msgstr "---<<< Avís:  Escassa precisió del georef de la carta. >>>---"
 msgid "---<<< Warning:  Chart georef accuracy may be poor. >>>---"
 msgstr "---<<< Avís:  La precisió georef de la carta pot ser escassa. >>>---"
 #
+msgid "..."
+msgstr ""
+#
+msgid "1 pixel"
+msgstr ""
+#
 msgid "1.0 NM along COG"
 msgstr "1,0 MN sobre Rumb COG"
+#
+msgid "10 pixels"
+msgstr ""
 #
 msgid "2 Color"
 msgstr "2 Colors"
 #
+msgid "2 pixels"
+msgstr ""
+#
+msgid "3 pixels"
+msgstr ""
+#
 msgid "4 Color"
 msgstr "4 Colors"
+#
+msgid "4 pixels"
+msgstr ""
+#
+msgid "5 pixels"
+msgstr ""
+#
+msgid "6 pixels"
+msgstr ""
+#
+msgid "7 pixels"
+msgstr ""
+#
+msgid "8 pixels"
+msgstr ""
+#
+msgid "9 pixels"
+msgstr ""
 #
 #, fuzzy
 msgid ":               "
@@ -333,6 +367,9 @@ msgid ""
 "\n"
 "\n"
 msgstr "Rumb:                   No Disponible\n"
+#
+msgid "<--Remove"
+msgstr ""
 #
 msgid "?"
 msgstr "?"
@@ -388,23 +425,41 @@ msgstr "Activació de la Ruta"
 msgid "Activate Waypoint"
 msgstr "Activació d'un Waypoint"
 #
+#, fuzzy
+msgid "Active"
+msgstr "Activació"
+#
 msgid "Active Chart Directories"
 msgstr "Directoris Actius de Cartes"
+#
+#, fuzzy
+msgid "Active Charts"
+msgstr "Directoris Actius de Cartes"
+#
+msgid "Add"
+msgstr ""
 #
 msgid "Add Selection"
 msgstr "Afegir la Selecció"
 #
+msgid "Add new"
+msgstr ""
+#
 msgid "Add this chart to quilt."
 msgstr "Afegiu aquesta carta al visor"
 #
-msgid "Additional information"
-msgstr "Informació addicional"
+msgid "Add-->"
+msgstr ""
 #
 msgid "Aground"
 msgstr "Embarrancat"
 #
 msgid "Aid to Navigation"
 msgstr "Ajut a la Navegació"
+#
+#, fuzzy
+msgid "All Active Charts"
+msgstr "Directoris Actius de Cartes"
 #
 msgid "All files (*.*)|*.*"
 msgstr "Tots els arxius (*.*)|*.*"
@@ -463,6 +518,9 @@ msgstr "E.Base"
 msgid "Base Station"
 msgstr "Estació Base"
 #
+msgid "Basic"
+msgstr ""
+#
 msgid "Beacon, Isolated Danger"
 msgstr "Radiofar, Perill Aïllat"
 #
@@ -505,6 +563,9 @@ msgstr "Fronteres"
 #
 msgid "Brg"
 msgstr "Demora"
+#
+msgid "Buddy"
+msgstr ""
 #
 msgid "Bulk carrier maritime"
 msgstr ""
@@ -632,6 +693,16 @@ msgstr "Opcions en la Presentació de la Carta"
 msgid "Chart Display Style"
 msgstr "Estil de Mostrar la Cartografia"
 #
+#, fuzzy
+msgid "Chart Groups"
+msgstr "Cartes"
+#
+msgid "Chart Groups..."
+msgstr ""
+#
+msgid "Chart Groups...New Group"
+msgstr ""
+#
 msgid "Chart Print"
 msgstr "Impressió de la carta"
 #
@@ -643,6 +714,9 @@ msgstr "Cartes"
 #
 msgid "Choose Font..."
 msgstr "Tria del tipus de lletra..."
+#
+msgid "Choose a file"
+msgstr ""
 #
 msgid "Class"
 msgstr "Classe"
@@ -674,6 +748,9 @@ msgstr "C&olor:"
 #
 msgid "Colors"
 msgstr "Colors"
+#
+msgid "Combo!"
+msgstr ""
 #
 msgid "Console Legend"
 msgstr "Lectures a Consola"
@@ -727,6 +804,14 @@ msgstr "Cancel·lar"
 msgid "D/V"
 msgstr "D/V"
 #
+#, fuzzy
+msgid "DSC"
+msgstr "HSC"
+#
+#, fuzzy
+msgid "DSC Position Report"
+msgstr "Hora del Darrer Informe:"
+#
 msgid "Dark Blue"
 msgstr ""
 #
@@ -764,6 +849,10 @@ msgid "Deep Depth"
 msgstr "Aigües Profundes"
 #
 #, fuzzy
+msgid "Default"
+msgstr "El color de la lletra"
+#
+#, fuzzy
 msgid "Default color"
 msgstr "El color de la lletra"
 #
@@ -773,8 +862,16 @@ msgstr ""
 msgid "Degrees, Minutes, Seconds"
 msgstr ""
 #
+#, fuzzy
+msgid "Delete"
+msgstr " [&D] Esborrar"
+#
 msgid "Delete All"
 msgstr "Esborrar-ho Tot"
+#
+#, fuzzy
+msgid "Delete Group"
+msgstr "Esborrar la Ruta"
 #
 msgid "Delete Mark"
 msgstr "Esborrar la Marca"
@@ -830,8 +927,18 @@ msgstr "Distància"
 msgid "Distance between rings"
 msgstr "Distància entre anells"
 #
+#, fuzzy
+msgid "Distress"
+msgstr "Distància"
+#
 msgid "Done."
 msgstr "Fet"
+#
+msgid "Dot"
+msgstr ""
+#
+msgid "Dot dash"
+msgstr ""
 #
 msgid "Dredge"
 msgstr "Draga"
@@ -867,6 +974,9 @@ msgstr ""
 msgid "ETE/ETD"
 msgstr ""
 #
+msgid "Edit"
+msgstr ""
+#
 msgid "Elapsed time : "
 msgstr "Temps passat:"
 #
@@ -900,6 +1010,9 @@ msgstr "Final de Ruta"
 msgid "Engaged in Fishing"
 msgstr "Pesquer Enfeinat"
 #
+msgid "Enter Group Name"
+msgstr ""
+#
 msgid "Error on Route Upload.  Please check logfiles..."
 msgstr "Error en Carregar la Ruta. Comprovi els arxius d'incidència..."
 #
@@ -921,6 +1034,10 @@ msgstr "Ampliació de la Ruta"
 #, fuzzy
 msgid "Extend Track"
 msgstr "Esborrar la Derrota"
+#
+#, fuzzy
+msgid "Extended"
+msgstr "Ampliació de la Ruta"
 #
 msgid "ExtendedTideIcon"
 msgstr "Icona de Marea Estesa"
@@ -980,8 +1097,18 @@ msgstr "Port del GPS/Ploter"
 msgid "GPSD Data Server"
 msgstr "Servidor de Dades GPSD"
 #
+msgid "GPSGate Buddy"
+msgstr ""
+#
+#, fuzzy
+msgid "GPX"
+msgstr "GPS"
+#
 msgid "GUI Options"
 msgstr "Funcionalitats d'Interfícies Opcionals"
+#
+msgid "GUID"
+msgstr ""
 #
 #, fuzzy
 msgid "Gas tanker"
@@ -999,7 +1126,13 @@ msgstr "Cap a la Marca/Wpt"
 msgid "Go to "
 msgstr "Anant a  "
 #
+msgid "GpsGate Buddy"
+msgstr ""
+#
 msgid "Green"
+msgstr ""
+#
+msgid "Groups"
 msgstr ""
 #
 msgid "HSC"
@@ -1147,8 +1280,29 @@ msgstr "Far amb Sectors"
 msgid "Limit range: NM"
 msgstr "Distància límit: MN"
 #
+#, fuzzy
+msgid "Link"
+msgstr "Enllaços"
+#
+#, fuzzy
+msgid "Link Properties"
+msgstr "Propietats de la Marca"
+#
+#, fuzzy
+msgid "Link description"
+msgstr "Descripció"
+#
+msgid "Link not complete, can't be saved."
+msgstr ""
+#
 msgid "Links"
 msgstr "Enllaços"
+#
+msgid "Links are opened for editing."
+msgstr ""
+#
+msgid "Links are opened in the default browser."
+msgstr ""
 #
 msgid "Liquified gas tanker"
 msgstr ""
@@ -1159,6 +1313,9 @@ msgstr "Llista contingut"
 msgid "Local @ PC"
 msgstr "La local del PC"
 #
+msgid "Local file..."
+msgstr ""
+#
 msgid "Lock all waypoints unless a waypoint property dialog is visible"
 msgstr ""
 "Bloca tots els waypoints a menys que estigui visible la finestra de "
@@ -1166,6 +1323,9 @@ msgstr ""
 #
 msgid "Long Tow"
 msgstr "Remolcador Llarg"
+#
+msgid "Long dash"
+msgstr ""
 #
 msgid "Longitude"
 msgstr "Longitud"
@@ -1200,10 +1360,6 @@ msgstr "Mostra Objectes META"
 msgid "MMSI"
 msgstr "MMSI"
 #
-#, fuzzy, c-format
-msgid "MMSI:                 %09d\n"
-msgstr "Tipus:                "
-#
 msgid "M_COVR ID"
 msgstr "ID M_COVR"
 #
@@ -1216,14 +1372,8 @@ msgstr "Estàndards de Marina"
 msgid "Mariners Standard"
 msgstr "Estàndards de Marina"
 #
-msgid "Mark Icon"
-msgstr "Icona de la Marca"
-#
 msgid "Mark Information"
 msgstr "Informació de la Marca"
-#
-msgid "Mark Name"
-msgstr "Nom de la Marca"
 #
 msgid "Mark Properties"
 msgstr "Propietats de la Marca"
@@ -1329,6 +1479,9 @@ msgstr "Dades de Navegació"
 #
 msgid "Navigational Status:  "
 msgstr "Estat de Navegació:   "
+#
+msgid "New Group..."
+msgstr ""
 #
 msgid "Next"
 msgstr "Proper"
@@ -1502,6 +1655,10 @@ msgstr "Llanxa del Port"
 msgid "Position"
 msgstr "Posició"
 #
+#, fuzzy
+msgid "Position Report"
+msgstr "Hora del Darrer Informe:"
+#
 #, fuzzy, c-format
 msgid ""
 "Position Report Age:       %3d Sec.\n"
@@ -1550,6 +1707,9 @@ msgstr "Imprimir la Carta"
 #
 msgid "Printing"
 msgstr "Impressió"
+#
+msgid "Problem discovered"
+msgstr ""
 #
 msgid "Processing Waypoints..."
 msgstr "Processant els Waypoints..."
@@ -1697,6 +1857,10 @@ msgstr "Treure aquesta carta del visor"
 msgid "Rename Waypoints?"
 msgstr "Reanomenar Waypoints?"
 #
+#, c-format
+msgid "Report as of: %d:%d UTC "
+msgstr ""
+#
 msgid "Reserved 11"
 msgstr "Reservat 11"
 #
@@ -1705,9 +1869,6 @@ msgstr "Reservat 12"
 #
 msgid "Reserved 13"
 msgstr "Reservat 13"
-#
-msgid "Reserved 14"
-msgstr "Reservat 14"
 #
 msgid "Restricted Manoeuvrability"
 msgstr "Maniobrabilitat Restringida"
@@ -1757,6 +1918,9 @@ msgstr "S/V"
 #
 msgid "SAR/V"
 msgstr "SAR/V"
+#
+msgid "SART"
+msgstr ""
 #
 msgid "SOG COG"
 msgstr "SOG COG"
@@ -1832,6 +1996,9 @@ msgstr "Passar a una Escala de Carta Major"
 msgid "Shift to Smaller Scale Chart"
 msgstr "Passar a una Escala de Carta Menor"
 #
+msgid "Short dash"
+msgstr ""
+#
 msgid "Show AIS Targets"
 msgstr "Mostrar-hi els Objectes AIS"
 #
@@ -1873,9 +2040,6 @@ msgstr "Mostrar a la carta"
 msgid "Show Light Descriptions"
 msgstr "Mostra la Descripció dels Fars"
 #
-msgid "Show Name"
-msgstr "Mostrar el Nom"
-#
 msgid "Show Printing Icon"
 msgstr "Mostra la Icona d'Impressió"
 #
@@ -1900,6 +2064,10 @@ msgstr "Mostrar noms de WPT"
 #
 msgid "Show layers initially"
 msgstr ""
+#
+#, fuzzy
+msgid "Show name"
+msgstr "Mostrar el Nom"
 #
 msgid "Show on chart"
 msgstr "Mostrar a la carta"
@@ -1983,6 +2151,9 @@ msgstr ""
 msgid "SoG"
 msgstr "SoG"
 #
+msgid "Solid"
+msgstr ""
+#
 msgid "Spare"
 msgstr "Lanxa de Respecte"
 #
@@ -2023,6 +2194,10 @@ msgstr "Estrb"
 #
 msgid "Stbd Hand"
 msgstr "Mà Estribor"
+#
+#, fuzzy
+msgid "Style:"
+msgstr "E&stil"
 #
 msgid "Supress Alerts for anchored/moored targets"
 msgstr "Prescindir d'Alertes d'objectes ancorats/amarrats"
@@ -2085,6 +2260,12 @@ msgstr "Llanxa de Serveis"
 msgid "Test Alert Sound"
 msgstr "Comprovació del So d'Alerta"
 #
+#
+#
+#, fuzzy
+msgid "Testing"
+msgstr "Commu&tar la Llista"
+#
 msgid "Text Element"
 msgstr "Element de Text"
 #
@@ -2115,6 +2296,9 @@ msgstr ""
 #
 msgid "This Leg"
 msgstr "Trajecte Viu"
+#
+msgid "This waypoint is part of a layer and can't be edited"
+msgstr ""
 #
 msgid "Tide"
 msgstr "Marea "
@@ -2216,6 +2400,9 @@ msgstr "Tipus:                "
 #
 msgid "UN Ship Type:         "
 msgstr "Tipus ONU de Vaixell: "
+#
+msgid "URL"
+msgstr ""
 #
 msgid "UTC"
 msgstr "UTC"
@@ -2365,6 +2552,9 @@ msgstr ""
 msgid "WiFi Options"
 msgstr "Opcions WiFi"
 #
+msgid "Width:"
+msgstr ""
+#
 msgid "Wing In Ground Effect"
 msgstr "Ala en Efecte Terra"
 #
@@ -2426,6 +2616,11 @@ msgstr "wgsox"
 msgid "wgsoy"
 msgstr "wgsoy"
 #
+msgid "wxFB Website"
+msgstr ""
+#
+#
+#
 #
 #~ msgid ""
 #~ "\n"
@@ -2437,52 +2632,99 @@ msgstr "wgsoy"
 #~ "\n"
 #
 #
+#
+#
 #~ msgid "   PlugInManager: Cannot load library: "
 #~ msgstr "   Gestor de Mòduls: No es pot carregar la biblioteca: "
+#
+#
 #
 #
 #~ msgid "   PlugInManager: Cannot load symbol create_pi: "
 #~ msgstr "   Gestor de Mòduls: No es pot carregar el símbol creat_pi: "
 #
 #
+#
+#
 #~ msgid "   PlugInManager: Cannot load symbol destroy_pi: "
 #~ msgstr "   Gestor de Mòduls: No es pot carregar el símbol destruir_pi:"
+#
+#
 #
 #
 #~ msgid "&Toggle Chart"
 #~ msgstr "Commu&tar la Carta"
 #
 #
+#
+#~ msgid "Additional information"
+#~ msgstr "Informació addicional"
+#
+#
+#
+#
 #~ msgid "Attempting to load libgps.so"
 #~ msgstr "Intentant carregar libgps.so"
+#
+#
 #
 #
 #~ msgid "BaseClassCommonName"
 #~ msgstr "NomHabitual per ClasseBàsica"
 #
 #
+#
+#
 #~ msgid "Exit OpenCPN"
 #~ msgstr "Tanca l'OpenCPN"
+#
+#
 #
 #
 #~ msgid "Failed to load libgps.so"
 #~ msgstr "Fracàs en carregar libgps.so"
 #
 #
+#
+#
 #~ msgid "Failed to load libgps.so.19"
 #~ msgstr "Fracàs en carregar libgps.so.19"
+#
+#
 #
 #
 #~ msgid "Import new layer"
 #~ msgstr "Importar noves capes"
 #
 #
+#
+#, fuzzy
+#~ msgid "MMSI:                 %09d\n"
+#~ msgstr "Tipus:                "
+#
+#
+#
+#~ msgid "Mark Icon"
+#~ msgstr "Icona de la Marca"
+#
+#
+#
+#~ msgid "Mark Name"
+#~ msgstr "Nom de la Marca"
+#
+#
+#
+#
 #~ msgid "New Mark"
 #~ msgstr "Marca Nova"
 #
 #
+#
+#
 #~ msgid "OpenCPN PlugIn Base Class"
 #~ msgstr "Mòdul de l'OpenCPN de Classe Bàsica"
+#
+#
 #
 #
 #~ msgid ""
@@ -2493,28 +2735,42 @@ msgstr "wgsoy"
 #~ "El Gestor de Mòduls ha creat aquesta classe bàsica"
 #
 #
+#
+#
 #~ msgid "OpenCPN S57 SENC File Load"
 #~ msgstr "Càrrega de l'Arxiu S57 SENC de l'OpenCPN"
+#
+#
 #
 #
 #~ msgid "PlugInManager searching for PlugIns in location "
 #~ msgstr "El Gestor de Mòduls de Programari cerca mòduls en el lloc "
 #
 #
+#
+#
 #~ msgid "PlugInManager: Deactivating PlugIn: "
 #~ msgstr "Gestor de Mòduls: Es Desactiva el Mòdul:"
+#
+#
 #
 #
 #~ msgid "PlugInManager: Initializing PlugIn: "
 #~ msgstr "Gestor de Mòduls: S'inicialitza el Mòdul:"
 #
 #
+#
+#
 #~ msgid "PlugInManager: Loading PlugIn: "
 #~ msgstr "Gestor de Mòduls: Es Carrega el Mòdul: "
 #
 #
+#
+#
 #~ msgid "PlugInManager: UnLoading PlugIn: "
 #~ msgstr "Gestor de Mòduls: Es descarrega el Mòdul:"
+#
+#
 #
 #
 #~ msgid "PlugInManager: Unloading PlugIn with invalid API version %d.%d: "
@@ -2522,8 +2778,12 @@ msgstr "wgsoy"
 #~ "Gestor de Mòduls: Es descarrega Mòdul amb una versió d'API invàlida %d.%d: "
 #
 #
+#
+#
 #~ msgid "Position:               "
 #~ msgstr "Posició:                "
+#
+#
 #
 #
 #~ msgid ""
@@ -2534,8 +2794,10 @@ msgstr "wgsoy"
 #~ "\n"
 #
 #
-#~ msgid "Toggle Listing"
-#~ msgstr "Commu&tar la Llista"
+#~ msgid "Reserved 14"
+#~ msgstr "Reservat 14"
+#
+#
 #
 #
 #~ msgid "Toggle Names"

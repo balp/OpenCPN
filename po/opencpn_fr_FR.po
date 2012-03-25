@@ -2,10 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-23 21:15-0500\n"
+"POT-Creation-Date: 2012-03-25 07:34+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gilletarom <gilletarom@netpratique.fr>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -386,16 +387,49 @@ msgstr ""
 "---<<< Alerte :  La qualité du géoréférencement de la carte est peut-être "
 "insuffisante. >>>---"
 #
+msgid "..."
+msgstr ""
+#
+msgid "1 pixel"
+msgstr ""
+#
 msgid "1.0 NM along COG"
 msgstr "1 NM avec le cap du COG"
+#
+msgid "10 pixels"
+msgstr ""
 #
 #
 msgid "2 Color"
 msgstr "2 Couleurs"
 #
+msgid "2 pixels"
+msgstr ""
+#
+msgid "3 pixels"
+msgstr ""
+#
 #
 msgid "4 Color"
 msgstr "4 Couleurs"
+#
+msgid "4 pixels"
+msgstr ""
+#
+msgid "5 pixels"
+msgstr ""
+#
+msgid "6 pixels"
+msgstr ""
+#
+msgid "7 pixels"
+msgstr ""
+#
+msgid "8 pixels"
+msgstr ""
+#
+msgid "9 pixels"
+msgstr ""
 #
 #
 #, fuzzy
@@ -408,6 +442,9 @@ msgid ""
 "\n"
 "\n"
 msgstr "Cible relevée au   : Indisponible\n"
+#
+msgid "<--Remove"
+msgstr ""
 #
 msgid "?"
 msgstr "?"
@@ -479,20 +516,35 @@ msgid "Activate Waypoint"
 msgstr "Waypoint : Activer"
 #
 #
+#, fuzzy
+msgid "Active"
+msgstr "Activer"
+#
+#
 msgid "Active Chart Directories"
 msgstr "Répertoires actifs des cartes"
+#
+#
+#, fuzzy
+msgid "Active Charts"
+msgstr "Répertoires actifs des cartes"
+#
+msgid "Add"
+msgstr ""
 #
 #
 msgid "Add Selection"
 msgstr "Ajouter le répertoire sélectionné"
 #
+msgid "Add new"
+msgstr ""
+#
 #
 msgid "Add this chart to quilt."
 msgstr "Mosaïque des cartes : Ajouter cette carte"
 #
-#
-msgid "Additional information"
-msgstr "Information complémentaire"
+msgid "Add-->"
+msgstr ""
 #
 # AIS
 msgid "Aground"
@@ -501,6 +553,11 @@ msgstr "Echoué"
 #
 msgid "Aid to Navigation"
 msgstr "Aide à la navigation"
+#
+#
+#, fuzzy
+msgid "All Active Charts"
+msgstr "Répertoires actifs des cartes"
 #
 #
 msgid "All files (*.*)|*.*"
@@ -570,6 +627,9 @@ msgstr "Base"
 msgid "Base Station"
 msgstr "Station  fixe"
 #
+msgid "Basic"
+msgstr ""
+#
 msgid "Beacon, Isolated Danger"
 msgstr "Balise, danger isolé"
 #
@@ -613,6 +673,9 @@ msgstr "Limites de zones de cartes"
 #
 msgid "Brg"
 msgstr "Relèvement"
+#
+msgid "Buddy"
+msgstr ""
 #
 msgid "Bulk carrier maritime"
 msgstr "Vraquier maritime"
@@ -760,6 +823,17 @@ msgid "Chart Display Style"
 msgstr "Options du style des cartes"
 #
 #
+#, fuzzy
+msgid "Chart Groups"
+msgstr "Cartes"
+#
+msgid "Chart Groups..."
+msgstr ""
+#
+msgid "Chart Groups...New Group"
+msgstr ""
+#
+#
 msgid "Chart Print"
 msgstr "Imprimer la carte"
 #
@@ -774,6 +848,9 @@ msgstr "Cartes"
 #
 msgid "Choose Font..."
 msgstr "Choix de police ..."
+#
+msgid "Choose a file"
+msgstr ""
 #
 #
 msgid "Class"
@@ -813,6 +890,9 @@ msgstr "Couleur :"
 #
 msgid "Colors"
 msgstr "Nombre de zones colorées"
+#
+msgid "Combo!"
+msgstr ""
 #
 msgid "Console Legend"
 msgstr "Légende de la console"
@@ -870,6 +950,14 @@ msgstr "Cyan"
 msgid "D/V"
 msgstr "Plong."
 #
+#, fuzzy
+msgid "DSC"
+msgstr "grd. vit."
+#
+#, fuzzy
+msgid "DSC Position Report"
+msgstr "Heure du dernier rapport   : "
+#
 msgid "Dark Blue"
 msgstr "Bleu foncé"
 #
@@ -911,6 +999,11 @@ msgid "Deep Depth"
 msgstr "Eaux profondes"
 #
 # Toolbox/Langue
+#, fuzzy
+msgid "Default"
+msgstr "Couleur par défaut"
+#
+# Toolbox/Langue
 msgid "Default color"
 msgstr "Couleur par défaut"
 #
@@ -921,8 +1014,18 @@ msgid "Degrees, Minutes, Seconds"
 msgstr "Degrés, Minutes, Secondes"
 #
 #
+#, fuzzy
+msgid "Delete"
+msgstr "&Supprimer"
+#
+#
 msgid "Delete All"
 msgstr "Supprimer tout"
+#
+# Menu contextuel : Route
+#, fuzzy
+msgid "Delete Group"
+msgstr "Route : Supprimer"
 #
 #
 msgid "Delete Mark"
@@ -995,8 +1098,19 @@ msgstr "Distance totale"
 msgid "Distance between rings"
 msgstr "Distance entre les cercles"
 #
+#
+#, fuzzy
+msgid "Distress"
+msgstr "Distance totale"
+#
 msgid "Done."
 msgstr "C'est fait"
+#
+msgid "Dot"
+msgstr ""
+#
+msgid "Dot dash"
+msgstr ""
 #
 msgid "Dredge"
 msgstr "Drague"
@@ -1037,6 +1151,9 @@ msgstr "ETE"
 msgid "ETE/ETD"
 msgstr "ETE"
 #
+msgid "Edit"
+msgstr ""
+#
 msgid "Elapsed time : "
 msgstr "Durée écoulée :"
 #
@@ -1075,6 +1192,9 @@ msgstr "Route : Terminer"
 msgid "Engaged in Fishing"
 msgstr "Pêche en cours"
 #
+msgid "Enter Group Name"
+msgstr ""
+#
 msgid "Error on Route Upload.  Please check logfiles..."
 msgstr ""
 "Route : Erreur durant le chargement. Veuillez lire le fichier opencpn.log ..."
@@ -1102,6 +1222,11 @@ msgstr "Etendre la route"
 # Menu contextuel : Trace
 msgid "Extend Track"
 msgstr "Trace : Etendre"
+#
+#
+#, fuzzy
+msgid "Extended"
+msgstr "Etendre la route"
 #
 msgid "ExtendedTideIcon"
 msgstr "Hauteur de marée ( sous l'indicateur)"
@@ -1168,9 +1293,20 @@ msgstr "port / GPS traceur"
 msgid "GPSD Data Server"
 msgstr "Serveur de données GPS différentiel"
 #
+msgid "GPSGate Buddy"
+msgstr ""
+#
+#
+#, fuzzy
+msgid "GPX"
+msgstr "GPS"
+#
 #
 msgid "GUI Options"
 msgstr "Options propres à l'utilisateur"
+#
+msgid "GUID"
+msgstr ""
 #
 msgid "Gas tanker"
 msgstr "Navire gazier"
@@ -1190,8 +1326,14 @@ msgstr "Aller à cette marque/WP (avec route)"
 msgid "Go to "
 msgstr "Aller au curseur (avec route)"
 #
+msgid "GpsGate Buddy"
+msgstr ""
+#
 msgid "Green"
 msgstr "Vert"
+#
+msgid "Groups"
+msgstr ""
 #
 msgid "HSC"
 msgstr "grd. vit."
@@ -1364,8 +1506,32 @@ msgid "Limit range: NM"
 msgstr "Distance limite : NM"
 #
 #
+#, fuzzy
+msgid "Link"
+msgstr "Liens"
+#
+# Menu contextuel : Waypoint/marque
+#, fuzzy
+msgid "Link Properties"
+msgstr "Waypoint/marque : Propriétés ..."
+#
+#
+#, fuzzy
+msgid "Link description"
+msgstr "Description"
+#
+msgid "Link not complete, can't be saved."
+msgstr ""
+#
+#
 msgid "Links"
 msgstr "Liens"
+#
+msgid "Links are opened for editing."
+msgstr ""
+#
+msgid "Links are opened in the default browser."
+msgstr ""
 #
 msgid "Liquified gas tanker"
 msgstr "Navire-citerne pour gaz liquéfié"
@@ -1377,6 +1543,9 @@ msgstr "---> Routes/Traces/WP"
 msgid "Local @ PC"
 msgstr "Heure du PC"
 #
+msgid "Local file..."
+msgstr ""
+#
 #
 msgid "Lock all waypoints unless a waypoint property dialog is visible"
 msgstr ""
@@ -1385,6 +1554,9 @@ msgstr ""
 #
 msgid "Long Tow"
 msgstr "Remorquage long"
+#
+msgid "Long dash"
+msgstr ""
 #
 #
 msgid "Longitude"
@@ -1423,10 +1595,6 @@ msgstr "Méta-objets"
 msgid "MMSI"
 msgstr "MMSI"
 #
-#, c-format
-msgid "MMSI:                 %09d\n"
-msgstr "MMSI:                 %09d\n"
-#
 msgid "M_COVR ID"
 msgstr "M_COVRD ID"
 #
@@ -1441,17 +1609,9 @@ msgstr "Objets affichables"
 msgid "Mariners Standard"
 msgstr "Objets affichables"
 #
-#
-msgid "Mark Icon"
-msgstr "Icône de la marque"
-#
 # Menu contextuel : WWaypoint/marque
 msgid "Mark Information"
 msgstr "Propriétés de la marque"
-#
-#
-msgid "Mark Name"
-msgstr "Nom de la marque"
 #
 # Menu contextuel : Waypoint/marque
 msgid "Mark Properties"
@@ -1580,6 +1740,9 @@ msgstr "Données de navigation"
 #
 msgid "Navigational Status:  "
 msgstr "Statut de navigation: "
+#
+msgid "New Group..."
+msgstr ""
 #
 #
 msgid "Next"
@@ -1793,6 +1956,10 @@ msgstr "Bateau de services de port"
 msgid "Position"
 msgstr "Position"
 #
+#, fuzzy
+msgid "Position Report"
+msgstr "Heure du dernier rapport   : "
+#
 #, c-format
 msgid ""
 "Position Report Age:       %3d Sec.\n"
@@ -1847,6 +2014,9 @@ msgstr "Imprimer la carte"
 #
 msgid "Printing"
 msgstr "Impression"
+#
+msgid "Problem discovered"
+msgstr ""
 #
 #
 msgid "Processing Waypoints..."
@@ -2015,6 +2185,10 @@ msgstr "Mosaïque des cartes : Retirer cette carte"
 msgid "Rename Waypoints?"
 msgstr "Renommer les waypoint ?"
 #
+#, c-format
+msgid "Report as of: %d:%d UTC "
+msgstr ""
+#
 # AIS
 msgid "Reserved 11"
 msgstr "Reservé 11"
@@ -2026,10 +2200,6 @@ msgstr "Reservé 12"
 # AIS
 msgid "Reserved 13"
 msgstr "Reservé 13"
-#
-# AIS
-msgid "Reserved 14"
-msgstr "Reservé 14"
 #
 # AIS
 msgid "Restricted Manoeuvrability"
@@ -2091,6 +2261,9 @@ msgstr "Voil."
 #
 msgid "SAR/V"
 msgstr "Nav. sauv."
+#
+msgid "SART"
+msgstr ""
 #
 msgid "SOG COG"
 msgstr "SOG / COG  (vitesse/cap fond )"
@@ -2182,6 +2355,9 @@ msgstr "Passer à l'échelle supérieure"
 msgid "Shift to Smaller Scale Chart"
 msgstr "Passer à l'échelle inférieure"
 #
+msgid "Short dash"
+msgstr ""
+#
 #
 msgid "Show AIS Targets"
 msgstr "AIS : Afficher les cibles"
@@ -2234,10 +2410,6 @@ msgid "Show Light Descriptions"
 msgstr "Afficher : Descriptions des feux"
 #
 #
-msgid "Show Name"
-msgstr "Afficher le nom"
-#
-#
 msgid "Show Printing Icon"
 msgstr "Afficher l'icône d'impression"
 #
@@ -2267,6 +2439,11 @@ msgstr "WP : Montrer les noms"
 #
 msgid "Show layers initially"
 msgstr "Charger les couches initiales"
+#
+#
+#, fuzzy
+msgid "Show name"
+msgstr "Afficher le nom"
 #
 # Couches
 msgid "Show on chart"
@@ -2362,6 +2539,9 @@ msgstr ""
 msgid "SoG"
 msgstr "SOG"
 #
+msgid "Solid"
+msgstr ""
+#
 #
 msgid "Spare"
 msgstr "Secours"
@@ -2410,6 +2590,11 @@ msgstr "Trib."
 #
 msgid "Stbd Hand"
 msgstr "Tribord"
+#
+# Toolbox/Langue
+#, fuzzy
+msgid "Style:"
+msgstr "&Style :"
 #
 #
 msgid "Supress Alerts for anchored/moored targets"
@@ -2479,6 +2664,11 @@ msgid "Test Alert Sound"
 msgstr "Tester l'alarme"
 #
 #
+#, fuzzy
+msgid "Testing"
+msgstr "Configuration"
+#
+#
 msgid "Text Element"
 msgstr "Eléments de texte"
 #
@@ -2517,6 +2707,9 @@ msgstr ""
 #
 msgid "This Leg"
 msgstr "Ce segment"
+#
+msgid "This waypoint is part of a layer and can't be edited"
+msgstr ""
 #
 #
 msgid "Tide"
@@ -2635,6 +2828,9 @@ msgstr "Type :"
 #
 msgid "UN Ship Type:         "
 msgstr "Type de bateau UN : "
+#
+msgid "URL"
+msgstr ""
 #
 #
 msgid "UTC"
@@ -2811,6 +3007,9 @@ msgstr "Blanc"
 msgid "WiFi Options"
 msgstr "Options Wifi"
 #
+msgid "Width:"
+msgstr ""
+#
 # AIS
 msgid "Wing In Ground Effect"
 msgstr "Avion à effet de sol (WIG)"
@@ -2878,6 +3077,11 @@ msgstr "WGS X"
 msgid "wgsoy"
 msgstr "WGS Y"
 #
+msgid "wxFB Website"
+msgstr ""
+#
+#
+#
 #
 #
 #~ msgid ""
@@ -2891,9 +3095,13 @@ msgstr "WGS Y"
 #
 #
 #
+#
+#
 #~ msgid "   PlugInManager: Cannot load library: "
 #~ msgstr ""
 #~ "  Gestionnaire de compléments : Impossible de charger la bibliothèque"
+#
+#
 #
 #
 #
@@ -2905,10 +3113,20 @@ msgstr "WGS Y"
 #
 #
 #
+#
+#
 #~ msgid "   PlugInManager: Cannot load symbol destroy_pi: "
 #~ msgstr ""
 #~ "  Gestionnaire de compléments : Impossible de charger le symbole "
 #~ "destroy_pi :"
+#
+#
+#
+#
+#~ msgid "Additional information"
+#~ msgstr "Information complémentaire"
+#
+#
 #
 #
 #
@@ -2919,8 +3137,29 @@ msgstr "WGS Y"
 #
 #
 #
+#
+#
 #~ msgid "ETE/Timestamp"
 #~ msgstr "ETE/Horodatage"
+#
+#
+#
+#~ msgid "MMSI:                 %09d\n"
+#~ msgstr "MMSI:                 %09d\n"
+#
+#
+#
+#
+#~ msgid "Mark Icon"
+#~ msgstr "Icône de la marque"
+#
+#
+#
+#
+#~ msgid "Mark Name"
+#~ msgstr "Nom de la marque"
+#
+#
 #
 #
 #
@@ -2929,8 +3168,12 @@ msgstr "WGS Y"
 #
 #
 #
+#
+#
 #~ msgid "OpenCPN PlugIn Base Class"
 #~ msgstr "OpenCPN plugin classe de base"
+#
+#
 #
 #
 #
@@ -2944,8 +3187,12 @@ msgstr "WGS Y"
 #
 #
 #
+#
+#
 #~ msgid "PlugInManager searching for PlugIns in location "
 #~ msgstr "Gestionnaire de compléments : Recherche du plug-in"
+#
+#
 #
 #
 #
@@ -2956,8 +3203,12 @@ msgstr "WGS Y"
 #
 #
 #
+#
+#
 #~ msgid "PlugInManager: Initializing PlugIn: "
 #~ msgstr "Gestionnaire de compléments : Initialisation du plug-in :"
+#
+#
 #
 #
 #
@@ -2968,8 +3219,12 @@ msgstr "WGS Y"
 #
 #
 #
+#
+#
 #~ msgid "PlugInManager: UnLoading PlugIn: "
 #~ msgstr "Gestionnaire de compléments : Déchargement du plug-in :"
+#
+#
 #
 #
 #
@@ -2982,5 +3237,12 @@ msgstr "WGS Y"
 #
 #
 #
+#
+#
 #~ msgid "Position:               "
 #~ msgstr "Position            :   "
+#
+#
+# AIS
+#~ msgid "Reserved 14"
+#~ msgstr "Reservé 14"

@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opencpn 2.4.423\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-23 21:15-0500\n"
+"POT-Creation-Date: 2012-03-25 07:34+0200\n"
 "PO-Revision-Date: 2011-10-06 15:29+0100\n"
 "Last-Translator: Kaptan <khanyux@gmail.com>\n"
 "Language-Team: http://trasno.net/ <proxecto@trasno.net>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -308,14 +309,47 @@ msgid "---<<< Warning:  Chart georef accuracy may be poor. >>>---"
 msgstr ""
 "---<<< Aviso:  A precisión da xeoreferencia na carta pode ser baixa. >>>---"
 #
+msgid "..."
+msgstr ""
+#
+msgid "1 pixel"
+msgstr ""
+#
 msgid "1.0 NM along COG"
 msgstr "1.0 NM ó longo de COG"
+#
+msgid "10 pixels"
+msgstr ""
 #
 msgid "2 Color"
 msgstr "2 Cores"
 #
+msgid "2 pixels"
+msgstr ""
+#
+msgid "3 pixels"
+msgstr ""
+#
 msgid "4 Color"
 msgstr "4 Cores"
+#
+msgid "4 pixels"
+msgstr ""
+#
+msgid "5 pixels"
+msgstr ""
+#
+msgid "6 pixels"
+msgstr ""
+#
+msgid "7 pixels"
+msgstr ""
+#
+msgid "8 pixels"
+msgstr ""
+#
+msgid "9 pixels"
+msgstr ""
 #
 #, fuzzy
 msgid ":               "
@@ -327,6 +361,9 @@ msgid ""
 "\n"
 "\n"
 msgstr "Rumbo:                 Non dispoñíbel\n"
+#
+msgid "<--Remove"
+msgstr ""
 #
 msgid "?"
 msgstr "?"
@@ -383,23 +420,41 @@ msgstr "Activar Ruta"
 msgid "Activate Waypoint"
 msgstr "Activar Waypoint"
 #
+#, fuzzy
+msgid "Active"
+msgstr "Activar"
+#
 msgid "Active Chart Directories"
 msgstr "Activar Directorio de Cartas"
+#
+#, fuzzy
+msgid "Active Charts"
+msgstr "Activar Directorio de Cartas"
+#
+msgid "Add"
+msgstr ""
 #
 msgid "Add Selection"
 msgstr "Engadir o Seleccionado"
 #
+msgid "Add new"
+msgstr ""
+#
 msgid "Add this chart to quilt."
 msgstr "Engadir esta carta a continuidade"
 #
-msgid "Additional information"
-msgstr "Información adicional"
+msgid "Add-->"
+msgstr ""
 #
 msgid "Aground"
 msgstr "Varado"
 #
 msgid "Aid to Navigation"
 msgstr "Axuda para a Navegación"
+#
+#, fuzzy
+msgid "All Active Charts"
+msgstr "Activar Directorio de Cartas"
 #
 msgid "All files (*.*)|*.*"
 msgstr "Todos os ficheiros (*.*)|*.*"
@@ -459,6 +514,9 @@ msgstr "Base"
 msgid "Base Station"
 msgstr "Estación Base"
 #
+msgid "Basic"
+msgstr ""
+#
 msgid "Beacon, Isolated Danger"
 msgstr "Baliza de Perigo Illado"
 #
@@ -501,6 +559,9 @@ msgstr "Límites"
 #
 msgid "Brg"
 msgstr "Brg"
+#
+msgid "Buddy"
+msgstr ""
 #
 msgid "Bulk carrier maritime"
 msgstr ""
@@ -628,6 +689,16 @@ msgstr "Amosar Opcións da Carta"
 msgid "Chart Display Style"
 msgstr "Amosa-lo Estilo da Carta"
 #
+#, fuzzy
+msgid "Chart Groups"
+msgstr "Cartas"
+#
+msgid "Chart Groups..."
+msgstr ""
+#
+msgid "Chart Groups...New Group"
+msgstr ""
+#
 msgid "Chart Print"
 msgstr "Imprimir Carta"
 #
@@ -639,6 +710,9 @@ msgstr "Cartas"
 #
 msgid "Choose Font..."
 msgstr "Escoller tipo de letra"
+#
+msgid "Choose a file"
+msgstr ""
 #
 msgid "Class"
 msgstr "Clase"
@@ -670,6 +744,9 @@ msgstr "C&or:"
 #
 msgid "Colors"
 msgstr "Cores"
+#
+msgid "Combo!"
+msgstr ""
 #
 msgid "Console Legend"
 msgstr "Lenda Consola"
@@ -725,6 +802,14 @@ msgstr "Cancelar"
 msgid "D/V"
 msgstr "D/V"
 #
+#, fuzzy
+msgid "DSC"
+msgstr "HSC"
+#
+#, fuzzy
+msgid "DSC Position Report"
+msgstr "Hora último Informe:"
+#
 msgid "Dark Blue"
 msgstr ""
 #
@@ -762,6 +847,10 @@ msgid "Deep Depth"
 msgstr "Gran Profundidade"
 #
 #, fuzzy
+msgid "Default"
+msgstr "A cor do tipo de letra"
+#
+#, fuzzy
 msgid "Default color"
 msgstr "A cor do tipo de letra"
 #
@@ -771,8 +860,16 @@ msgstr ""
 msgid "Degrees, Minutes, Seconds"
 msgstr ""
 #
+#, fuzzy
+msgid "Delete"
+msgstr "&Borrar"
+#
 msgid "Delete All"
 msgstr "Borrar Todo"
+#
+#, fuzzy
+msgid "Delete Group"
+msgstr "Borrar Ruta"
 #
 msgid "Delete Mark"
 msgstr "Borrar Marca"
@@ -828,8 +925,18 @@ msgstr "Distancia"
 msgid "Distance between rings"
 msgstr "Distancia entre marcas"
 #
+#, fuzzy
+msgid "Distress"
+msgstr "Distancia"
+#
 msgid "Done."
 msgstr "Feito."
+#
+msgid "Dot"
+msgstr ""
+#
+msgid "Dot dash"
+msgstr ""
 #
 msgid "Dredge"
 msgstr "Dragar"
@@ -865,6 +972,9 @@ msgstr ""
 msgid "ETE/ETD"
 msgstr ""
 #
+msgid "Edit"
+msgstr ""
+#
 msgid "Elapsed time : "
 msgstr "Tempo pasado : "
 #
@@ -898,6 +1008,9 @@ msgstr "Rematar Ruta"
 msgid "Engaged in Fishing"
 msgstr "Ocupado na Pesca"
 #
+msgid "Enter Group Name"
+msgstr ""
+#
 msgid "Error on Route Upload.  Please check logfiles..."
 msgstr "Erro na Carga da Ruta. Por favor comprobe os ficheiros de rexistro..."
 #
@@ -919,6 +1032,10 @@ msgstr "Ampliar Ruta"
 #, fuzzy
 msgid "Extend Track"
 msgstr "Borrar Derrota"
+#
+#, fuzzy
+msgid "Extended"
+msgstr "Ampliar Ruta"
 #
 msgid "ExtendedTideIcon"
 msgstr "AmpliarIconadaMarea"
@@ -979,8 +1096,18 @@ msgstr "Porto GPS/Plotter"
 msgid "GPSD Data Server"
 msgstr "Servidor Datos GPSD"
 #
+msgid "GPSGate Buddy"
+msgstr ""
+#
+#, fuzzy
+msgid "GPX"
+msgstr "GPS"
+#
 msgid "GUI Options"
 msgstr "Opcións da interface"
+#
+msgid "GUID"
+msgstr ""
 #
 #, fuzzy
 msgid "Gas tanker"
@@ -998,7 +1125,13 @@ msgstr "Ir á Marca/WP"
 msgid "Go to "
 msgstr "Ir a"
 #
+msgid "GpsGate Buddy"
+msgstr ""
+#
 msgid "Green"
+msgstr ""
+#
+msgid "Groups"
 msgstr ""
 #
 msgid "HSC"
@@ -1150,8 +1283,29 @@ msgstr "Luz Seccións/w"
 msgid "Limit range: NM"
 msgstr "Rango límite: NM"
 #
+#, fuzzy
+msgid "Link"
+msgstr "Enlaces"
+#
+#, fuzzy
+msgid "Link Properties"
+msgstr "Propiedades da Marca"
+#
+#, fuzzy
+msgid "Link description"
+msgstr "Descripción"
+#
+msgid "Link not complete, can't be saved."
+msgstr ""
+#
 msgid "Links"
 msgstr "Enlaces"
+#
+msgid "Links are opened for editing."
+msgstr ""
+#
+msgid "Links are opened in the default browser."
+msgstr ""
 #
 msgid "Liquified gas tanker"
 msgstr ""
@@ -1162,6 +1316,9 @@ msgstr "Lista de contidos"
 msgid "Local @ PC"
 msgstr "Local @ PC"
 #
+msgid "Local file..."
+msgstr ""
+#
 msgid "Lock all waypoints unless a waypoint property dialog is visible"
 msgstr ""
 "Bloquear todos os waypoints a menos que estea aberto o cadro de propiedades "
@@ -1169,6 +1326,9 @@ msgstr ""
 #
 msgid "Long Tow"
 msgstr "Remolcador Longo"
+#
+msgid "Long dash"
+msgstr ""
 #
 msgid "Longitude"
 msgstr "Lonxitude"
@@ -1203,10 +1363,6 @@ msgstr "Obxectos META"
 msgid "MMSI"
 msgstr "MMSI"
 #
-#, fuzzy, c-format
-msgid "MMSI:                 %09d\n"
-msgstr "Tipo:"
-#
 msgid "M_COVR ID"
 msgstr "M_COVR ID"
 #
@@ -1219,14 +1375,8 @@ msgstr "Estándar Mariño"
 msgid "Mariners Standard"
 msgstr "Estándares mariños"
 #
-msgid "Mark Icon"
-msgstr "Icona da Marca"
-#
 msgid "Mark Information"
 msgstr "Información sobre a Marca"
-#
-msgid "Mark Name"
-msgstr "Nome da Marca"
 #
 msgid "Mark Properties"
 msgstr "Propiedades da Marca"
@@ -1333,6 +1483,9 @@ msgstr "Datos da Navegación"
 #
 msgid "Navigational Status:  "
 msgstr "Estado Marítimo:"
+#
+msgid "New Group..."
+msgstr ""
 #
 msgid "Next"
 msgstr "Seguinte"
@@ -1505,6 +1658,10 @@ msgstr ""
 msgid "Position"
 msgstr "Posicion"
 #
+#, fuzzy
+msgid "Position Report"
+msgstr "Hora último Informe:"
+#
 #, fuzzy, c-format
 msgid ""
 "Position Report Age:       %3d Sec.\n"
@@ -1554,6 +1711,9 @@ msgstr "Imprimir Carta"
 #
 msgid "Printing"
 msgstr "Imprimindo"
+#
+msgid "Problem discovered"
+msgstr ""
 #
 msgid "Processing Waypoints..."
 msgstr "Procesando Waypoitns..."
@@ -1699,6 +1859,10 @@ msgstr "Eliminar esta carta de continuidade"
 msgid "Rename Waypoints?"
 msgstr "Renomear Waypoints?"
 #
+#, c-format
+msgid "Report as of: %d:%d UTC "
+msgstr ""
+#
 msgid "Reserved 11"
 msgstr "Reservado 11"
 #
@@ -1707,9 +1871,6 @@ msgstr "Reservado 12"
 #
 msgid "Reserved 13"
 msgstr "Reservado 13"
-#
-msgid "Reserved 14"
-msgstr "Reservado 14"
 #
 msgid "Restricted Manoeuvrability"
 msgstr "Manobra restrinxida"
@@ -1761,6 +1922,9 @@ msgstr "S/V"
 #
 msgid "SAR/V"
 msgstr "SAR/V"
+#
+msgid "SART"
+msgstr ""
 #
 msgid "SOG COG"
 msgstr "SOG COG"
@@ -1836,6 +2000,9 @@ msgstr "Axustar Carta á Escala Maior"
 msgid "Shift to Smaller Scale Chart"
 msgstr "Axustar Carta á Escala Menor"
 #
+msgid "Short dash"
+msgstr ""
+#
 msgid "Show AIS Targets"
 msgstr "Amosar Obxectivos AIS"
 #
@@ -1877,9 +2044,6 @@ msgstr "Amosar na carta"
 msgid "Show Light Descriptions"
 msgstr "Amosa-las Descripcións das Luces"
 #
-msgid "Show Name"
-msgstr "Amosar Nome"
-#
 msgid "Show Printing Icon"
 msgstr "Amosa-la Icona de Impresión"
 #
@@ -1904,6 +2068,10 @@ msgstr "Amosa-los nomes WPT"
 #
 msgid "Show layers initially"
 msgstr ""
+#
+#, fuzzy
+msgid "Show name"
+msgstr "Amosar Nome"
 #
 msgid "Show on chart"
 msgstr "Amosar na carta"
@@ -1987,6 +2155,9 @@ msgstr ""
 msgid "SoG"
 msgstr "SoG"
 #
+msgid "Solid"
+msgstr ""
+#
 msgid "Spare"
 msgstr "Respeto"
 #
@@ -2027,6 +2198,10 @@ msgstr "Estribor"
 #
 msgid "Stbd Hand"
 msgstr "Estribor"
+#
+#, fuzzy
+msgid "Style:"
+msgstr "&Estilo:"
 #
 msgid "Supress Alerts for anchored/moored targets"
 msgstr "Suprimir Alertas para obxectivos anclados/amarrados"
@@ -2089,6 +2264,12 @@ msgstr "Buque Auxiliar"
 msgid "Test Alert Sound"
 msgstr "Probar Son de Alerta"
 #
+#
+#
+#, fuzzy
+msgid "Testing"
+msgstr "Alternar Listados"
+#
 msgid "Text Element"
 msgstr "Elemento de texto"
 #
@@ -2119,6 +2300,9 @@ msgstr ""
 #
 msgid "This Leg"
 msgstr "Este tramo"
+#
+msgid "This waypoint is part of a layer and can't be edited"
+msgstr ""
 #
 msgid "Tide"
 msgstr "Marea"
@@ -2221,6 +2405,9 @@ msgstr "Tipo:"
 #
 msgid "UN Ship Type:         "
 msgstr "UN Tipo de Barco:"
+#
+msgid "URL"
+msgstr ""
 #
 msgid "UTC"
 msgstr "UTC"
@@ -2372,6 +2559,9 @@ msgstr ""
 msgid "WiFi Options"
 msgstr "Opcións da WiFi"
 #
+msgid "Width:"
+msgstr ""
+#
 msgid "Wing In Ground Effect"
 msgstr ""
 #
@@ -2433,6 +2623,11 @@ msgstr "wgsox"
 msgid "wgsoy"
 msgstr "wgsoy"
 #
+msgid "wxFB Website"
+msgstr ""
+#
+#
+#
 #
 #~ msgid ""
 #~ "\n"
@@ -2444,52 +2639,99 @@ msgstr "wgsoy"
 #~ "\n"
 #
 #
+#
+#
 #~ msgid "   PlugInManager: Cannot load library: "
 #~ msgstr "   XestordeEngadidos: Non se pode cargar a libería:"
+#
+#
 #
 #
 #~ msgid "   PlugInManager: Cannot load symbol create_pi: "
 #~ msgstr "   XestordeEngadidos: Non se pode cargar símbolo create_pi:"
 #
 #
+#
+#
 #~ msgid "   PlugInManager: Cannot load symbol destroy_pi: "
 #~ msgstr "   XestordeEngadidos: Non se pode cargar símbolo destroy_pi:"
+#
+#
 #
 #
 #~ msgid "&Toggle Chart"
 #~ msgstr "&Alternar Cartas"
 #
 #
+#
+#~ msgid "Additional information"
+#~ msgstr "Información adicional"
+#
+#
+#
+#
 #~ msgid "Attempting to load libgps.so"
 #~ msgstr "Intentando cargar libgps.so"
+#
+#
 #
 #
 #~ msgid "BaseClassCommonName"
 #~ msgstr "BaseClaseComúnNome"
 #
 #
+#
+#
 #~ msgid "Exit OpenCPN"
 #~ msgstr "Saí­r de OpenCPN"
+#
+#
 #
 #
 #~ msgid "Failed to load libgps.so"
 #~ msgstr "Houbo un erro cargando libgps.so"
 #
 #
+#
+#
 #~ msgid "Failed to load libgps.so.19"
 #~ msgstr "Houbo un error cargando libgps.so.19"
+#
+#
 #
 #
 #~ msgid "Import new layer"
 #~ msgstr "Importar unha nova capa"
 #
 #
+#
+#, fuzzy
+#~ msgid "MMSI:                 %09d\n"
+#~ msgstr "Tipo:"
+#
+#
+#
+#~ msgid "Mark Icon"
+#~ msgstr "Icona da Marca"
+#
+#
+#
+#~ msgid "Mark Name"
+#~ msgstr "Nome da Marca"
+#
+#
+#
+#
 #~ msgid "New Mark"
 #~ msgstr "Nova Marca"
 #
 #
+#
+#
 #~ msgid "OpenCPN PlugIn Base Class"
 #~ msgstr "Engadido OpenCPN Clase de base"
+#
+#
 #
 #
 #~ msgid ""
@@ -2500,38 +2742,56 @@ msgstr "wgsoy"
 #~ "RexistrodeEngadidos creou esta clase de base"
 #
 #
+#
+#
 #~ msgid "OpenCPN S57 SENC File Load"
 #~ msgstr "Cargar ficheiro OpenCPN S57 SENC"
+#
+#
 #
 #
 #~ msgid "PlugInManager searching for PlugIns in location "
 #~ msgstr "O XestordeEngadidos está buscando a localización dos Engadidos"
 #
 #
+#
+#
 #~ msgid "PlugInManager: Deactivating PlugIn: "
 #~ msgstr "XestorEngadidos: Desactivando Engadido:"
+#
+#
 #
 #
 #~ msgid "PlugInManager: Initializing PlugIn: "
 #~ msgstr "XestordeEngadidos: Iniciando Engadido:"
 #
 #
+#
+#
 #~ msgid "PlugInManager: Loading PlugIn: "
 #~ msgstr "XestordeEngadidos: Cargando Engadido:"
+#
+#
 #
 #
 #~ msgid "PlugInManager: UnLoading PlugIn: "
 #~ msgstr "XestordeEngadidos: Descargando Engadido:"
 #
 #
+#
+#
 #~ msgid "PlugInManager: Unloading PlugIn with invalid API version %d.%d: "
 #~ msgstr ""
-#~ "XestordeEngadidos: Descargando Engadido con unha versión API inválida  %d.%"
-#~ "d: "
+#~ "XestordeEngadidos: Descargando Engadido con unha versión API inválida  %d."
+#~ "%d: "
+#
+#
 #
 #
 #~ msgid "Position:               "
 #~ msgstr "Posición:"
+#
+#
 #
 #
 #~ msgid ""
@@ -2542,8 +2802,10 @@ msgstr "wgsoy"
 #~ "\n"
 #
 #
-#~ msgid "Toggle Listing"
-#~ msgstr "Alternar Listados"
+#~ msgid "Reserved 14"
+#~ msgstr "Reservado 14"
+#
+#
 #
 #
 #~ msgid "Toggle Names"
