@@ -2046,15 +2046,12 @@ bool AIS_Decoder::Parse_VDXBitstring(AIS_Bitstring *bstr, AIS_Target_Data *ptd)
 
             ptd->Class = AIS_CLASS_A;
 
-<<<<<<< HEAD
             //    Check for SART and friends by looking at first two digits of MMSI
             int mmsi_start =  ptd->MMSI / 10000000;
 
             if( mmsi_start == 97)
                   ptd->Class = AIS_SART;
 
-=======
->>>>>>> Update GRIB With metric units
             parse_result = true;                // so far so good
             b_posn_report = true;
 
@@ -2605,7 +2602,6 @@ void AIS_Decoder::UpdateOneCPA(AIS_Target_Data *ptarget)
 //    Ownship is not reporting valid SOG, so no way to calculate CPA
       if(wxIsNaN(gSog) || (gSog > 102.2))
       {
-<<<<<<< HEAD
             ptarget->bCPA_Valid = false;
             return;
       }
@@ -2614,14 +2610,6 @@ void AIS_Decoder::UpdateOneCPA(AIS_Target_Data *ptarget)
       if( wxIsNaN(gCog) || gCog == 360.0 )
       {
             if(gSog < .01)
-=======
-            if(wxIsNaN(gSog) || (gSog > 102.2))
-            {
-                  ptarget->bCPA_Valid = false;
-                  return;
-            }
-            else if(gSog < .01)
->>>>>>> Update GRIB With metric units
                   cpa_calc_ownship_cog = 0.;          // substitute value
                                                       // for the case where SOG ~= 0, and COG is unknown.
             else
@@ -4953,7 +4941,6 @@ void AISTargetListDialog::UpdateAISTargetList(void)
      }
 
 }
-
 
 
 
