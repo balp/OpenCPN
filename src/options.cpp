@@ -1032,6 +1032,10 @@ void options::CreateControls()
 
     m_itemAISListBox = new wxComboBox(itemPanelAIS, ID_CHOICE_AIS);
     m_itemAISListBox->Append( _T("None"));
+    if(pAIS_Port->Upper().Contains(_T("TCP/IP")))
+    {
+	m_itemAISListBox->Append( *pAIS_Port );
+    }
 
       //    Fill in the listbox with all detected serial ports
     for (iPortIndex=0 ; iPortIndex < m_pSerialArray->GetCount() ; iPortIndex++)
@@ -1046,6 +1050,8 @@ void options::CreateControls()
     }
     else if(pAIS_Port->Upper().Contains(_T("NONE")))
           sidx = 0;
+    else if(pAIS_Port->Upper().Contains(_T("TCP/IP")))
+          sidx = m_itemAISListBox->FindString(*pAIS_Port);
     else
           sidx = 0;                                 // malformed selection
 

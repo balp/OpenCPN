@@ -2,9 +2,12 @@
  *
  * Project:  OpenCPN
  * Purpose:  Shared Comport implementaiton
+ * Author:   David Register
  * Author:   Anders Arnholm
  *
  ***************************************************************************
+ *   Copyright (C) 2010 by David S. Register   *
+ *   bdbcat@yahoo.com   *
  *   Copyright (C) 2012 by Anders Arnholm <Anders@Arnholm.se>              *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *

@@ -6,6 +6,8 @@
  * Author:   David Register
  *
  ***************************************************************************
+ *   Copyright (C) 2010 by David S. Register   *
+ *   bdbcat@yahoo.com   *
  *   Copyright (C) 2012 by Anders Arnholm                                  *
  *   Anders@Arnholm.se                                                     *
  *                                                                         *
