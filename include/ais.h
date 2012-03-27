@@ -56,6 +56,7 @@
 
 #include "dychart.h"
 #include "chart1.h"
+#include "comport.h"
 
 #ifdef __POSIX__
 #include <sys/termios.h>
@@ -366,6 +367,7 @@ private:
     void BuildERIShipTypeHash(void);
 
     AIS_Target_Hash *AISTargetList;
+    OpenCPN::Utils::ComPortManager m_comPortManager;
 
 #ifndef OCPN_NO_SOCKETS
     wxIPV4address     addr;
@@ -399,6 +401,7 @@ private:
     bool             m_bSuppressed;
     bool             m_bGeneralAlert;
 
+public:
 DECLARE_EVENT_TABLE()
 
 

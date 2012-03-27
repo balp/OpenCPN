@@ -62,11 +62,38 @@
 #include <sys/termios.h>
 #endif
 
+#ifndef AIS_SOCKET_ID
+#define AIS_SOCKET_ID             7
+#endif
 
 namespace OpenCPN
 {
     namespace Utils
     {
+	/**
+	 * Event when something happend on a nmea port.
+	 */
+	class OCPN_PortEvent: public wxEvent
+	{
+	    public:
+		OCPN_PortEvent( wxEventType commandType = wxEVT_NULL, int id = 0 );
+		OCPN_PortEvent( const OCPN_PortEvent& event )
+		    : wxEvent(event),
+		    m_NMEAstring(event.m_NMEAstring),
+		    m_extra(event.m_extra)
+		    { }
+                ~OCPN_PortEvent( );
+		wxString GetNMEAString() { return m_NMEAstring; }
+		void SetNMEAString(wxString string) { m_NMEAstring = string; }
+		void SetExtraLong(long n){ m_extra = n;}
+		long GetExtraLong(){ return m_extra;}
+		wxEvent *Clone() const;
+	    private:
+		wxString    m_NMEAstring;
+		long        m_extra;
+
+
+	};
 	/**
 	 * Com port description
 	 */
@@ -93,6 +120,7 @@ namespace OpenCPN
 		ComPortManager();
 		~ComPortManager();
 
+		bool OpenTcpPort(wxFrame *pListener, const wxString& dataSource);
 		int OpenComPort(wxString &com_name, int baud_rate);
 		OpenCommPortElement *GetComPort(wxString &com_name);
 		int CloseComPort(int fd);
@@ -107,6 +135,7 @@ namespace OpenCPN
 		void SetLogFlag(bool flag){ m_blog = flag; }
 
 	    private:
+		void OnSocketEvent(wxSocketEvent& event);
 		int OpenComPortPhysical(wxString &com_name, int baud_rate);
 		int CloseComPortPhysical(int fd);
 		int WriteComPortPhysical(int port_descriptor, const wxString& string);
@@ -118,6 +147,12 @@ namespace OpenCPN
 		ListOfOpenCommPorts     m_port_list;
 
 		bool        m_blog;
+		bool              m_busy;
+#ifndef OCPN_NO_SOCKETS
+		wxIPV4address     addr;
+		wxSocketClient    *m_sock;
+#endif
+		DECLARE_EVENT_TABLE()
 
 	};
 
