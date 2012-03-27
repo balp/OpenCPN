@@ -64,8 +64,9 @@ WX_DEFINE_LIST(ListOfOpenCommPorts);
 
 
 ComPortManager:: ComPortManager()
+      : m_blog(true),
+      tcpListener(NULL)
 {
-      m_blog = true;
 }
 
 ComPortManager::~ComPortManager()
@@ -74,9 +75,10 @@ ComPortManager::~ComPortManager()
 
 //    Common Methods
 
-bool ComPortManager::OpenTcpPort(wxFrame *pListener, const wxString& dataSource)
+bool ComPortManager::OpenTcpPort(wxFrame *pParent, wxEvtHandler* pListener, const wxString& dataSource)
 {
     long ais_port = 3047; // GPSD Known port number
+    tcpListener = pListener;
 
     wxString AIS_data_ip;
     AIS_data_ip = dataSource.Mid(7);         // extract the IP
@@ -140,7 +142,7 @@ bool ComPortManager::OpenTcpPort(wxFrame *pListener, const wxString& dataSource)
 	wxString msg(AIS_data_ip);
 	msg.Prepend(_("Could not resolve TCP/IP host '"));
 	msg.Append(_("'\n Suggestion: Try 'xxx.xxx.xxx.xxx' notation"));
-	OCPNMessageDialog md(pListener, msg, _("OpenCPN Message"), wxICON_ERROR );
+	OCPNMessageDialog md(pParent, msg, _("OpenCPN Message"), wxICON_ERROR );
 	md.ShowModal();
 
 	m_sock->Notify(FALSE);
@@ -337,63 +339,66 @@ bool ComPortManager::SerialCharsAvail(wxString& com_name)
 
 void ComPortManager::OnSocketEvent(wxSocketEvent& event)
 {
+      printf("ComPortManager::OnSocketEvent()\n");
 #ifndef OCPN_NO_SOCKETS
 
 #define RD_BUF_SIZE    200
 
-
-
-      switch(event.GetSocketEvent())
+      if(tcpListener)
       {
-	    case wxSOCKET_INPUT :                     // from  Daemon
-                  {
-                        char *bp;
-                        char buf[RD_BUF_SIZE + 1];
-                        int char_count;
-                        m_sock->SetFlags(wxSOCKET_NOWAIT);
+
+	    switch(event.GetSocketEvent())
+	    {
+		  case wxSOCKET_INPUT :                     // from  Daemon
+			{
+			      char *bp;
+			      char buf[RD_BUF_SIZE + 1];
+			      int char_count;
+			      m_sock->SetFlags(wxSOCKET_NOWAIT);
 
 
-                        //          Read the reply, one character at a time, looking for 0x0a (lf)
-                        bp = buf;
-                        char_count = 0;
+			      //          Read the reply, one character at a time, looking for 0x0a (lf)
+			      bp = buf;
+			      char_count = 0;
 
-                        while (char_count < RD_BUF_SIZE)
-                        {
-                              m_sock->Read(bp, 1);
-                              if(*bp == 0x0a)
-                              {
-                                    bp++;
-                                    break;
-                              }
+			      while (char_count < RD_BUF_SIZE)
+			      {
+				    m_sock->Read(bp, 1);
+				    if(*bp == 0x0a)
+				    {
+					  bp++;
+					  break;
+				    }
 
-                              bp++;
-                              char_count++;
-                        }
+				    bp++;
+				    char_count++;
+			      }
 
-                        *bp = 0;                        // end string
+			      *bp = 0;                        // end string
 
-                        //          Validate the string
+			      //          Validate the string
 
-                        if(!strncmp((const char *)buf, "!AIVDM", 6))
-                        {
-                              //                  Decode(buf);
+			      if(!strncmp((const char *)buf, "!AIVDM", 6))
+			      {
+				    //                  Decode(buf);
 
-                              //    Signal the main program thread
+				    //    Signal the main program thread
 
-			      OCPN_AISEvent event(wxEVT_OCPN_AIS , ID_AIS_WINDOW );
-			      event.SetEventObject( (wxObject *)this );
-			      event.SetExtraLong(EVT_AIS_PARSE_RX);
-			      event.SetNMEAString(wxString(buf,  wxConvUTF8));
-			      this->AddPendingEvent(event);
-                        }
+				    OCPN_AISEvent event(wxEVT_OCPN_AIS , ID_AIS_WINDOW );
+				    event.SetEventObject( (wxObject *)this );
+				    event.SetExtraLong(EVT_AIS_PARSE_RX);
+				    event.SetNMEAString(wxString(buf,  wxConvUTF8));
+				    tcpListener->AddPendingEvent(event);
+			      }
 
 
 
-                  }
-	    case wxSOCKET_LOST       :
-	    case wxSOCKET_CONNECTION :
-	    default                  :
-		  break;
+			}
+		  case wxSOCKET_LOST       :
+		  case wxSOCKET_CONNECTION :
+		  default                  :
+			break;
+	    }
       }
 #endif
 }

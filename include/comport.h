@@ -62,9 +62,52 @@
 #include <sys/termios.h>
 #endif
 
-#ifndef AIS_SOCKET_ID
 #define AIS_SOCKET_ID             7
-#endif
+
+enum
+{
+    EVT_AIS_DIRECT,
+    EVT_AIS_PARSE_RX
+};
+
+
+//----------------------------------------------------------------------------
+// AISEvent
+//----------------------------------------------------------------------------
+
+class OCPN_AISEvent: public wxEvent
+{
+      public:
+            OCPN_AISEvent( wxEventType commandType = wxEVT_NULL, int id = 0 );
+
+            OCPN_AISEvent(const OCPN_AISEvent & event)
+            : wxEvent(event),
+                m_NMEAstring(event.m_NMEAstring),
+                m_extra(event.m_extra)
+                { }
+
+                ~OCPN_AISEvent( );
+
+    // accessors
+            wxString GetNMEAString() { return m_NMEAstring; }
+            void SetNMEAString(wxString string) { m_NMEAstring = string; }
+
+            void SetExtraLong(long n){ m_extra = n;}
+            long GetExtraLong(){ return m_extra;}
+
+    // required for sending with wxPostEvent()
+            wxEvent *Clone() const;
+
+      private:
+            wxString    m_NMEAstring;
+            long        m_extra;
+
+};
+
+//    DECLARE_EVENT_TYPE(wxEVT_OCPN_AIS, -1)
+extern /*expdecl*/ const wxEventType wxEVT_OCPN_AIS;
+
+
 
 namespace OpenCPN
 {
@@ -120,7 +163,7 @@ namespace OpenCPN
 		ComPortManager();
 		~ComPortManager();
 
-		bool OpenTcpPort(wxFrame *pListener, const wxString& dataSource);
+		bool OpenTcpPort(wxFrame *pParent, wxEvtHandler* pListener, const wxString& dataSource);
 		int OpenComPort(wxString &com_name, int baud_rate);
 		OpenCommPortElement *GetComPort(wxString &com_name);
 		int CloseComPort(int fd);
@@ -148,6 +191,7 @@ namespace OpenCPN
 
 		bool        m_blog;
 		bool              m_busy;
+		wxEvtHandler* tcpListener;
 #ifndef OCPN_NO_SOCKETS
 		wxIPV4address     addr;
 		wxSocketClient    *m_sock;

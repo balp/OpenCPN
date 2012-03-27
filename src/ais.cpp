@@ -2735,7 +2735,7 @@ AIS_Error AIS_Decoder::OpenDataSource(wxFrame *pParent, const wxString& AISDataS
 //      Data Source is private TCP/IP Server
       if(m_data_source_string.Contains(_T("TCP/IP")))
       {
-	  m_comPortManager.OpenTcpPort(pParent, m_data_source_string);
+	  m_comPortManager.OpenTcpPort(pParent, this, m_data_source_string);
 	  m_OK = true;
       }
 
