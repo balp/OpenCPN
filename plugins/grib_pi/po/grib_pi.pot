@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: grib_pi 2.6.1524\n"
+"Project-Id-Version: grib_pi 2.6.1609-Swedish\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-25 07:34+0200\n"
+"POT-Creation-Date: 2012-04-10 23:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/grib.h:124 src/grib_pi.cpp:318
+#: src/grib.h:124 src/grib_pi.cpp:276 src/grib_pi.cpp:338
 msgid "GRIB Display Control"
 msgstr ""
 
-#: src/grib_pi.cpp:117 src/grib_pi.cpp:207 src/grib_pi.cpp:256
+#: src/grib_pi.cpp:117 src/grib_pi.cpp:207 src/grib_pi.cpp:260
 msgid "Grib"
 msgstr ""
 
@@ -57,6 +57,10 @@ msgstr ""
 msgid "Use High Definition Graphics"
 msgstr ""
 
+#: src/grib_pi.cpp:239
+msgid "Show metres/sec for Wind Speed"
+msgstr ""
+
 #: src/grib.cpp:211
 msgid "GRIB File Directory"
 msgstr ""
@@ -69,42 +73,46 @@ msgstr ""
 msgid "Wind Speed, Kts."
 msgstr ""
 
-#: src/grib.cpp:260
+#: src/grib.cpp:252
+msgid "Wind Speed, m/sec."
+msgstr ""
+
+#: src/grib.cpp:264
 msgid "Wind Direction"
 msgstr ""
 
-#: src/grib.cpp:270
+#: src/grib.cpp:274
 msgid "Pressure, mBar"
 msgstr ""
 
-#: src/grib.cpp:280
+#: src/grib.cpp:284
 msgid "Significant Wave Height, m"
 msgstr ""
 
-#: src/grib.cpp:291
+#: src/grib.cpp:295
 msgid "Sea Surface Temp, C"
 msgstr ""
 
-#: src/grib.cpp:301
+#: src/grib.cpp:305
 msgid "Current Velocity, Kts."
 msgstr ""
 
-#: src/grib.cpp:316
+#: src/grib.cpp:320
 msgid "&Close"
 msgstr ""
 
-#: src/grib.cpp:519
+#: src/grib.cpp:525
 msgid "Select GRIB Directory"
 msgstr ""
 
-#: src/grib.cpp:1101
+#: src/grib.cpp:1107
 msgid "Please Zoom or Scale Out to view suppressed HTSGW GRIB"
 msgstr ""
 
-#: src/grib.cpp:1165
+#: src/grib.cpp:1171
 msgid "Please Zoom or Scale Out to view suppressed CRAIN GRIB"
 msgstr ""
 
-#: src/grib.cpp:1177 src/grib.cpp:1233
+#: src/grib.cpp:1183 src/grib.cpp:1240
 msgid "Please Zoom or Scale Out to view suppressed SEATEMP GRIB"
 msgstr ""
