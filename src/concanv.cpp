@@ -47,10 +47,6 @@
 #include "routeman.h"
 #include "navutil.h"
 
-#ifdef __WXMAC__
-#include "wx/mac/private.h"
-#endif
-
 extern Routeman         *g_pRouteMan;
 extern FontMgr          *pFontMgr;
 extern MyFrame          *gFrame;
