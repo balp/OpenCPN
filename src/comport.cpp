@@ -60,6 +60,8 @@ namespace Utils
 //-------------------------------------------------------------------------------------------------------------
 #include <wx/listimpl.cpp>
 WX_DEFINE_LIST(ListOfOpenCommPorts);
+WX_DEFINE_LIST(ListOfTCPPorts);
+WX_DEFINE_LIST(ListOfEvtHandlers);
 
 
 
@@ -77,99 +79,113 @@ ComPortManager::~ComPortManager()
 
 bool ComPortManager::OpenTcpPort(wxFrame *pParent, wxEvtHandler* pListener, const wxString& dataSource)
 {
-    long ais_port = 3047; // GPSD Known port number
-    tcpListener = pListener;
+      TCPPortElement* port = GetTcpPort(dataSource);
+      if(pe != NULL) {
+	    pe->listeners.Append(pListener);
+      } else {
+	    long ais_port = 3047; // GPSD Known port number
+	    tcpListener = pListener;
 
-    wxString AIS_data_ip;
-    AIS_data_ip = dataSource.Mid(7);         // extract the IP
-    int portIndex = AIS_data_ip.Find(wxChar(':'), true);
-    if(portIndex != wxNOT_FOUND) { // have hostname:port
-	wxString portStr = AIS_data_ip.Mid(portIndex + 1);
-	portStr.ToLong(&ais_port);
-	wxString msg(_T("AIS Data Source port...."));
-	msg.Append(portStr);
-	wxLogMessage(msg);
-	AIS_data_ip = AIS_data_ip.Mid(0, portIndex);
-    }
-    wxString msg(_T("AIS Data Source is TCP/IP...."));
-    msg.Append(AIS_data_ip);
-    wxLogMessage(msg);
+	    wxString AIS_data_ip;
+	    AIS_data_ip = dataSource.Mid(7);         // extract the IP
+	    int portIndex = AIS_data_ip.Find(wxChar(':'), true);
+	    if(portIndex != wxNOT_FOUND) { // have hostname:port
+		  wxString portStr = AIS_data_ip.Mid(portIndex + 1);
+		  portStr.ToLong(&ais_port);
+		  wxString msg(_T("AIS Data Source port...."));
+		  msg.Append(portStr);
+		  wxLogMessage(msg);
+		  AIS_data_ip = AIS_data_ip.Mid(0, portIndex);
+	    }
+	    wxString msg(_T("AIS Data Source is TCP/IP...."));
+	    msg.Append(AIS_data_ip);
+	    wxLogMessage(msg);
 
-    // Create the socket
-    m_sock = new wxSocketClient();
+	    // Create the socket
+	    m_sock = new wxSocketClient();
 
-    // Setup the event handler and subscribe to most events
-    m_sock->SetEventHandler(*this, AIS_SOCKET_ID);
+	    // Setup the event handler and subscribe to most events
+	    m_sock->SetEventHandler(*this, AIS_SOCKET_ID);
 
-    m_sock->SetNotify(wxSOCKET_CONNECTION_FLAG |
-	    wxSOCKET_INPUT_FLAG |
-	    wxSOCKET_LOST_FLAG);
-    m_sock->Notify(TRUE);
+	    m_sock->SetNotify(wxSOCKET_CONNECTION_FLAG |
+			wxSOCKET_INPUT_FLAG |
+			wxSOCKET_LOST_FLAG);
+	    m_sock->Notify(TRUE);
 
-    m_busy = FALSE;
+	    m_busy = FALSE;
 
+	    DNSTestThread *ptest_thread = NULL;
+	    ptest_thread = new DNSTestThread(AIS_data_ip);
 
-    //    Build the target address
-
-    //    n.b. Win98
-    //    wxIPV4address::Hostname() uses sockets function gethostbyname() for address resolution
-    //    Implications...Either name target must exist in c:\windows\hosts, or
-    //                            a DNS server must be active on the network.
-    //    If neither true, then wxIPV4address::Hostname() will block (forever?)....
-    //
-    //    Workaround....
-    //    Use a thread to try the name lookup, in case it hangs
-
-    DNSTestThread *ptest_thread = NULL;
-    ptest_thread = new DNSTestThread(AIS_data_ip);
-
-    ptest_thread->Run();                      // Run the thread from ::Entry()
+	    ptest_thread->Run();                      // Run the thread from ::Entry()
 
 
-    //    Sleep and loop for N seconds
+	    //    Sleep and loop for N seconds
 #define SLEEP_TEST_SEC  2
 
-    for(int is=0 ; is<SLEEP_TEST_SEC * 10 ; is++)
-    {
-	wxMilliSleep(100);
-	if(s_dns_test_flag)
-	    break;
-    }
+	    for(int is=0 ; is<SLEEP_TEST_SEC * 10 ; is++)
+	    {
+		  wxMilliSleep(100);
+		  if(s_dns_test_flag)
+			break;
+	    }
 
-    if(!s_dns_test_flag)
-    {
+	    if(!s_dns_test_flag)
+	    {
 
-	wxString msg(AIS_data_ip);
-	msg.Prepend(_("Could not resolve TCP/IP host '"));
-	msg.Append(_("'\n Suggestion: Try 'xxx.xxx.xxx.xxx' notation"));
-	OCPNMessageDialog md(pParent, msg, _("OpenCPN Message"), wxICON_ERROR );
-	md.ShowModal();
+		  wxString msg(AIS_data_ip);
+		  msg.Prepend(_("Could not resolve TCP/IP host '"));
+		  msg.Append(_("'\n Suggestion: Try 'xxx.xxx.xxx.xxx' notation"));
+		  OCPNMessageDialog md(pParent, msg, _("OpenCPN Message"), wxICON_ERROR );
+		  md.ShowModal();
 
-	m_sock->Notify(FALSE);
-	m_sock->Destroy();
-	m_sock = NULL;
+		  m_sock->Notify(FALSE);
+		  m_sock->Destroy();
+		  m_sock = NULL;
 
-	return false;
-    }
+		  return false;
+	    }
 
 
-    //      Resolved the name, somehow, so Connect() the socket
-    wxString msg2(_T("Connect to "));
-    msg2.Append(AIS_data_ip);
-    msg2.Append(wxString::Format(_(" port %d "), ais_port));
-    wxLogMessage(msg2);
+	    //      Resolved the name, somehow, so Connect() the socket
+	    wxString msg2(_T("Connect to "));
+	    msg2.Append(AIS_data_ip);
+	    msg2.Append(wxString::Format(_(" port %d "), ais_port));
+	    wxLogMessage(msg2);
 
-    addr.Hostname(AIS_data_ip);
-    addr.Service(ais_port);
-    if(m_sock->Connect(addr, FALSE))       // Non-blocking connect
-    {
-	wxString msg(_T("Connect returned OK...."));
-	wxLogMessage(msg);
-    } else {
-	wxString msg(_T("Connect returned False, still not error...."));
-	wxLogMessage(msg);
-    }
-    return true;
+	    TCPPortElement* port = new TCPPortElement;
+	    port->name = dataSource;
+	    port->listeners.Append(pListener);
+
+	    addr.Hostname(AIS_data_ip);
+	    addr.Service(ais_port);
+	    if(m_sock->Connect(addr, FALSE))       // Non-blocking connect
+	    {
+		  wxString msg(_T("Connect returned OK...."));
+		  wxLogMessage(msg);
+		  port->connected = true;
+	    } else {
+		  wxString msg(_T("Connect returned False, still not error...."));
+		  wxLogMessage(msg);
+		  port->connected = false;
+	    }
+	    m_tcp_list.Append(port);
+
+      }
+      return true;
+}
+
+TCPPortElement *ComPortManager::GetTcpPort(const wxString &name)
+{
+      for ( ListOfTCPPorts::Node *node = m_tcp_list.GetFirst(); node; node = node->GetNext() )
+      {
+            TCPPortElement *current = node->GetData();
+
+            if(current->name.IsSameAs(name))
+                  return current;
+      }
+
+      return NULL;
 }
 
 int ComPortManager::OpenComPort(wxString &com_name, int baud_rate)
@@ -259,7 +275,7 @@ int ComPortManager::CloseComPort(int fd)
 //    return -1 if the port is not already open
 //------------------------------------------------------------
 
-OpenCommPortElement *ComPortManager::GetComPort(wxString &com_name)
+OpenCommPortElement *ComPortManager::GetComPort(const wxString &com_name)
 {
       for ( ListOfOpenCommPorts::Node *node = m_port_list.GetFirst(); node; node = node->GetNext() )
       {

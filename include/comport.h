@@ -151,6 +151,21 @@ namespace OpenCPN
 
 	WX_DECLARE_LIST(OpenCommPortElement, ListOfOpenCommPorts);
 
+	WX_DECLARE_LIST(wxEvtHandler, ListOfEvtHandlers);
+	/**
+	 * A TCP/IP Port.
+	 * 
+	 * Keeps track of destination and listeners.
+	 */
+	class TCPPortElement { // XXX Encapsulate
+	    public:
+		wxString	name;
+		bool		connected;
+		ListOfEvtHandlers listeners;
+
+	};
+	WX_DECLARE_LIST(TCPPortElement, ListOfTCPPorts);
+
 	/**
 	 * A generic com port handl
 	 */
@@ -164,8 +179,14 @@ namespace OpenCPN
 		~ComPortManager();
 
 		bool OpenTcpPort(wxFrame *pParent, wxEvtHandler* pListener, const wxString& dataSource);
+		TCPPortElement* GetTcpPort(const wxString& name);
+
 		int OpenComPort(wxString &com_name, int baud_rate);
-		OpenCommPortElement *GetComPort(wxString &com_name);
+		/**
+		 *    Return the descriptor for an already open com port.
+		 *    return NULL if the port is not already open
+		 */
+		OpenCommPortElement *GetComPort(const wxString &com_name);
 		int CloseComPort(int fd);
 
 		int WriteComPort(wxString& com_name, const wxString& string);
@@ -188,6 +209,7 @@ namespace OpenCPN
 		bool CheckComPortPhysical(int port_descriptor);
 
 		ListOfOpenCommPorts     m_port_list;
+		ListOfTCPPorts		m_tcp_list;
 
 		bool        m_blog;
 		bool              m_busy;
