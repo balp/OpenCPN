@@ -651,11 +651,6 @@ msgstr "Aktivera"
 
 #
 # 
-#, fuzzy
-msgid "Active"
-msgstr "Aktivera"
-#
-# 
 msgid "Active Chart Directories"
 msgstr "Valda mappar för sjökort"
 
@@ -669,14 +664,6 @@ msgstr "Lägg till"
 
 #
 # 
-#, fuzzy
-msgid "Active Charts"
-msgstr "Valda mappar för sjökort"
-#
-msgid "Add"
-msgstr ""
-#
-# 
 msgid "Add Selection"
 msgstr "Lägg till markerad mapp"
 
@@ -684,10 +671,6 @@ msgstr "Lägg till markerad mapp"
 msgid "Add new"
 msgstr "Lägg till ny"
 
-#
-msgid "Add new"
-msgstr ""
-#
 # 
 msgid "Add this chart to quilt."
 msgstr "Inkludera sjökortet i sömlös visning"
@@ -710,11 +693,6 @@ msgstr "Navigationshjälp"
 msgid "All Active Charts"
 msgstr "Alla aktiva sjökort"
 
-#
-# 
-#, fuzzy
-msgid "All Active Charts"
-msgstr "Valda mappar för sjökort"
 #
 # 
 msgid "All files (*.*)|*.*"
@@ -1130,18 +1108,9 @@ msgstr "Välj en fil"
 
 #
 # 
-#, fuzzy
-msgid "Choose a file"
-msgstr "Console Value"
-#
 # 
 msgid "Class"
 msgstr "Klass"
-
-#
-# 
-msgid "Class:                "
-msgstr "Klass:                "
 
 #
 # 
@@ -1157,11 +1126,6 @@ msgstr "Avaktivera ankarvakt"
 # 
 msgid "Click to cancel the font selection."
 msgstr "Klicka för att avbryta val av Teckensnitt."
-
-#
-# 
-msgid "Click to confirm the font selection."
-msgstr "Klicka för att bekräfta valet av Teckensnitt."
 
 #
 # 
@@ -1357,11 +1321,6 @@ msgstr "Grader, Minuter, Sekunder"
 msgid "Delete"
 msgstr "Radera"
 
-#
-# 
-#, fuzzy
-msgid "Delete"
-msgstr "Ra&dera"
 #
 # 
 msgid "Delete All"
@@ -3402,11 +3361,6 @@ msgstr "Fylld"
 
 #
 # 
-#, fuzzy
-msgid "Solid"
-msgstr "Med symboler"
-#
-# 
 msgid "Spare"
 msgstr "Reserv"
 
@@ -4187,13 +4141,6 @@ msgstr "wxFB Hemsida"
 #
 #
 # 
-#~ msgid "Additional information"
-#~ msgstr "Ytterligare information"
-#
-# 
-# 
-# 
-# 
 # 
 # 
 #~ msgid "Attempting to load libgps.so"
@@ -4268,24 +4215,6 @@ msgstr "wxFB Hemsida"
 #
 #
 #
-# 
-#~ msgid "MMSI:                 %09d\n"
-#~ msgstr "MMSI:                 %09d\n"
-#
-# 
-#~ msgid "Mark Icon"
-#~ msgstr "Ny Waypoint"
-
-#
-#
-#
-#
-# 
-#~ msgid "Mark Name"
-#~ msgstr "Waypointnamn"
-#
-# 
-# 
 # 
 # 
 #~ msgid "New Mark"
